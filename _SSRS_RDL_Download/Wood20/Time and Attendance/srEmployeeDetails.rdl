@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="WMPAY">
+      <rd:DataSourceID>e0529cac-fb30-4c68-99ea-4af1d92bb322</rd:DataSourceID>
+      <DataSourceReference>WMPAY</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="empNum">
+      <DataType>String</DataType>
+      <Prompt>empNum</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <RightMargin>0.1in</RightMargin>
+  <LeftMargin>0.1in</LeftMargin>
+  <BottomMargin>0.1in</BottomMargin>
+  <rd:ReportID>7fd2a26b-e911-4d4a-a698-055b97d318e8</rd:ReportID>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Fields>
+        <Field Name="EmpNum">
+          <DataField>EmpNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Dept">
+          <DataField>Dept</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>WMPAY</DataSourceName>
+        <CommandText>SELECT     EmpNum, Name, Dept
+FROM         Timemaster
+WHERE     (EmpNum = @empNum)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@empNum">
+            <Value>=Parameters!empNum.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Code />
+  <Width>3.03125in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="table4">
+        <DataSetName>mainData</DataSetName>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="table4_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!EmpNum.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Sorting>
+              <SortBy>
+                <SortExpression>=Fields!EmpNum.Value</SortExpression>
+                <Direction>Ascending</Direction>
+              </SortBy>
+            </Sorting>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox6">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>8pt</FontSize>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Name.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox1">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>8pt</FontSize>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Dept.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.17708in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.80208in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.22917in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.17708in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <TopMargin>0.1in</TopMargin>
+</Report>

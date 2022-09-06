@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix2">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>8.7161in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.18749in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="ItemDesc">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!ItemDesc.Value &amp; "  Width -" &amp; Fields!CabinetWidth.Value &amp; "- Heighth -" &amp; Fields!CabinetHeight.Value  &amp; "- Depth -" &amp; Fields!CabinetDepth.Value  &amp; "-  Finish (Side -" &amp;Fields!SIDEFIN.Value &amp; " - " &amp; Fields!SideFinishCode.Value  &amp; "- Door -" &amp;Fields!DOORFIN.Value &amp; " - " &amp; Fields!DoorFinishCode.Value  &amp; "- Other -" &amp; Fields!OTHERFIN.Value &amp; " - " &amp; Fields!OtherFinishCode.Value &amp; "-)  Wood (Side -" &amp; Fields!SideWoodCode.Value &amp; "-  Door -" &amp; Fields!DoorWoodCode.Value &amp; "-) " &amp; IIF(Fields!ReasonChanged.Value &lt;&gt; "00","CHANGED " &amp; Fields!ReasonChanged.Value,"")</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>ItemDesc</rd:DefaultName>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>Pink</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="Details" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>OrderItemDetail</DataSetName>
+        <Height>0.18749in</Height>
+        <Width>8.7161in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <BackgroundColor>Plum</BackgroundColor>
+          <FontSize>6pt</FontSize>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>0.18749in</Height>
+    <Style />
+  </Body>
+  <Width>8.7161in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <Description>R08 SROrderItemDetail</Description>
+  <Author>SSRS Conversion</Author>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VM250_OrderEntry">
+      <DataSourceReference>VM250_OrderEntry</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>bae03e77-e9ff-4b87-ac1c-6b8290f161bd</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="OrderItemDetail">
+      <Query>
+        <DataSourceName>VM250_OrderEntry</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@OrderNum">
+            <Value>=Parameters!OrderNum.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ItemNum">
+            <Value>=Parameters!ItemNum.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT DISTINCT 
+                      OrderItems.OrderNum, OrderItems.ItemNum, OrderItems.ItemDesc, OrderItems.ItemQty, OrderItems.CabinetDesignGroup, OrderItems.CabinetPrefix, 
+                      OrderItems.CabinetType, OrderItems.CabinetWidth, OrderItems.CabinetHeight, OrderItems.CabinetDepth, OrderItems.Hinging, OrderItems.FinishedSides, 
+                      OrderItems.ChangeCode, OrderItems.ReasonChanged, OrderItems.ChangedDate, OrderStyles.StyleCode, OrderStyles.FinishGroup, OrderStyles.SideWoodCode, 
+                      OrderStyles.SideFinishCode, OrderStyles.DoorWoodCode, OrderStyles.DoorFinishCode, OrderStyles.DoorHardwareCode, OrderStyles.DoorHardwareCount, 
+                      OrderStyles.MatteFinishCode, OrderStyles.FrameFinishCode, OrderStyles.InsertFinishCode, OrderStyles.OtherFinishCode, OrderStyles.HingeHardwareCode, 
+                      OrderStyles.DrawerHardwareCode, OrderStyles.DrawerHardwareCount, OrderStyles.UsageCode, OrderStyles.StyleDollarAmount, OrderStyles.LessDustStrip, 
+                      OrderStyles.PaintRoomNum, OrderStyles.PaintRoomRubCode, OrderStyles.Comment1, OrderStyles.Comment2, OrderStyles.Comment3, OrderStyles.MarkComment, 
+                      CabinetCodes.CabinetDesc, OrderItems.CabRealDimHeight, OrderItems.CabRealDimDepth, OrderItems.CabRealDimWdith, OrderHeader.ShipGroup, 
+                      OrderHeader.DueToWarehouseDate, OrderHeader.ShipDate, OrderItems.StyleSeqNum, OrderHeader.Style, OrderStyles.StyleID, OrderItems.RelativeRecordNum, 
+                      FinishCodes.FinishClassCodes AS SIDEFIN, FinishCodes_1.FinishClassCodes AS DOORFIN, FinishCodes_2.FinishClassCodes AS OTHERFIN
+FROM         OrderStyles LEFT OUTER JOIN
+                      FinishCodes AS FinishCodes_1 ON OrderStyles.DoorFinishCode = FinishCodes_1.FinishCode LEFT OUTER JOIN
+                      FinishCodes AS FinishCodes_2 ON OrderStyles.OtherFinishCode = FinishCodes_2.FinishCode LEFT OUTER JOIN
+                      FinishCodes ON OrderStyles.SideFinishCode = FinishCodes.FinishCode RIGHT OUTER JOIN
+                      OrderItems ON OrderStyles.StyleSeqNum = OrderItems.StyleSeqNum AND OrderStyles.OrderNum = OrderItems.OrderNum LEFT OUTER JOIN
+                      OrderHeader ON OrderItems.OrderNum = OrderHeader.OrderNum LEFT OUTER JOIN
+                      CabinetCodes ON OrderItems.CabinetDesignGroup = CabinetCodes.DesignGroup AND OrderItems.CabinetPrefix = CabinetCodes.CabinetPrefix AND 
+                      OrderItems.CabinetType = CabinetCodes.CabinetType AND OrderItems.CabinetWidth = CabinetCodes.CabinetWidth AND 
+                      OrderItems.CabinetHeight = CabinetCodes.CabinetHeighth AND OrderItems.CabinetDepth = CabinetCodes.CabinetDepth
+WHERE     (OrderItems.ItemNum = @ItemNum) AND (OrderItems.OrderNum = @OrderNum)</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrderNum">
+          <DataField>OrderNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ItemNum">
+          <DataField>ItemNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ItemDesc">
+          <DataField>ItemDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ItemQty">
+          <DataField>ItemQty</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CabinetDesignGroup">
+          <DataField>CabinetDesignGroup</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CabinetPrefix">
+          <DataField>CabinetPrefix</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CabinetType">
+          <DataField>CabinetType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CabinetWidth">
+          <DataField>CabinetWidth</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CabinetHeight">
+          <DataField>CabinetHeight</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CabinetDepth">
+          <DataField>CabinetDepth</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Hinging">
+          <DataField>Hinging</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FinishedSides">
+          <DataField>FinishedSides</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ChangeCode">
+          <DataField>ChangeCode</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ReasonChanged">
+          <DataField>ReasonChanged</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ChangedDate">
+          <DataField>ChangedDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="StyleCode">
+          <DataField>StyleCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FinishGroup">
+          <DataField>FinishGroup</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SideWoodCode">
+          <DataField>SideWoodCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SideFinishCode">
+          <DataField>SideFinishCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoorWoodCode">
+          <DataField>DoorWoodCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoorFinishCode">
+          <DataField>DoorFinishCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoorHardwareCode">
+          <DataField>DoorHardwareCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoorHardwareCount">
+          <DataField>DoorHardwareCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MatteFinishCode">
+          <DataField>MatteFinishCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FrameFinishCode">
+          <DataField>FrameFinishCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="InsertFinishCode">
+          <DataField>InsertFinishCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OtherFinishCode">
+          <DataField>OtherFinishCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HingeHardwareCode">
+          <DataField>HingeHardwareCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DrawerHardwareCode">
+          <DataField>DrawerHardwareCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DrawerHardwareCount">
+          <DataField>DrawerHardwareCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="UsageCode">
+          <DataField>UsageCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="StyleDollarAmount">
+          <DataField>StyleDollarAmount</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="LessDustStrip">
+          <DataField>LessDustStrip</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PaintRoomNum">
+          <DataField>PaintRoomNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PaintRoomRubCode">
+          <DataField>PaintRoomRubCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Comment1">
+          <DataField>Comment1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Comment2">
+          <DataField>Comment2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Comment3">
+          <DataField>Comment3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MarkComment">
+          <DataField>MarkComment</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CabinetDesc">
+          <DataField>CabinetDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CabRealDimHeight">
+          <DataField>CabRealDimHeight</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CabRealDimDepth">
+          <DataField>CabRealDimDepth</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CabRealDimWdith">
+          <DataField>CabRealDimWdith</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ShipGroup">
+          <DataField>ShipGroup</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DueToWarehouseDate">
+          <DataField>DueToWarehouseDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ShipDate">
+          <DataField>ShipDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="StyleSeqNum">
+          <DataField>StyleSeqNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Style">
+          <DataField>Style</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="StyleID">
+          <DataField>StyleID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="RelativeRecordNum">
+          <DataField>RelativeRecordNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SIDEFIN">
+          <DataField>SIDEFIN</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DOORFIN">
+          <DataField>DOORFIN</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OTHERFIN">
+          <DataField>OTHERFIN</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="OrderNum">
+      <DataType>String</DataType>
+      <Prompt>Order Num</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ItemNum">
+      <DataType>String</DataType>
+      <Prompt>Item Num</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>5efd6e85-8f4d-43d0-b2bb-cf3b1354947b</rd:ReportID>
+</Report>

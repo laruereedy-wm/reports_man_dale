@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource1">
+      <DataSourceReference>/Data Sources/PK1 Test Server</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>50c0bda4-2968-4061-a3dd-5882c8f19847</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="LabelData">
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@MO">
+            <Value>=Parameters!MO.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     MOS.MOS_IMKEY, MOS.MOS_JOB, RTRIM(LTRIM(MOS.MOS_JOB)) AS BarCode, CONVERT(varchar(5), MOS.MOS_WANTDATE, 101) AS DueDate, MOS.MOS_CRDATE, 
+                      MOS.MOS_STATUS, MOS.MOS_QTY, RQ.RQ_MOSJOB, RQ.RQ_MOSLOT, CONVERT(varchar(5), RQ_1.RQ_DATE_REQ, 101) AS ShipDate, 
+                      MOC.MOC_USER_1 AS DoorStyle, MOC.MOC_USER_2 AS SideWood, MOC.MOC_USER_3 AS DoorWood, MOC.MOC_USER_4 AS SideFinish, 
+                      MOC.MOC_USER_5 AS DoorFinish, MOS.MOS_USER_1 AS DiliverToo, MOS.MOS_USER_2 AS Descr1, MOS.MOS_USER_3 AS Descr2, MOS.MOS_USER_4 AS Descr3, 
+                      MOS.MOS_USER_10, RQ_1.RQ_USER_11 AS ShipGroup, MOC.MOC_CUST_PART_NO, MOC.MOC_OHNUMBER, MOC.MOC_REF_NO, RIGHT(MOS.MOS_USER_2, 4) 
+                      AS BOM_DESC
+FROM         MOS INNER JOIN
+                      PR ON MOS.MOS_TYPE = PR.PR_MOSTYPE AND MOS.MOS_JOB = PR.PR_MOSJOB AND MOS.MOS_LOT = PR.PR_MOSLOT AND 
+                      MOS.MOS_SEQNUM1 = PR.PR_MOSSEQNUM INNER JOIN
+                      RQ ON PR.PR_RQSEQNUM = RQ.RQ_SEQNUM INNER JOIN
+                      RQ AS RQ_1 ON RQ.RQ_MOSJOB = RQ_1.RQ_JOB AND RQ.RQ_MOSLOT = RQ_1.RQ_LOT INNER JOIN
+                      MOC ON RQ_1.RQ_MOCTYPE = MOC.MOC_OHTYPE AND RQ_1.RQ_MOCNUMBER = MOC.MOC_OHNUMBER AND 
+                      RQ_1.RQ_MOCREFNO = MOC.MOC_REF_NO
+WHERE     (MOS.MOS_USER_3 LIKE '%PLY%') AND (MOS.MOS_USER_1 LIKE '%D%15%')AND (MOS_JOB = @MO)</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="MOS_IMKEY">
+          <DataField>MOS_IMKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_JOB">
+          <DataField>MOS_JOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BarCode">
+          <DataField>BarCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DueDate">
+          <DataField>DueDate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_CRDATE">
+          <DataField>MOS_CRDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="MOS_STATUS">
+          <DataField>MOS_STATUS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MOS_QTY">
+          <DataField>MOS_QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="RQ_MOSJOB">
+          <DataField>RQ_MOSJOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RQ_MOSLOT">
+          <DataField>RQ_MOSLOT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ShipDate">
+          <DataField>ShipDate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoorStyle">
+          <DataField>DoorStyle</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SideWood">
+          <DataField>SideWood</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoorWood">
+          <DataField>DoorWood</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SideFinish">
+          <DataField>SideFinish</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoorFinish">
+          <DataField>DoorFinish</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DiliverToo">
+          <DataField>DiliverToo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Descr1">
+          <DataField>Descr1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Descr2">
+          <DataField>Descr2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Descr3">
+          <DataField>Descr3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_USER_10">
+          <DataField>MOS_USER_10</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ShipGroup">
+          <DataField>ShipGroup</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MOC_CUST_PART_NO">
+          <DataField>MOC_CUST_PART_NO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOC_OHNUMBER">
+          <DataField>MOC_OHNUMBER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOC_REF_NO">
+          <DataField>MOC_REF_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="BOM_DESC">
+          <DataField>BOM_DESC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Textbox Name="RQ_MOSJOB">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!RQ_MOSJOB.Value, "LabelData")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>RQ_MOSJOB</rd:DefaultName>
+            <Height>0.21875in</Height>
+            <Width>1in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="RQ_MOSLOT">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!RQ_MOSLOT.Value, "LabelData")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>RQ_MOSLOT</rd:DefaultName>
+            <Left>1.01389in</Left>
+            <Height>0.21875in</Height>
+            <Width>0.46875in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="MOS_JOB">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!MOS_JOB.Value, "LabelData")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>MOS_JOB</rd:DefaultName>
+            <Top>0.28819in</Top>
+            <Left>1.28in</Left>
+            <Height>0.25in</Height>
+            <Width>1.08333in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>0.655in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>3.94792in</Width>
+      <Page>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="MO">
+      <DataType>String</DataType>
+      <Prompt>MO</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://172.16.100.249/ReportServer</rd:ReportServerUrl>
+  <rd:ReportID>9bec9413-40fb-4791-8b75-b8877e9838ee</rd:ReportID>
+</Report>

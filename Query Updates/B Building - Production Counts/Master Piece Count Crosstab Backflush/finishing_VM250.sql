@@ -1,0 +1,5 @@
+SELECT
+	OS.FinishGroup AS FINISHCODE
+
+FROM
+	OrderStyles AS OS

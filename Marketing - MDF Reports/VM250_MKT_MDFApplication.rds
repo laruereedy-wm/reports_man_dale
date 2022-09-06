@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="VM250_MKT_MDFApplication">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=vm250;Initial Catalog=MKT.MDFApplication</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>6ac7d157-9f67-4dfd-a201-34e8236d1802</DataSourceID>
+</RptDataSource>

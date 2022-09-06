@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="FM_PRICING">
+      <rd:DataSourceID>b444a7b0-ac58-47b9-9a6c-81854d853fd4</rd:DataSourceID>
+      <DataSourceReference>FM_PRICING</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>8.5in</InteractiveHeight>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>11in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>0.1in</RightMargin>
+  <LeftMargin>0.1in</LeftMargin>
+  <PageHeader>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="Label18">
+        <Top>0.125in</Top>
+        <Width>4.375in</Width>
+        <Style>
+          <Color>#800000</Color>
+          <BackgroundColor>#ffffff</BackgroundColor>
+          <BorderColor>
+            <Default>#000000</Default>
+          </BorderColor>
+          <FontSize>20pt</FontSize>
+          <FontWeight>900</FontWeight>
+          <TextAlign>Left</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+          <LineHeight>26pt</LineHeight>
+        </Style>
+        <Left>0.25in</Left>
+        <Height>0.4166in</Height>
+        <Value>Actrive Catolog Codes</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.625in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <Style>
+      <BackgroundColor>#ffffff</BackgroundColor>
+    </Style>
+  </PageHeader>
+  <BottomMargin>0.1in</BottomMargin>
+  <rd:ReportID>3d9a606c-aa02-46da-a93f-14c21eefa5d4</rd:ReportID>
+  <PageWidth>11in</PageWidth>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Fields>
+        <Field Name="ORDERCODE">
+          <DataField>ORDERCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CATEGORY">
+          <DataField>CATEGORY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SUBCATEGORY">
+          <DataField>SUBCATEGORY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LEVEL1">
+          <DataField>LEVEL1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LEVEL2">
+          <DataField>LEVEL2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LEVEL3">
+          <DataField>LEVEL3</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LEVEL4">
+          <DataField>LEVEL4</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PRICING">
+          <DataField>PRICING</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CATALOGID">
+          <DataField>CATALOGID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LINE">
+          <DataField>LINE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>FM_PRICING</DataSourceName>
+        <CommandText>SELECT     ORDERCODE, CATEGORY, SUBCATEGORY, LEVEL1, LEVEL2, LEVEL3, LEVEL4, PRICING, CATALOGID, LINE
+FROM         PRICING
+ORDER BY ORDERCODE</CommandText>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Width>10.50366in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!ORDERCODE.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox3">
+                          <Style>
+                            <Color>#000000</Color>
+                            <BorderStyle>
+                              <Left>Solid</Left>
+                              <Right>Solid</Right>
+                              <Top>Solid</Top>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <FontFamily>Times New Roman</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <PaddingLeft>4pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <LineHeight>14pt</LineHeight>
+                          </Style>
+                          <Value>=Fields!ORDERCODE.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <Width>3.5in</Width>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox10">
+                      <Style>
+                        <Color>#000000</Color>
+                        <BorderColor>
+                          <Bottom>#800000</Bottom>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Default>2pt</Default>
+                        </BorderWidth>
+                        <FontWeight>900</FontWeight>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>0in</PaddingLeft>
+                        <PaddingRight>0in</PaddingRight>
+                        <PaddingTop>0in</PaddingTop>
+                        <PaddingBottom>0in</PaddingBottom>
+                        <LineHeight>15pt</LineHeight>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <Value>Code</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>3.5in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Left>0.25in</Left>
+      </Table>
+    </ReportItems>
+    <Height>0.5in</Height>
+  </Body>
+  <PageFooter>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="Text20">
+        <Top>0.125in</Top>
+        <Style>
+          <Color>#000000</Color>
+          <BorderColor>
+            <Default>#000000</Default>
+          </BorderColor>
+          <FontFamily>Times New Roman</FontFamily>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Right</TextAlign>
+          <PaddingLeft>0in</PaddingLeft>
+          <PaddingRight>0in</PaddingRight>
+          <PaddingTop>0in</PaddingTop>
+          <PaddingBottom>0in</PaddingBottom>
+          <LineHeight>15pt</LineHeight>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <Left>7in</Left>
+        <Height>0.2084in</Height>
+        <Value>="Page " &amp; Globals.PageNumber &amp; " of " &amp; Globals.TotalPages</Value>
+      </Textbox>
+      <Textbox Name="Text19">
+        <Top>0.1666in</Top>
+        <Width>3.5in</Width>
+        <Style>
+          <Color>#000000</Color>
+          <BorderColor>
+            <Default>#000000</Default>
+          </BorderColor>
+          <FontFamily>Times New Roman</FontFamily>
+          <FontWeight>700</FontWeight>
+          <Format>D</Format>
+          <TextAlign>Left</TextAlign>
+          <PaddingLeft>0in</PaddingLeft>
+          <PaddingRight>0in</PaddingRight>
+          <PaddingTop>0in</PaddingTop>
+          <PaddingBottom>0in</PaddingBottom>
+          <LineHeight>15pt</LineHeight>
+        </Style>
+        <Left>0.25in</Left>
+        <Value>=Now()</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.375in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <Style>
+      <BackgroundColor>#ffffff</BackgroundColor>
+    </Style>
+  </PageFooter>
+  <PageHeight>8.5in</PageHeight>
+</Report>

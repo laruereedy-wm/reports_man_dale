@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="MarketForecast1">
+      <DataSourceReference>MarketForecast1</DataSourceReference>
+      <rd:DataSourceID>22b8f3b3-7b04-404e-8bda-5f44403ba10c</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>0.2in</BottomMargin>
+  <RightMargin>0.1in</RightMargin>
+  <ReportParameters>
+    <ReportParameter Name="PMForecastYear">
+      <DataType>Integer</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>PMForecastYear</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Territory">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Territory</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <DataSetName>MainData</DataSetName>
+        <TableGroups>
+          <TableGroup>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox1">
+                          <rd:DefaultName>textbox1</rd:DefaultName>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>6pt</FontSize>
+                            <Format>#,##0</Format>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>5pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>="$" &amp; Format(Int(Sum(Fields!BH_M_POT.Value)), "##,##0")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.14583in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+            <Grouping Name="table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!TERRITORY.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+          </TableGroup>
+        </TableGroups>
+        <Style>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.57902in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.14583in</Height>
+  </Body>
+  <rd:ReportID>f33df083-1e56-497d-9f7c-3ed6360e1916</rd:ReportID>
+  <DataSets>
+    <DataSet Name="MainData">
+      <Query>
+        <CommandText>SELECT     MARKETPOTENTIAL.FIPS, MARKETPOTENTIAL.TERRITORY, MARKETPOTENTIAL.MSAID, MARKETPOTENTIAL.BH_M_POT, 
+                      MARKETPOTENTIAL.WM_M_POT, MARKETPOTENTIAL.YEAR, MSA.MSA
+FROM         MARKETPOTENTIAL LEFT OUTER JOIN
+                      MSA ON MARKETPOTENTIAL.MSAID = MSA.MSAID
+WHERE     (MARKETPOTENTIAL.YEAR = @PMForecastYear - 2) AND (MARKETPOTENTIAL.TERRITORY = @Territory)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@PMForecastYear">
+            <Value>=Parameters!PMForecastYear.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Territory">
+            <Value>=Parameters!Territory.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="FIPS">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>FIPS</DataField>
+        </Field>
+        <Field Name="TERRITORY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TERRITORY</DataField>
+        </Field>
+        <Field Name="MSAID">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>MSAID</DataField>
+        </Field>
+        <Field Name="BH_M_POT">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>BH_M_POT</DataField>
+        </Field>
+        <Field Name="WM_M_POT">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>WM_M_POT</DataField>
+        </Field>
+        <Field Name="YEAR">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>YEAR</DataField>
+        </Field>
+        <Field Name="MSA">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>MSA</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="NoRows">
+      <Query>
+        <CommandText>SELECT     1 AS NoRowsCheck</CommandText>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="NoRowsCheck">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>NoRowsCheck</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Code>'Handle divide by zero gracefully and improved readability of an IIf
+Public Function DivZero(ByVal Numerator As Object, ByVal Denominator As Object, ByVal DivZeroDefault As Object) As Object 
+	If Denominator &lt;&gt; 0 Then 
+	    Return Numerator/Denominator 
+	Else 
+	    Return DivZeroDefault 
+	End If 
+End Function 
+
+Public Function IsNeg(ByVal perValue As Double) As Boolean
+	If(perValue &lt; 0) Then
+	    return True
+	End If
+	return False
+End Function</Code>
+  <Width>0.57902in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+</Report>

@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="2328Stain">
+      <rd:DataSourceID>0a753cca-e89e-482a-96f2-b694155f7848</rd:DataSourceID>
+      <DataSourceReference>2328Stain</DataSourceReference>
+    </DataSource>
+    <DataSource Name="2437FLSA">
+      <rd:DataSourceID>0f16dd12-9f85-48a8-b8a9-ee1560399e8b</rd:DataSourceID>
+      <DataSourceReference>2437FLSA</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>8.5in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="ENDDATE">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>EndDate</DataSetName>
+          <ValueField>ENDDATE</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ENDDATE</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>11in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <rd:ReportID>88638643-f75b-49ce-b44a-512a84c85a4f</rd:ReportID>
+  <PageWidth>11in</PageWidth>
+  <DataSets>
+    <DataSet Name="EndDate">
+      <Fields>
+        <Field Name="ENDDATE">
+          <DataField>ENDDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2328Stain</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>procGetStainingEndDate</CommandText>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2437cabinetLoaders">
+      <Fields>
+        <Field Name="DATE">
+          <DataField>DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SIZE">
+          <DataField>SIZE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SIDEFINISH">
+          <DataField>SIDEFINISH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CABINET">
+          <DataField>CABINET</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING2">
+          <DataField>TRACKING2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DUEWH">
+          <DataField>DUEWH</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FRAMEDFRAMELESS">
+          <DataField>FRAMEDFRAMELESS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPDATE">
+          <DataField>SHIPDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TYPE">
+          <DataField>TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPGROUP">
+          <DataField>SHIPGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="JOBCOM">
+          <DataField>JOBCOM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RELDATEORD">
+          <DataField>RELDATEORD</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ISCABINETLOADER">
+          <DataField>ISCABINETLOADER</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="CABINET_LOADER_QTY">
+          <Value>=IIF(Fields!ISCABINETLOADER.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="CABINET_LOADER_HOURS">
+          <Value>=IIF(Fields!ISCABINETLOADER.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2437FLSA</DataSourceName>
+        <CommandText>SELECT        DATE, ORDRNO, ITEMNO, QTY, SIZE, SIDEFINISH, CABINET, TRACKING2, WIDTH, DUEWH, FINISHDATE, BASEWALLTALL, FRAMEDFRAMELESS, SHIPDATE, TYPE, 
+                         DESIGNGRP, SHIPGROUP, RATE, HOURS, B2FLAG, JOBCOM, RELDATEORD, ISCABINETLOADER
+FROM            CABINETLOADERREPORTDATA
+WHERE        (FINISHDATE &lt; @ENDDATE)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ENDDATE">
+            <Value>=Parameters!ENDDATE.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2437glassPanels">
+      <Fields>
+        <Field Name="DATE">
+          <DataField>DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SIZE">
+          <DataField>SIZE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SIDEFINISH">
+          <DataField>SIDEFINISH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CABINET">
+          <DataField>CABINET</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING2">
+          <DataField>TRACKING2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DUEWH">
+          <DataField>DUEWH</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FRAMEDFRAMELESS">
+          <DataField>FRAMEDFRAMELESS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPDATE">
+          <DataField>SHIPDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TYPE">
+          <DataField>TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPGROUP">
+          <DataField>SHIPGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="NUMBEROFDOORS">
+          <DataField>NUMBEROFDOORS</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="JOBCOM">
+          <DataField>JOBCOM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RELDATEORD">
+          <DataField>RELDATEORD</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ISGLASSPANEL">
+          <DataField>ISGLASSPANEL</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="GLASS_PANEL_QTY">
+          <Value>=IIF(Fields!ISGLASSPANEL.Value, Fields!NUMBEROFDOORS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="GLASS_PANEL_HOURS">
+          <Value>=Fields!HOURS.Value</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2437FLSA</DataSourceName>
+        <CommandText>SELECT        DATE, ORDRNO, ITEMNO, QTY, SIZE, SIDEFINISH, CABINET, TRACKING2, WIDTH, DUEWH, FINISHDATE, BASEWALLTALL, FRAMEDFRAMELESS, SHIPDATE, TYPE, 
+                         DESIGNGRP, SHIPGROUP, RATE, NUMBEROFDOORS, HOURS, B2FLAG, JOBCOM, RELDATEORD, ISGLASSPANEL
+FROM            GLASSPANELREPORTDATA
+WHERE        (FINISHDATE &lt; @ENDDATE)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ENDDATE">
+            <Value>=Parameters!ENDDATE.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2437ActualEarnedCabinetLoader">
+      <Fields>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EARNEDGROUP">
+          <DataField>EARNEDGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EARNEDTIME">
+          <DataField>EARNEDTIME</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GLASSPANELEXCLUSION">
+          <DataField>GLASSPANELEXCLUSION</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="CABINETLOADEREXCLUSION">
+          <DataField>CABINETLOADEREXCLUSION</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="FINISHEDINTERIOR">
+          <DataField>FINISHEDINTERIOR</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="NUMBEROFDOORS">
+          <DataField>NUMBEROFDOORS</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ISCABINETLOADER">
+          <DataField>ISCABINETLOADER</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="ISGLASSPANEL">
+          <DataField>ISGLASSPANEL</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2437FLSA</DataSourceName>
+        <CommandText>SELECT        ORDRNO, ITEMNO, QTY, FINISHDATE, DESIGNGRP, BASEWALLTALL, WIDTH, EARNEDGROUP, EARNEDTIME, RATE, HOURS, B2FLAG, GLASSPANELEXCLUSION, 
+                         CABINETLOADEREXCLUSION, FINISHEDINTERIOR, NUMBEROFDOORS, ISCABINETLOADER, ISGLASSPANEL
+FROM            vActualEarnedCabinetLoader</CommandText>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2437ActualEarnedGlassPanel">
+      <Fields>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EARNEDGROUP">
+          <DataField>EARNEDGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EARNEDTIME">
+          <DataField>EARNEDTIME</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GLASSPANELEXCLUSION">
+          <DataField>GLASSPANELEXCLUSION</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="CABINETLOADEREXCLUSION">
+          <DataField>CABINETLOADEREXCLUSION</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="FINISHEDINTERIOR">
+          <DataField>FINISHEDINTERIOR</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="NUMBEROFDOORS">
+          <DataField>NUMBEROFDOORS</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ISCABINETLOADER">
+          <DataField>ISCABINETLOADER</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="ISGLASSPANEL">
+          <DataField>ISGLASSPANEL</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2437FLSA</DataSourceName>
+        <CommandText>SELECT        ORDRNO, ITEMNO, QTY, FINISHDATE, DESIGNGRP, BASEWALLTALL, WIDTH, EARNEDGROUP, EARNEDTIME, RATE, HOURS, B2FLAG, GLASSPANELEXCLUSION, 
+                         CABINETLOADEREXCLUSION, FINISHEDINTERIOR, NUMBEROFDOORS, ISCABINETLOADER, ISGLASSPANEL
+FROM            vActualEarnedGlassPanel</CommandText>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Code>'Handle divide by zero gracefully and improved readability of an IIf
+Public Function DivZero(ByVal Numerator As Object, ByVal Denominator As Object, ByVal DivZeroDefault As Object) As Object 
+	If Denominator &lt;&gt; 0 Then 
+	    Return Numerator/Denominator 
+	Else 
+	    Return DivZeroDefault 
+	End If 
+End Function </Code>
+  <Width>10.8125in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="table12">
+        <ZIndex>1</ZIndex>
+        <DataSetName>Dept2437cabinetLoaders</DataSetName>
+        <Top>0.65312in</Top>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.07292in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.28125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.53125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.11458in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.27083in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.26042in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox95">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox96">
+                      <Style>
+                        <BorderWidth>
+                          <Left>2pt</Left>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!CABINET_LOADER_QTY.Value)/5</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox97">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!CABINET_LOADER_HOURS.Value)/5</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox98">
+                      <Style>
+                        <BorderWidth>
+                          <Left>2pt</Left>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!NUMBEROFDOORS.Value, "Dept2437glassPanels")/5</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox99">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!HOURS.Value, "Dept2437glassPanels")/5</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox104">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!QTY.Value, "Dept2437ActualEarnedCabinetLoader")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox105">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!HOURS.Value, "Dept2437ActualEarnedCabinetLoader")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox106">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!NUMBEROFDOORS.Value, "Dept2437ActualEarnedGlassPanel")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox107">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!HOURS.Value, "Dept2437ActualEarnedGlassPanel")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+      </Table>
+      <Table Name="table11">
+        <DataSetName>EndDate</DataSetName>
+        <Top>0.00415in</Top>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ColSpan>9</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="textbox85">
+                      <Style>
+                        <FontSize>24pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>9</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>2437</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.40625in</Height>
+            </TableRow>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox86">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox87">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Cabinet Loader Planned</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox88">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Cabinet Loader Hrs Planned</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox89">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Glass Panel Planned</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox90">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Glass Panel Hours Planned</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox91">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Cabinet Loader Actual</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox92">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Cabinet Loader Hrs Act</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox93">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Glass Panel Actual</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox94">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Glass Panel Hrs Act</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.07292in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.28125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.53125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.11458in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.27083in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.26042in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.65625in</Height>
+      </Table>
+    </ReportItems>
+    <Height>0.90312in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <PageHeight>8.5in</PageHeight>
+</Report>

@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="table1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>2.4618in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="LocationName_Label">
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Location</Value>
+                              <Style>
+                                <FontFamily>Times New Roman</FontFamily>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>Underline</TextDecoration>
+                                <Color>#000080</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                            <LineHeight>16pt</LineHeight>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <ZIndex>2</ZIndex>
+                      <Style />
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="LocationName">
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LocationName.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <Color>#000000</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                            <LineHeight>14pt</LineHeight>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <Style />
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="txtOverallTotal">
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>="Overall Total:  " &amp; CountDistinct(Fields!LocationName.Value)</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>#,##0</Format>
+                                <Color>#000080</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                            <LineHeight>14pt</LineHeight>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <ZIndex>1</ZIndex>
+                      <Style />
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <KeepWithGroup>After</KeepWithGroup>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="table1_Details_Group">
+                <DataElementName>Detail</DataElementName>
+              </Group>
+              <TablixMembers>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>true</Hidden>
+                    <ToggleItem>txtOverallTotal</ToggleItem>
+                  </Visibility>
+                </TablixMember>
+              </TablixMembers>
+              <DataElementName>Detail_Collection</DataElementName>
+              <DataElementOutput>Output</DataElementOutput>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+            <TablixMember>
+              <KeepWithGroup>Before</KeepWithGroup>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <Filters>
+          <Filter>
+            <FilterExpression>=Fields!LocationName.Value</FilterExpression>
+            <Operator>Between</Operator>
+            <FilterValues>
+              <FilterValue>=Parameters!StartLocation.Value</FilterValue>
+              <FilterValue>=Parameters!EndLocation.Value</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
+        <Left>0.5in</Left>
+        <Height>0.75in</Height>
+        <Width>2.4618in</Width>
+        <Style />
+      </Tablix>
+    </ReportItems>
+    <Height>0.75in</Height>
+    <Style />
+  </Body>
+  <Width>7.3854in</Width>
+  <Page>
+    <PageHeader>
+      <Height>0.875in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Rectangle Name="ReportHeader">
+          <ReportItems>
+            <Textbox Name="textbox12">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Location Range:  " &amp; Parameters!StartLocation.Value &amp; "  to  " &amp; Parameters!EndLocation.Value</Value>
+                      <Style>
+                        <FontFamily>Times New Roman</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <FontWeight>SemiBold</FontWeight>
+                        <Color>#000080</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.5in</Top>
+              <Height>0.25in</Height>
+              <Width>7.375in</Width>
+              <Style>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="textbox1">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Rack Status Report - Empty Locations</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Times New Roman</FontFamily>
+                        <FontSize>20pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                        <Color>#000080</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                    <LineHeight>26pt</LineHeight>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.125in</Top>
+              <Height>0.3541in</Height>
+              <Width>7.375in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Color>#000000</Color>
+                </Border>
+                <BackgroundColor>#ffffff</BackgroundColor>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <DataElementOutput>ContentsOnly</DataElementOutput>
+          <Top>0.08333in</Top>
+          <Height>0.75in</Height>
+          <Width>7.375in</Width>
+          <Style>
+            <BackgroundColor>#ffffff</BackgroundColor>
+          </Style>
+        </Rectangle>
+        <Textbox Name="DatePrinted">
+          <CanGrow>true</CanGrow>
+          <CanShrink>true</CanShrink>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=DateTime.Now.ToString()</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Left>5.75in</Left>
+          <Height>0.125in</Height>
+          <Width>1.625in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox52">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>R05-0222</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox52</rd:DefaultName>
+          <Height>0.25in</Height>
+          <Width>1in</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <BackgroundColor>#ffffff</BackgroundColor>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>0.5in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Text18">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="Page " &amp; Globals.PageNumber &amp; " of " &amp; Globals.TotalPages</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+                <LineHeight>14pt</LineHeight>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.25in</Top>
+          <Left>3.875in</Left>
+          <Height>0.2083in</Height>
+          <Width>3.375in</Width>
+          <Style>
+            <Border>
+              <Color>#000000</Color>
+            </Border>
+          </Style>
+        </Textbox>
+        <Line Name="Line20">
+          <Top>0.125in</Top>
+          <Left>0.125in</Left>
+          <Height>0in</Height>
+          <Width>7.15in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Color>#c0c0c0</Color>
+              <Style>Solid</Style>
+              <Width>3pt</Width>
+            </Border>
+          </Style>
+        </Line>
+        <Textbox Name="ExecutionTime">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="Execution Time: " +
+IIf(System.DateTime.Now.Subtract(Globals!ExecutionTime).TotalSeconds &lt; 1, "0 seconds", 
+   (
+IIf(System.DateTime.Now.Subtract(Globals!ExecutionTime).Hours &gt; 0, System.DateTime.Now.Subtract(Globals!ExecutionTime).Hours &amp; " hour(s), ", "") +
+IIf(System.DateTime.Now.Subtract(Globals!ExecutionTime).Minutes &gt; 0, System.DateTime.Now.Subtract(Globals!ExecutionTime).Minutes &amp; " minute(s), ", "") +
+IIf(System.DateTime.Now.Subtract(Globals!ExecutionTime).Seconds &gt; 0, System.DateTime.Now.Subtract(Globals!ExecutionTime).Seconds &amp; " second(s)", ""))
+)</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.25in</Top>
+          <Left>0.125in</Left>
+          <Height>0.25in</Height>
+          <Width>2.5in</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <BackgroundColor>#ffffff</BackgroundColor>
+      </Style>
+    </PageFooter>
+    <PageHeight>11.5in</PageHeight>
+    <LeftMargin>0.5in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <Description>R05-0222 Rack Status Report - Empty Locations</Description>
+  <Author>SSRS Conversion</Author>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="RIL">
+      <DataSourceReference>RIL</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>74fd060f-f08e-44ae-af3d-084a3c3f1e7b</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>RIL</DataSourceName>
+        <CommandText>SELECT     LocationName
+FROM         Locations
+WHERE     (IsAvailable = 1) AND (LocationID NOT IN
+                          (SELECT     LocationID
+                            FROM          Inventory))
+ORDER BY LocationID</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="LocationName">
+          <DataField>LocationName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="StartLocation">
+      <DataType>String</DataType>
+      <Prompt>Start Location:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndLocation">
+      <DataType>String</DataType>
+      <Prompt>End Location:</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>5999c085-4020-413b-ac8d-ca4dfa17a91a</rd:ReportID>
+</Report>

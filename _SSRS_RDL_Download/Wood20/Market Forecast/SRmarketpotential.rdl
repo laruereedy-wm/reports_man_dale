@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="MarketForecast1">
+      <DataSourceReference>MarketForecast1</DataSourceReference>
+      <rd:DataSourceID>b6a3ff50-c621-486e-b4c2-0e0f52291003</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>1in</BottomMargin>
+  <RightMargin>1in</RightMargin>
+  <ReportParameters>
+    <ReportParameter Name="msaID">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>msaID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="territory">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>territory</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="divisor">
+      <DataType>Integer</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>divisor</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="year">
+      <DataType>Integer</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>year</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="WMproductLine">
+      <DataType>Boolean</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>productLine</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Textbox Name="textbox1">
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontSize>6pt</FontSize>
+          <Format>P1</Format>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Value>=IIf(Code.IsNeg(Code.DivZero(Parameters!divisor.Value,IIf(Parameters!WMproductLine.Value = True, Fields!WM_M_POT.Value,Fields!BH_M_POT.Value),0)), "(" &amp; FormatPercent((Code.DivZero(Parameters!divisor.Value,IIf(Parameters!WMproductLine.Value = True, Fields!WM_M_POT.Value,Fields!BH_M_POT.Value),0) * -1), 1) &amp; ")", Code.DivZero(Parameters!divisor.Value,IIf(Parameters!WMproductLine.Value = True, Fields!WM_M_POT.Value,Fields!BH_M_POT.Value),0))</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.125in</Height>
+  </Body>
+  <rd:ReportID>4eedd72e-1804-40c4-a07e-1b745eb88050</rd:ReportID>
+  <LeftMargin>1in</LeftMargin>
+  <DataSets>
+    <DataSet Name="MarketPotential">
+      <Query>
+        <CommandText>SELECT     FIPS, TERRITORY, MSAID, BH_M_POT, WM_M_POT, YEAR
+FROM         vMarketPotential
+WHERE     (TERRITORY = @territory) AND (MSAID = @msaID) AND (YEAR = @year)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@territory">
+            <Value>=Parameters!territory.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@msaID">
+            <Value>=Parameters!msaID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@year">
+            <Value>=Parameters!year.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="FIPS">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>FIPS</DataField>
+        </Field>
+        <Field Name="TERRITORY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TERRITORY</DataField>
+        </Field>
+        <Field Name="MSAID">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>MSAID</DataField>
+        </Field>
+        <Field Name="BH_M_POT">
+          <rd:TypeName>System.Double</rd:TypeName>
+          <DataField>BH_M_POT</DataField>
+        </Field>
+        <Field Name="WM_M_POT">
+          <rd:TypeName>System.Double</rd:TypeName>
+          <DataField>WM_M_POT</DataField>
+        </Field>
+        <Field Name="YEAR">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>YEAR</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Code>Public Function IsNeg(ByVal perValue As Double) As Boolean
+	If(perValue &lt; 0) Then
+	    return True
+	End If
+	return False
+End Function
+
+
+'Handle divide by zero gracefully and improved readability of an IIf
+Public Function DivZero(ByVal Numerator As Object, ByVal Denominator As Object, ByVal DivZeroDefault As Object) As Object 
+	If Denominator &lt;&gt; 0 Then 
+	    Return Numerator/Denominator 
+	Else 
+	    Return DivZeroDefault 
+	End If 
+End Function </Code>
+  <Width>0.75in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+</Report>

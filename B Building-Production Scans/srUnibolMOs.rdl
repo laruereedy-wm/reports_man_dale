@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="mainTable">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1.125in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.77083in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.51042in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="MANUFORDER">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!MANUFORDER.Value</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>MANUFORDER</rd:DefaultName>
+                      <ZIndex>2</ZIndex>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="SCANTIME">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=First(Fields!SCANTIME.Value)</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>SCANTIME</rd:DefaultName>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="TRACKING">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=First(Fields!TRACKING.Value)</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>TRACKING</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="mainTable_Group1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!MANUFORDER.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!MANUFORDER.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>mainData</DataSetName>
+        <Height>0.25in</Height>
+        <Width>3.40625in</Width>
+        <Style>
+          <Border>
+            <Color>Gainsboro</Color>
+          </Border>
+          <FontFamily>Tahoma</FontFamily>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>0.25in</Height>
+    <Style />
+  </Body>
+  <Width>3.40625in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <Description>R05-0071 SR Unibol MOs</Description>
+  <Author>SSRS Conversion</Author>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="WOOD03_Expeditor">
+      <DataSourceReference>WOOD03_Expeditor</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>81df5a6f-5be0-4ea2-a33d-1fede4516c98</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Query>
+        <DataSourceName>WOOD03_Expeditor</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ordernumber">
+            <Value>=Parameters!ordernumber.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@itemnumber">
+            <Value>=Parameters!itemnumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     OPENMOS.MANUFORDER, MAX(vBLUTRK.SCANTIME) AS SCANTIME, vBLUTRK.TRACKING + vBLUTRK.SUBTRACKING AS TRACKING
+FROM         OPENMOS LEFT OUTER JOIN
+                      PROFITKEYDB.pk1.dbo.lx AS lx_1 ON OPENMOS.MANUFORDER = lx_1.LX_MOSJOB LEFT OUTER JOIN
+                      vBLUTRK ON OPENMOS.MANUFORDER = vBLUTRK.MONUMB
+WHERE     (OPENMOS.ORDERNO = @ordernumber) AND (OPENMOS.ITEMNO = @itemnumber) AND (lx_1.LX_MOSJOB IS NULL)
+GROUP BY OPENMOS.MANUFORDER, vBLUTRK.TRACKING, vBLUTRK.SUBTRACKING</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="MANUFORDER">
+          <DataField>MANUFORDER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SCANTIME">
+          <DataField>SCANTIME</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING">
+          <DataField>TRACKING</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="ordernumber">
+      <DataType>String</DataType>
+      <Prompt>ordernumber</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="itemnumber">
+      <DataType>String</DataType>
+      <Prompt>itemnumber</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>f389ec8b-eeec-47dc-a1c0-9bc296dfbb93</rd:ReportID>
+</Report>

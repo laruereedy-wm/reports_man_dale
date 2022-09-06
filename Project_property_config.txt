@@ -1,0 +1,28 @@
+in the Release property configuration
+
+clear out TargetDatasetsFolder
+
+TargetDataSourceFolder                  Manufacturing_Reports/_DataSource
+
+Target ReportFolder                         Manufacturing_Reports/(name of the project)
+
+TargetServer URL                                http://wmreports16/reportserver
+
+
+
+
+in the Debug property configuration
+
+clear out TargetDatasetsFolder
+
+TargetDataSourceFolder                  Manufacturing_Reports/_Testing/_DataSource
+
+Target ReportFolder                         Manufacturing_Reports/_Testing/(name of the project)
+
+TargetServer URL                                http://wmreports16/reportserver
+
+
+SQLREPORTS
+$QLR3p0rt$
+
+WMDOMAIN/andrewr

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Queue History", "Queue History.rptproj", "{01D5BCCE-17A2-4F42-84B7-078EA3E08133}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01D5BCCE-17A2-4F42-84B7-078EA3E08133}.Debug|Default.ActiveCfg = Debug
+		{01D5BCCE-17A2-4F42-84B7-078EA3E08133}.Debug|Default.Build.0 = DebugLocal
+		{01D5BCCE-17A2-4F42-84B7-078EA3E08133}.Debug|Default.Deploy.0 = DebugLocal
+		{01D5BCCE-17A2-4F42-84B7-078EA3E08133}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{01D5BCCE-17A2-4F42-84B7-078EA3E08133}.DebugLocal|Default.Build.0 = DebugLocal
+		{01D5BCCE-17A2-4F42-84B7-078EA3E08133}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{01D5BCCE-17A2-4F42-84B7-078EA3E08133}.Release|Default.ActiveCfg = Release
+		{01D5BCCE-17A2-4F42-84B7-078EA3E08133}.Release|Default.Build.0 = Release
+		{01D5BCCE-17A2-4F42-84B7-078EA3E08133}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

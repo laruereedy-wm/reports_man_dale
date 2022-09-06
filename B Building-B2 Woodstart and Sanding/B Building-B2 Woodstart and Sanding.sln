@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "B Building-B2 Woodstart and Sanding", "B Building-B2 Woodstart and Sanding.rptproj", "{475F7B4E-092D-43E3-922E-A924B3CD316C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{475F7B4E-092D-43E3-922E-A924B3CD316C}.Debug|Default.ActiveCfg = Debug
+		{475F7B4E-092D-43E3-922E-A924B3CD316C}.Debug|Default.Build.0 = DebugLocal
+		{475F7B4E-092D-43E3-922E-A924B3CD316C}.Debug|Default.Deploy.0 = DebugLocal
+		{475F7B4E-092D-43E3-922E-A924B3CD316C}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{475F7B4E-092D-43E3-922E-A924B3CD316C}.DebugLocal|Default.Build.0 = DebugLocal
+		{475F7B4E-092D-43E3-922E-A924B3CD316C}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{475F7B4E-092D-43E3-922E-A924B3CD316C}.Release|Default.ActiveCfg = Release
+		{475F7B4E-092D-43E3-922E-A924B3CD316C}.Release|Default.Build.0 = Release
+		{475F7B4E-092D-43E3-922E-A924B3CD316C}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

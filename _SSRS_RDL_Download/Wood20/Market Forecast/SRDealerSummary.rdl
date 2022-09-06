@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="MarketForecast1">
+      <DataSourceReference>MarketForecast1</DataSourceReference>
+      <rd:DataSourceID>22b8f3b3-7b04-404e-8bda-5f44403ba10c</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>0.2in</BottomMargin>
+  <RightMargin>0.1in</RightMargin>
+  <ReportParameters>
+    <ReportParameter Name="PMDealerAccount">
+      <DataType>String</DataType>
+      <Prompt>PMDealerAccount</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="PMForecastYear">
+      <DataType>Integer</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>PMForecastYear</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <DataSetName>MainData</DataSetName>
+        <TableGroups>
+          <TableGroup>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox17">
+                          <ZIndex>25</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!DealerLabel.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox18">
+                          <ZIndex>24</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <FontSize>8pt</FontSize>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!DEALER.Value &amp; vbCRLF &amp; vbCRLF</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.125in</Height>
+                  <Visibility>
+                    <Hidden>= IIf(Fields!DEALER.Value Is Nothing OR Fields!DEALER.Value = "", True, False)</Hidden>
+                  </Visibility>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="FactoryRepLabel">
+                          <rd:DefaultName>FactoryRepLabel</rd:DefaultName>
+                          <ZIndex>23</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!FactoryRepLabel.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="FACTORYREP_1">
+                          <rd:DefaultName>FACTORYREP_1</rd:DefaultName>
+                          <ZIndex>22</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingLeft>0in</PaddingLeft>
+                            <PaddingBottom>0in</PaddingBottom>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>0in</PaddingRight>
+                            <PaddingTop>0in</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!FACTORYREP.Value &amp; vbCRLF &amp; vbCRLF</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.125in</Height>
+                  <Visibility>
+                    <Hidden>= IIf(Fields!FACTORYREP.Value Is Nothing OR Fields!FACTORYREP.Value = "", True, False)</Hidden>
+                  </Visibility>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="MDFLabel">
+                          <rd:DefaultName>MDFLabel</rd:DefaultName>
+                          <ZIndex>21</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!MDFLabel.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="MDF">
+                          <rd:DefaultName>MDF</rd:DefaultName>
+                          <ZIndex>20</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingLeft>0in</PaddingLeft>
+                            <PaddingBottom>0in</PaddingBottom>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>0in</PaddingRight>
+                            <PaddingTop>0in</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!MDF.Value &amp; vbCRLF &amp; vbCRLF</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.125in</Height>
+                  <Visibility>
+                    <Hidden>= IIf(Fields!MDF.Value Is Nothing OR Fields!MDF.Value = "", True, False)</Hidden>
+                  </Visibility>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox13">
+                          <rd:DefaultName>textbox13</rd:DefaultName>
+                          <ZIndex>19</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>MDF Ref. #s:</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox14">
+                          <ZIndex>18</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingLeft>0in</PaddingLeft>
+                            <PaddingBottom>0in</PaddingBottom>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>0in</PaddingRight>
+                            <PaddingTop>0in</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Code.GetReferenceNumbers() &amp; vbCRLF &amp; vbCRLF</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.125in</Height>
+                  <Visibility>
+                    <Hidden>= IIf(Code.GetReferenceNumbers() Is Nothing OR Code.GetReferenceNumbers() = "", True, False)</Hidden>
+                  </Visibility>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="DisplayLabel">
+                          <rd:DefaultName>DisplayLabel</rd:DefaultName>
+                          <ZIndex>17</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!DisplayLabel.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="DISPLAY">
+                          <rd:DefaultName>DISPLAY</rd:DefaultName>
+                          <ZIndex>16</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingLeft>0in</PaddingLeft>
+                            <PaddingBottom>0in</PaddingBottom>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>0in</PaddingRight>
+                            <PaddingTop>0in</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!DISPLAY.Value &amp; vbCRLF &amp; vbCRLF</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.125in</Height>
+                  <Visibility>
+                    <Hidden>= IIf(Fields!DISPLAY.Value Is Nothing OR Fields!DISPLAY.Value = "", True, False)</Hidden>
+                  </Visibility>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="TrainingLabel">
+                          <rd:DefaultName>TrainingLabel</rd:DefaultName>
+                          <ZIndex>15</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!TrainingLabel.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="TRAINING">
+                          <rd:DefaultName>TRAINING</rd:DefaultName>
+                          <ZIndex>14</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingLeft>0in</PaddingLeft>
+                            <PaddingBottom>0in</PaddingBottom>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>0in</PaddingRight>
+                            <PaddingTop>0in</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!TRAINING.Value &amp; vbCRLF &amp; vbCRLF</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.125in</Height>
+                  <Visibility>
+                    <Hidden>= IIf(Fields!TRAINING.Value Is Nothing OR Fields!TRAINING.Value = "", True, False)</Hidden>
+                  </Visibility>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="OtherLabel">
+                          <rd:DefaultName>OtherLabel</rd:DefaultName>
+                          <ZIndex>13</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!OtherLabel.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="OTHER">
+                          <rd:DefaultName>OTHER</rd:DefaultName>
+                          <ZIndex>12</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <PaddingLeft>0in</PaddingLeft>
+                            <PaddingBottom>0in</PaddingBottom>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>0in</PaddingRight>
+                            <PaddingTop>0in</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!OTHER.Value &amp; vbCRLF &amp; vbCRLF</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.125in</Height>
+                  <Visibility>
+                    <Hidden>= IIf(Fields!OTHER.Value Is Nothing OR Fields!OTHER.Value = "", True, False)</Hidden>
+                  </Visibility>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox1">
+                          <rd:DefaultName>textbox1</rd:DefaultName>
+                          <ZIndex>11</ZIndex>
+                          <Style>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Notes:</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox4">
+                          <rd:DefaultName>textbox4</rd:DefaultName>
+                          <ZIndex>10</ZIndex>
+                          <Style>
+                            <PaddingLeft>0in</PaddingLeft>
+                            <PaddingBottom>0in</PaddingBottom>
+                            <FontSize>7pt</FontSize>
+                            <PaddingRight>0in</PaddingRight>
+                            <PaddingTop>0in</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.125in</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox5">
+                          <ZIndex>9</ZIndex>
+                          <Style>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox6">
+                          <ZIndex>8</ZIndex>
+                          <Style>
+                            <PaddingLeft>0in</PaddingLeft>
+                            <PaddingBottom>0in</PaddingBottom>
+                            <FontSize>7pt</FontSize>
+                            <PaddingRight>0in</PaddingRight>
+                            <PaddingTop>0in</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.125in</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox7">
+                          <ZIndex>7</ZIndex>
+                          <Style>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox8">
+                          <ZIndex>6</ZIndex>
+                          <Style>
+                            <PaddingLeft>0in</PaddingLeft>
+                            <PaddingBottom>0in</PaddingBottom>
+                            <FontSize>7pt</FontSize>
+                            <PaddingRight>0in</PaddingRight>
+                            <PaddingTop>0in</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.125in</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox9">
+                          <ZIndex>5</ZIndex>
+                          <Style>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox10">
+                          <ZIndex>4</ZIndex>
+                          <Style>
+                            <PaddingLeft>0in</PaddingLeft>
+                            <PaddingBottom>0in</PaddingBottom>
+                            <FontSize>7pt</FontSize>
+                            <PaddingRight>0in</PaddingRight>
+                            <PaddingTop>0in</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.125in</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox11">
+                          <ZIndex>3</ZIndex>
+                          <Style>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox12">
+                          <ZIndex>2</ZIndex>
+                          <Style>
+                            <PaddingLeft>0in</PaddingLeft>
+                            <PaddingBottom>0in</PaddingBottom>
+                            <FontSize>7pt</FontSize>
+                            <PaddingRight>0in</PaddingRight>
+                            <PaddingTop>0in</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.125in</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox2">
+                          <rd:DefaultName>textbox2</rd:DefaultName>
+                          <ZIndex>1</ZIndex>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>15pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>7pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox3">
+                          <rd:DefaultName>textbox3</rd:DefaultName>
+                          <Style>
+                            <PaddingLeft>0in</PaddingLeft>
+                            <PaddingBottom>0in</PaddingBottom>
+                            <FontSize>7pt</FontSize>
+                            <PaddingRight>0in</PaddingRight>
+                            <PaddingTop>0in</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.09375in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+            <Grouping Name="table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!ACCOUNT.Value</GroupExpression>
+                <GroupExpression>= Code.SetReference(Fields!REFERENCENO.Value)</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+          </TableGroup>
+        </TableGroups>
+        <Visibility>
+          <Hidden>=IsNothing(Fields!SUMMARY.Value)</Hidden>
+        </Visibility>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.92708in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>8.07292in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>1.59375in</Height>
+  </Body>
+  <rd:ReportID>f33df083-1e56-497d-9f7c-3ed6360e1916</rd:ReportID>
+  <DataSets>
+    <DataSet Name="MainData">
+      <Query>
+        <CommandText>SELECT     FORECASTDETAILS.FORECASTYEAR, FORECASTDETAILS.DEALER, FORECASTDETAILS.DISPLAY, FORECASTDETAILS.FACTORYREP, 
+                      FORECASTDETAILS.MDF, FORECASTDETAILS.OTHER, FORECASTDETAILS.TRAINING, FORECASTDETAILS.ACCOUNT, FORECASTDETAILS.SUMMARY, 
+                      FORECASTDETAILS.TERRITORY, FORECAST_MDFREF.REFERENCENO
+FROM         FORECASTDETAILS LEFT OUTER JOIN
+                      FORECAST_MDFREF ON FORECASTDETAILS.FORECASTYEAR = FORECAST_MDFREF.FORECASTYEAR AND 
+                      FORECASTDETAILS.ACCOUNT = FORECAST_MDFREF.ACCOUNT AND FORECASTDETAILS.TERRITORY = FORECAST_MDFREF.TERRITORY
+WHERE     (FORECASTDETAILS.FORECASTYEAR = @PMForecastYear) AND (FORECASTDETAILS.ACCOUNT = @PMDealerAccount)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@PMForecastYear">
+            <Value>=Parameters!PMForecastYear.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@PMDealerAccount">
+            <Value>=Parameters!PMDealerAccount.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="FORECASTYEAR">
+          <rd:TypeName>System.Int16</rd:TypeName>
+          <DataField>FORECASTYEAR</DataField>
+        </Field>
+        <Field Name="DEALER">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>DEALER</DataField>
+        </Field>
+        <Field Name="DISPLAY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>DISPLAY</DataField>
+        </Field>
+        <Field Name="FACTORYREP">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>FACTORYREP</DataField>
+        </Field>
+        <Field Name="MDF">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>MDF</DataField>
+        </Field>
+        <Field Name="OTHER">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>OTHER</DataField>
+        </Field>
+        <Field Name="TRAINING">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TRAINING</DataField>
+        </Field>
+        <Field Name="ACCOUNT">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ACCOUNT</DataField>
+        </Field>
+        <Field Name="SUMMARY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>SUMMARY</DataField>
+        </Field>
+        <Field Name="TERRITORY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TERRITORY</DataField>
+        </Field>
+        <Field Name="REFERENCENO">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>REFERENCENO</DataField>
+        </Field>
+        <Field Name="DealerLabel">
+          <Value>=IIF(Fields!DEALER.Value="",Nothing,"Dealer:")</Value>
+        </Field>
+        <Field Name="DisplayLabel">
+          <Value>=IIf(Fields!DISPLAY.Value="", Nothing, "Display:")</Value>
+        </Field>
+        <Field Name="FactoryRepLabel">
+          <Value>=IIf(Fields!FACTORYREP.Value="",Nothing,"Rep:")</Value>
+        </Field>
+        <Field Name="MDFLabel">
+          <Value>=IIf(Fields!MDF.Value="",Nothing,"MDF:")</Value>
+        </Field>
+        <Field Name="OtherLabel">
+          <Value>=IIf(Fields!OTHER.Value="",Nothing,"Other:")</Value>
+        </Field>
+        <Field Name="TrainingLabel">
+          <Value>=IIf(Fields!TRAINING.Value="",Nothing,"Training:")</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="NoRows">
+      <Query>
+        <CommandText>SELECT     1 AS NoRowsCheck</CommandText>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="NoRowsCheck">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>NoRowsCheck</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Code>'To allow the display of multiple MDF reference numbers per grouping of accounts
+Private referenceNumbers As String
+Function SetReference(ByVal currentValue As String) As Boolean
+	If(referenceNumbers Is Nothing) 
+		referenceNumbers = currentValue
+	Else
+		referenceNumbers += ", " &amp; currentValue
+	End If
+	return True
+End Function
+
+Function GetReferenceNumbers() As String
+	return referenceNumbers
+End Function
+
+
+Private bOddRow As Boolean
+'*************************************************************************
+' -- Display color banding in header rows
+' -- Call from BackGroundColor property of all detail row textboxes
+' -- Set Toggle True for first textbox in row and False for others.
+'*************************************************************************
+Function AlternateColor(ByVal OddColor As String, _
+         ByVal EvenColor As String, ByVal Toggle As Boolean) As String
+    If Toggle Then bOddRow = Not bOddRow
+    If bOddRow Then
+        Return OddColor
+    Else
+        Return EvenColor
+    End If
+End Function
+
+
+
+Private textboxColor As String
+Private tempVal As String
+Private rowNumber As Integer = 0
+Function SetColor() As Object
+		rowNumber += 1
+
+	'If(textboxColor Is Nothing) 
+	'	textboxColor = "Whitesmoke"
+	'Else
+	'	textboxColor = "White"	
+	'End If
+	return Nothing
+End Function
+
+Function GetColor() As String
+	'If(textboxColor = "Whitesmoke") 
+	'	tempVal = "Whitesmoke"
+	'	textboxColor = Nothing
+	'	return tempVal
+	'Else
+	'	return textboxColor
+	'End If
+	If(rowNumber Mod 2 = 0)
+		return "Whitesmoke"
+	Else
+		return "White"
+	End If
+End Function
+</Code>
+  <Width>9in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+</Report>

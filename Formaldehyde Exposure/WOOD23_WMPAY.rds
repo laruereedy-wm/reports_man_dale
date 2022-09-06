@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="WOOD23_WMPAY">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=WOOD23;Initial Catalog=WMPAY</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>0e6407a8-8f98-43e1-a878-f4216bb21515</DataSourceID>
+</RptDataSource>

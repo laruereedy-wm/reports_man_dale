@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="RSExecutionLog">
+      <rd:DataSourceID>fa3c9d3e-b4ce-40cd-9899-fb3d8201db96</rd:DataSourceID>
+      <DataSourceReference>RSExecutionLog</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="pMinDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>pDates</DataSetName>
+          <ValueField>MinDate</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Start Date:  </Prompt>
+    </ReportParameter>
+    <ReportParameter Name="pMaxDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>pDates</DataSetName>
+          <ValueField>MaxDate</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>End Date:  </Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>1in</RightMargin>
+  <LeftMargin>1in</LeftMargin>
+  <BottomMargin>1in</BottomMargin>
+  <rd:ReportID>905845f2-732b-4bd5-8d0d-5f4aaf537797</rd:ReportID>
+  <DataSets>
+    <DataSet Name="RSExecutionLog">
+      <Fields>
+        <Field Name="ReportKey">
+          <DataField>ReportKey</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Status">
+          <DataField>Status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>RSExecutionLog</DataSourceName>
+        <CommandText>SELECT        ExecutionLogs.ReportKey, StatusCodes.Status, Reports.Name
+FROM            ExecutionLogs INNER JOIN
+                         StatusCodes ON ExecutionLogs.StatusCode = StatusCodes.StatusCode INNER JOIN
+                         Reports ON ExecutionLogs.ReportKey = Reports.ReportKey
+WHERE        (ExecutionLogs.TimeStart BETWEEN @pMinDate AND @pMaxDate)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@pMinDate">
+            <Value>=Parameters!pMinDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@pMaxDate">
+            <Value>=Parameters!pMaxDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <Timeout>30</Timeout>
+      </Query>
+    </DataSet>
+    <DataSet Name="pDates">
+      <Fields>
+        <Field Name="MinDate">
+          <DataField>MinDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="MaxDate">
+          <DataField>MaxDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>RSExecutionLog</DataSourceName>
+        <CommandText>SELECT     MIN(TimeStart) AS MinDate, MAX(TimeStart) AS MaxDate
+FROM         ExecutionLogs</CommandText>
+        <Timeout>30</Timeout>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Width>6.25in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <ZIndex>1</ZIndex>
+        <DataSetName>RSExecutionLog</DataSetName>
+        <Top>0.625in</Top>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!Status.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Status">
+                          <rd:DefaultName>Status</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <FontFamily>Verdana</FontFamily>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>5</ZIndex>
+                          <Value>=Fields!Status.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="ReportKey">
+                          <rd:DefaultName>ReportKey</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <FontFamily>Verdana</FontFamily>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>4</ZIndex>
+                          <Value>=COUNT(Fields!ReportKey.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="ReportKey_2">
+                          <rd:DefaultName>ReportKey_2</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <FontFamily>Verdana</FontFamily>
+                            <Format>##.0%</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>3</ZIndex>
+                          <Value>=COUNT(Fields!ReportKey.Value) / COUNT(Fields!ReportKey.Value,"RSExecutionLog")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.26042in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+          <TableGroup>
+            <Grouping Name="table1_Group2">
+              <GroupExpressions>
+                <GroupExpression>=Fields!Name.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Visibility>
+              <Hidden>true</Hidden>
+              <ToggleItem>Status</ToggleItem>
+            </Visibility>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Name">
+                          <rd:DefaultName>Name</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <FontFamily>Verdana</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>20pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>2</ZIndex>
+                          <Value>=Fields!Name.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="ReportKey_3">
+                          <rd:DefaultName>ReportKey_3</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <FontFamily>Verdana</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <Value>=COUNT(Fields!ReportKey.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="ReportKey_1">
+                          <rd:DefaultName>ReportKey_1</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <FontFamily>Verdana</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <Format>##.0%</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <Value>=count(Fields!Status.Value)/COUNT( Fields!ReportKey.Value,"table1_Group1")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.26042in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <Width>5.98958in</Width>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <Style>
+                        <Color>#081bcb</Color>
+                        <BorderColor>
+                          <Default>#081bcb</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                          <Left>None</Left>
+                          <Right>None</Right>
+                        </BorderStyle>
+                        <FontFamily>Verdana</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <UserSort>
+                        <SortExpression>=Fields!Status.Value</SortExpression>
+                        <SortExpressionScope>table1_Group1</SortExpressionScope>
+                      </UserSort>
+                      <Value>Status Code</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <Style>
+                        <Color>#081bcb</Color>
+                        <BorderColor>
+                          <Default>#081bcb</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                          <Left>None</Left>
+                          <Right>None</Right>
+                        </BorderStyle>
+                        <FontFamily>Verdana</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <UserSort>
+                        <SortExpression>=COUNT(Fields!ReportKey.Value)</SortExpression>
+                        <SortExpressionScope>table1_Group1</SortExpressionScope>
+                      </UserSort>
+                      <Value>Total Executions</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox4">
+                      <rd:DefaultName>textbox4</rd:DefaultName>
+                      <Style>
+                        <Color>#081bcb</Color>
+                        <BorderColor>
+                          <Default>#081bcb</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                          <Left>None</Left>
+                          <Right>None</Right>
+                        </BorderStyle>
+                        <FontFamily>Verdana</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <UserSort>
+                        <SortExpression>=COUNT(Fields!ReportKey.Value) / COUNT(Fields!ReportKey.Value,"RSExecutionLog")</SortExpression>
+                        <SortExpressionScope>table1_Group1</SortExpressionScope>
+                      </UserSort>
+                      <Value>Status Rate</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>3.125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.77083in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.77084in</Height>
+        <Left>0.125in</Left>
+      </Table>
+      <Textbox Name="textbox1">
+        <Width>6in</Width>
+        <Style>
+          <Color>#081bcb</Color>
+          <FontSize>18pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>0.125in</Left>
+        <Height>0.44792in</Height>
+        <Value>Report Success Rates</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>2.48958in</Height>
+  </Body>
+  <TopMargin>1in</TopMargin>
+</Report>

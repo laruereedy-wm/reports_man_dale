@@ -1,0 +1,1925 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="2328Stain">
+      <rd:DataSourceID>0a753cca-e89e-482a-96f2-b694155f7848</rd:DataSourceID>
+      <DataSourceReference>2328Stain</DataSourceReference>
+    </DataSource>
+    <DataSource Name="2335Glazing">
+      <rd:DataSourceID>914619fa-38e2-4b7c-8895-42615795ff35</rd:DataSourceID>
+      <DataSourceReference>2335Glazing</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>8.5in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="ENDDATE">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>EndDate</DataSetName>
+          <ValueField>ENDDATE</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ENDDATE</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>11in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <rd:ReportID>88638643-f75b-49ce-b44a-512a84c85a4f</rd:ReportID>
+  <PageWidth>11in</PageWidth>
+  <DataSets>
+    <DataSet Name="EndDate">
+      <Fields>
+        <Field Name="ENDDATE">
+          <DataField>ENDDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2328Stain</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>procGetStainingEndDate</CommandText>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2335cottageVintage">
+      <Fields>
+        <Field Name="DATE">
+          <DataField>DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SIZE">
+          <DataField>SIZE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SIDEFINISH">
+          <DataField>SIDEFINISH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CABINET">
+          <DataField>CABINET</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING2">
+          <DataField>TRACKING2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DUEWH">
+          <DataField>DUEWH</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FRAMEDFRAMELESS">
+          <DataField>FRAMEDFRAMELESS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPDATE">
+          <DataField>SHIPDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TYPE">
+          <DataField>TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPGROUP">
+          <DataField>SHIPGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="ISMISC">
+          <DataField>ISMISC</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="JOBCOM">
+          <DataField>JOBCOM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RELDATEORD">
+          <DataField>RELDATEORD</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMOPAQUE">
+          <DataField>HEIRLOOMOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMNONOPAQUE">
+          <DataField>HEIRLOOMNONOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="COTTAGE">
+          <DataField>COTTAGE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="CABINETFINISHLOCATION">
+          <DataField>CABINETFINISHLOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MISCFINISHLOCATION">
+          <DataField>MISCFINISHLOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MISCELLANEOUS">
+          <Value>= IIF(Fields!ISMISC.Value, True, 
+IIF(Fields!BASEWALLTALL.Value Is Nothing, True, False))</Value>
+        </Field>
+        <Field Name="COTTAGE_CABINET_HOURS">
+          <Value>=IIF(Not Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="COTTAGE_CABINET_QTY">
+          <Value>=IIF(Not Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="COTTAGE_MISC_HOURS">
+          <Value>=IIF(Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="COTTAGE_MISC_QTY">
+          <Value>=IIF(Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2335Glazing</DataSourceName>
+        <CommandText>SELECT     DATE, ORDRNO, ITEMNO, QTY, SIZE, SIDEFINISH, CABINET, TRACKING2, WIDTH, DUEWH, FINISHDATE, BASEWALLTALL, FRAMEDFRAMELESS, 
+                      SHIPDATE, TYPE, DESIGNGRP, SHIPGROUP, RATE, HOURS, ISMISC, B2FLAG, JOBCOM, RELDATEORD, HEIRLOOMOPAQUE, HEIRLOOMNONOPAQUE, 
+                      COTTAGE, CABINETFINISHLOCATION, MISCFINISHLOCATION
+FROM         vDailyGlazingOrders
+WHERE     (FINISHDATE &lt; @ENDDATE) AND (COTTAGE = 1)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ENDDATE">
+            <Value>=Parameters!ENDDATE.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2335heirloom">
+      <Fields>
+        <Field Name="DATE">
+          <DataField>DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SIZE">
+          <DataField>SIZE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SIDEFINISH">
+          <DataField>SIDEFINISH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CABINET">
+          <DataField>CABINET</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING2">
+          <DataField>TRACKING2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DUEWH">
+          <DataField>DUEWH</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FRAMEDFRAMELESS">
+          <DataField>FRAMEDFRAMELESS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPDATE">
+          <DataField>SHIPDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TYPE">
+          <DataField>TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPGROUP">
+          <DataField>SHIPGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="ISMISC">
+          <DataField>ISMISC</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="JOBCOM">
+          <DataField>JOBCOM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RELDATEORD">
+          <DataField>RELDATEORD</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMOPAQUE">
+          <DataField>HEIRLOOMOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMNONOPAQUE">
+          <DataField>HEIRLOOMNONOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="COTTAGE">
+          <DataField>COTTAGE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="CABINETFINISHLOCATION">
+          <DataField>CABINETFINISHLOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MISCFINISHLOCATION">
+          <DataField>MISCFINISHLOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MISCELLANEOUS">
+          <Value>= IIF(Fields!ISMISC.Value, True, 
+IIF(Fields!BASEWALLTALL.Value Is Nothing, True, False))</Value>
+        </Field>
+        <Field Name="HEIRLOOM_CABINET_HOURS">
+          <Value>=IIF(Not Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="HEIRLOOM_CABINET_QTY">
+          <Value>=IIF(Not Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="HEIRLOOM_MISC_HOURS">
+          <Value>=IIF(Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="HEIRLOOM_MISC_QTY">
+          <Value>=IIF(Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2335Glazing</DataSourceName>
+        <CommandText>SELECT     DATE, ORDRNO, ITEMNO, QTY, SIZE, SIDEFINISH, CABINET, TRACKING2, WIDTH, DUEWH, FINISHDATE, BASEWALLTALL, FRAMEDFRAMELESS, 
+                      SHIPDATE, TYPE, DESIGNGRP, SHIPGROUP, RATE, HOURS, ISMISC, B2FLAG, JOBCOM, RELDATEORD, HEIRLOOMOPAQUE, HEIRLOOMNONOPAQUE, 
+                      COTTAGE, CABINETFINISHLOCATION, MISCFINISHLOCATION
+FROM         vDailyGlazingOrders
+WHERE     (FINISHDATE &lt; @ENDDATE) AND (HEIRLOOMOPAQUE = 1) OR
+                      (FINISHDATE &lt; @ENDDATE) AND (HEIRLOOMNONOPAQUE = 1)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ENDDATE">
+            <Value>=Parameters!ENDDATE.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2335burnish">
+      <Fields>
+        <Field Name="DATE">
+          <DataField>DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SIZE">
+          <DataField>SIZE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SIDEFINISH">
+          <DataField>SIDEFINISH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CABINET">
+          <DataField>CABINET</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING2">
+          <DataField>TRACKING2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DUEWH">
+          <DataField>DUEWH</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FRAMEDFRAMELESS">
+          <DataField>FRAMEDFRAMELESS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPDATE">
+          <DataField>SHIPDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TYPE">
+          <DataField>TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPGROUP">
+          <DataField>SHIPGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="ISMISC">
+          <DataField>ISMISC</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="JOBCOM">
+          <DataField>JOBCOM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RELDATEORD">
+          <DataField>RELDATEORD</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMOPAQUE">
+          <DataField>HEIRLOOMOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMNONOPAQUE">
+          <DataField>HEIRLOOMNONOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="COTTAGE">
+          <DataField>COTTAGE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="CABINETFINISHLOCATION">
+          <DataField>CABINETFINISHLOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MISCFINISHLOCATION">
+          <DataField>MISCFINISHLOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MISCELLANEOUS">
+          <Value>= IIF(Fields!ISMISC.Value, True, 
+IIF(Fields!BASEWALLTALL.Value Is Nothing, True, False))</Value>
+        </Field>
+        <Field Name="BURNISH_CABINET_HOURS">
+          <Value>=IIF(Not Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="BURNISH_CABINET_QTY">
+          <Value>=IIF(Not Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="BURNISH_MISC_HOURS">
+          <Value>=IIF(Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="BURNISH_MISC_QTY">
+          <Value>=IIF(Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2335Glazing</DataSourceName>
+        <CommandText>SELECT     DATE, ORDRNO, ITEMNO, QTY, SIZE, SIDEFINISH, CABINET, TRACKING2, WIDTH, DUEWH, FINISHDATE, BASEWALLTALL, FRAMEDFRAMELESS, 
+                      SHIPDATE, TYPE, DESIGNGRP, SHIPGROUP, RATE, HOURS, ISMISC, B2FLAG, JOBCOM, RELDATEORD, HEIRLOOMOPAQUE, HEIRLOOMNONOPAQUE, 
+                      COTTAGE, CABINETFINISHLOCATION, MISCFINISHLOCATION
+FROM         vDailyGlazingOrders
+WHERE     (FINISHDATE &lt; @ENDDATE) AND (BURNISH = 1)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ENDDATE">
+            <Value>=Parameters!ENDDATE.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2335decorativeDetail">
+      <Fields>
+        <Field Name="DATE">
+          <DataField>DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SIZE">
+          <DataField>SIZE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SIDEFINISH">
+          <DataField>SIDEFINISH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CABINET">
+          <DataField>CABINET</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING2">
+          <DataField>TRACKING2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DUEWH">
+          <DataField>DUEWH</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FRAMEDFRAMELESS">
+          <DataField>FRAMEDFRAMELESS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPDATE">
+          <DataField>SHIPDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TYPE">
+          <DataField>TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPGROUP">
+          <DataField>SHIPGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="ISMISC">
+          <DataField>ISMISC</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="JOBCOM">
+          <DataField>JOBCOM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RELDATEORD">
+          <DataField>RELDATEORD</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMOPAQUE">
+          <DataField>HEIRLOOMOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMNONOPAQUE">
+          <DataField>HEIRLOOMNONOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="COTTAGE">
+          <DataField>COTTAGE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="CABINETFINISHLOCATION">
+          <DataField>CABINETFINISHLOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MISCFINISHLOCATION">
+          <DataField>MISCFINISHLOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MISCELLANEOUS">
+          <Value>= IIF(Fields!ISMISC.Value, True, 
+IIF(Fields!BASEWALLTALL.Value Is Nothing, True, False))</Value>
+        </Field>
+        <Field Name="DECORATIVE_DETAIL_CABINET_HOURS">
+          <Value>=IIF(Not Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="DECORATIVE_DETAIL_CABINET_QTY">
+          <Value>=IIF(Not Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="DECORATIVE_DETAIL_MISC_HOURS">
+          <Value>=IIF(Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="DECORATIVE_DETAIL_MISC_QTY">
+          <Value>=IIF(Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2335Glazing</DataSourceName>
+        <CommandText>SELECT     DATE, ORDRNO, ITEMNO, QTY, SIZE, SIDEFINISH, CABINET, TRACKING2, WIDTH, DUEWH, FINISHDATE, BASEWALLTALL, FRAMEDFRAMELESS, 
+                      SHIPDATE, TYPE, DESIGNGRP, SHIPGROUP, RATE, HOURS, ISMISC, B2FLAG, JOBCOM, RELDATEORD, HEIRLOOMOPAQUE, HEIRLOOMNONOPAQUE, 
+                      COTTAGE, CABINETFINISHLOCATION, MISCFINISHLOCATION
+FROM         vDailyGlazingOrders
+WHERE     (FINISHDATE &lt; @ENDDATE) AND (DECORATIVEDETAIL = 1)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ENDDATE">
+            <Value>=Parameters!ENDDATE.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2335ActualEarned">
+      <Fields>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EARNEDGROUP">
+          <DataField>EARNEDGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EARNEDTIME">
+          <DataField>EARNEDTIME</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ISMISC">
+          <DataField>ISMISC</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="MISCFINISHLOCATION">
+          <DataField>MISCFINISHLOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMOPAQUE">
+          <DataField>HEIRLOOMOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMNONOPAQUE">
+          <DataField>HEIRLOOMNONOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="COTTAGE">
+          <DataField>COTTAGE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="BURNISH">
+          <DataField>BURNISH</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="DECORATIVEDETAIL">
+          <DataField>DECORATIVEDETAIL</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="COTTAGE_CABINET_QTY">
+          <Value>=IIF(Not Fields!MISCELLANEOUS.Value And Fields!COTTAGE.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="COTTAGE_CABINET_HOURS">
+          <Value>=IIF(Not Fields!MISCELLANEOUS.Value And Fields!COTTAGE.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="COTTAGE_MISC_QTY">
+          <Value>=IIF(Fields!MISCELLANEOUS.Value And Fields!COTTAGE.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="COTTAGE_MISC_HOURS">
+          <Value>=IIF(Fields!MISCELLANEOUS.Value And Fields!COTTAGE.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="HEIRLOOM_CABINET_QTY">
+          <Value>=IIF(Fields!HEIRLOOM_ITEM.Value And Not Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="HEIRLOOM_CABINET_HOURS">
+          <Value>=IIF(Fields!HEIRLOOM_ITEM.Value And Not Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="HEIRLOOM_MISC_QTY">
+          <Value>=IIF(Fields!HEIRLOOM_ITEM.Value And Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="HEIRLOOM_MISC_HOURS">
+          <Value>=IIF(Fields!HEIRLOOM_ITEM.Value And Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="BURNISH_CABINET_QTY">
+          <Value>=IIF(Fields!BURNISH.Value And Not Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="BURNISH_CABINET_HOURS">
+          <Value>=IIF(Fields!BURNISH.Value And Not Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="BURNISH_MISC_QTY">
+          <Value>=IIF(Fields!BURNISH.Value And Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="BURNISH_MISC_HOURS">
+          <Value>=IIF(Fields!BURNISH.Value And Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="DECORATIVE_DETAIL_CABINET_QTY">
+          <Value>=IIF(Fields!DECORATIVE_DETAIL_ITEM.Value And Not Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="DECORATIVE_DETAIL_CABINET_HOURS">
+          <Value>=IIF(Fields!DECORATIVE_DETAIL_ITEM.Value And Not Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="DECORATIVE_DETAIL_MISC_QTY">
+          <Value>=IIF(Fields!DECORATIVE_DETAIL_ITEM.Value And Fields!MISCELLANEOUS.Value, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="DECORATIVE_DETAIL_MISC_HOURS">
+          <Value>=IIF(Fields!DECORATIVE_DETAIL_ITEM.Value And Fields!MISCELLANEOUS.Value, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="HEIRLOOM_ITEM">
+          <Value>=IIF(Fields!HEIRLOOMOPAQUE.Value OR Fields!HEIRLOOMNONOPAQUE.Value, True, False)</Value>
+        </Field>
+        <Field Name="BURNISH_ITEM">
+          <Value>=IIF(Fields!BURNISH.Value, True, False)</Value>
+        </Field>
+        <Field Name="DECORATIVE_DETAIL_ITEM">
+          <Value>=IIF(Fields!DECORATIVEDETAIL.Value, True, False)</Value>
+        </Field>
+        <Field Name="MISCELLANEOUS">
+          <Value>= IIF(Fields!ISMISC.Value, True, 
+IIF(Fields!BASEWALLTALL.Value Is Nothing, True, False))</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2335Glazing</DataSourceName>
+        <CommandText>SELECT     ORDRNO, ITEMNO, QTY, FINISHDATE, DESIGNGRP, BASEWALLTALL, WIDTH, EARNEDGROUP, EARNEDTIME, ISMISC, RATE, HOURS, 
+                      MISCFINISHLOCATION, B2FLAG, HEIRLOOMOPAQUE, HEIRLOOMNONOPAQUE, COTTAGE, BURNISH, DECORATIVEDETAIL
+FROM         vActualEarned</CommandText>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Code>'Handle divide by zero gracefully and improved readability of an IIf
+Public Function DivZero(ByVal Numerator As Object, ByVal Denominator As Object, ByVal DivZeroDefault As Object) As Object 
+	If Denominator &lt;&gt; 0 Then 
+	    Return Numerator/Denominator 
+	Else 
+	    Return DivZeroDefault 
+	End If 
+End Function </Code>
+  <Width>10.8125in</Width>
+  <Body>
+    <ReportItems>
+      <Rectangle Name="rectangle2">
+        <ReportItems>
+          <Table Name="table6">
+            <ZIndex>4</ZIndex>
+            <DataSetName>Dept2335cottageVintage</DataSetName>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ColSpan>9</ColSpan>
+                      <ReportItems>
+                        <Textbox Name="textbox3">
+                          <Style>
+                            <FontSize>24pt</FontSize>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>9</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>2335</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.40625in</Height>
+                </TableRow>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox5">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>8</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox6">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>7</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Cabinets Planned</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox7">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>6</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Cabinets Hrs Planned</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox41">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>5</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Misc Planned</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox42">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>4</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Misc Hrs Plan</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox43">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>3</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Cabinets Actual</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox44">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>2</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Cabinet Hrs Act</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox45">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Misc Actual</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox46">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Misc Hrs Act</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+            <TableColumns>
+              <TableColumn>
+                <Width>1.07292in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.28125in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.53125in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.11458in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.27083in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.26042in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+            </TableColumns>
+            <Height>0.65625in</Height>
+          </Table>
+          <Table Name="table7">
+            <ZIndex>3</ZIndex>
+            <DataSetName>Dept2335decorativeDetail</DataSetName>
+            <Top>1.39062in</Top>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox47">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>8</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Highlighting</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox48">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>7</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!DECORATIVE_DETAIL_CABINET_QTY.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox49">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>6</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!DECORATIVE_DETAIL_CABINET_HOURS.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox50">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>5</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!DECORATIVE_DETAIL_MISC_QTY.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox51">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>4</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!DECORATIVE_DETAIL_MISC_HOURS.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox52">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>3</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!DECORATIVE_DETAIL_CABINET_QTY.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox53">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>2</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!DECORATIVE_DETAIL_CABINET_HOURS.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox54">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!DECORATIVE_DETAIL_MISC_QTY.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox55">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!DECORATIVE_DETAIL_MISC_HOURS.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+            <TableColumns>
+              <TableColumn>
+                <Width>1.07292in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.28125in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.53125in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.11458in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.27083in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.26042in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+            </TableColumns>
+          </Table>
+          <Table Name="table8">
+            <ZIndex>2</ZIndex>
+            <DataSetName>Dept2335burnish</DataSetName>
+            <Top>1.14062in</Top>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox57">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>8</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Burnish</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox58">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>7</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!BURNISH_CABINET_QTY.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox59">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>6</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!BURNISH_CABINET_HOURS.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox60">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>5</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!BURNISH_MISC_QTY.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox61">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>4</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!BURNISH_MISC_HOURS.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox62">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>3</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!BURNISH_CABINET_QTY.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox63">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>2</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!BURNISH_CABINET_HOURS.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox64">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!BURNISH_MISC_QTY.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox65">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!BURNISH_MISC_HOURS.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+            <TableColumns>
+              <TableColumn>
+                <Width>1.07292in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.28125in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.53125in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.11458in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.27083in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.26042in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+            </TableColumns>
+            <Height>0.25in</Height>
+          </Table>
+          <Table Name="table9">
+            <ZIndex>1</ZIndex>
+            <DataSetName>Dept2335heirloom</DataSetName>
+            <Top>0.89534in</Top>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox66">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>8</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Heirloom</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox67">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>7</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!HEIRLOOM_CABINET_QTY.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox68">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>6</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!HEIRLOOM_CABINET_HOURS.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox69">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>5</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!HEIRLOOM_MISC_QTY.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox70">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>4</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!HEIRLOOM_MISC_HOURS.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox71">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>3</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!HEIRLOOM_CABINET_QTY.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox72">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>2</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!HEIRLOOM_CABINET_HOURS.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox73">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!HEIRLOOM_MISC_QTY.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox75">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!HEIRLOOM_MISC_HOURS.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+            <TableColumns>
+              <TableColumn>
+                <Width>1.07292in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.28125in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.53125in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.11458in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.27083in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.26042in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+            </TableColumns>
+            <Height>0.25in</Height>
+          </Table>
+          <Table Name="table10">
+            <DataSetName>Dept2335cottageVintage</DataSetName>
+            <Top>0.64534in</Top>
+            <TableColumns>
+              <TableColumn>
+                <Width>1.07292in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.28125in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.53125in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.11458in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.27083in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.26042in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1.09375in</Width>
+              </TableColumn>
+            </TableColumns>
+            <Height>0.25in</Height>
+            <Footer>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox76">
+                          <Style>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>8</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Cottage</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox77">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>7</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!COTTAGE_CABINET_QTY.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox78">
+                          <Style>
+                            <BorderWidth>
+                              <Right>2pt</Right>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>6</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!COTTAGE_CABINET_HOURS.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox79">
+                          <Style>
+                            <BorderWidth>
+                              <Left>2pt</Left>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>5</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!COTTAGE_MISC_QTY.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox80">
+                          <Style>
+                            <BorderWidth>
+                              <Right>2pt</Right>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>4</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!COTTAGE_MISC_HOURS.Value)/5</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox81">
+                          <Style>
+                            <BorderWidth>
+                              <Right>2pt</Right>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>3</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!COTTAGE_CABINET_QTY.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox82">
+                          <Style>
+                            <BorderWidth>
+                              <Right>2pt</Right>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>2</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!COTTAGE_CABINET_HOURS.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox83">
+                          <Style>
+                            <BorderWidth>
+                              <Right>2pt</Right>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!COTTAGE_MISC_QTY.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox84">
+                          <Style>
+                            <BorderWidth>
+                              <Right>2pt</Right>
+                            </BorderWidth>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0.0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!COTTAGE_MISC_HOURS.Value, "Dept2335ActualEarned")</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Footer>
+          </Table>
+        </ReportItems>
+      </Rectangle>
+    </ReportItems>
+    <Height>1.64062in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <PageHeight>8.5in</PageHeight>
+</Report>

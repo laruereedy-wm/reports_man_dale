@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="RSExecutionLog">
+      <rd:DataSourceID>4c205970-396c-4051-be38-7fd568010d63</rd:DataSourceID>
+      <DataSourceReference>RSExecutionLog</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="pDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=DateAdd(DateInterval.Day, -14, Today())</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Reports by Weekday Since:</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>1in</RightMargin>
+  <LeftMargin>1in</LeftMargin>
+  <BottomMargin>1in</BottomMargin>
+  <rd:ReportID>d46261df-7439-4d41-ac73-de725d99d10b</rd:ReportID>
+  <DataSets>
+    <DataSet Name="RSExecutionLog">
+      <Fields>
+        <Field Name="Report_Count">
+          <DataField>Report_Count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DayOfWeek">
+          <DataField>DayOfWeek</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DayNum">
+          <DataField>DayNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>RSExecutionLog</DataSourceName>
+        <CommandText>SELECT        COUNT(ReportKey) AS Report_Count, DATENAME(dw, TimeStart) AS DayOfWeek, DATEPART(dw, TimeStart) AS DayNum
+FROM            ExecutionLogs
+WHERE        (TimeStart &gt;= @pDate)
+GROUP BY DATENAME(dw, TimeStart), DATEPART(dw, TimeStart)
+ORDER BY DayNUm</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@pDate">
+            <Value>=Parameters!pDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <Timeout>30</Timeout>
+      </Query>
+    </DataSet>
+    <DataSet Name="dsReports">
+      <Fields>
+        <Field Name="DayNum">
+          <DataField>DayNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DayOfWeek">
+          <DataField>DayOfWeek</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ReportKey">
+          <DataField>ReportKey</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>RSExecutionLog</DataSourceName>
+        <CommandText>SELECT        DATEPART(dw, ExecutionLogs.TimeStart) AS DayNum, Reports.Name, DATENAME(dw, ExecutionLogs.TimeStart) AS DayOfWeek, Reports.ReportKey
+FROM            ExecutionLogs INNER JOIN
+                         Reports ON ExecutionLogs.ReportKey = Reports.ReportKey
+WHERE        (ExecutionLogs.TimeStart &gt;= @pDate)
+ORDER BY DayNum</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@pDate">
+            <Value>=Parameters!pDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <Timeout>30</Timeout>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Width>5.75in</Width>
+  <Body>
+    <ColumnSpacing>0.125in</ColumnSpacing>
+    <ReportItems>
+      <Chart Name="newChart1">
+        <Legend>
+          <Style>
+            <BorderStyle>
+              <Default>Solid</Default>
+            </BorderStyle>
+          </Style>
+          <Position>RightCenter</Position>
+        </Legend>
+        <CategoryAxis>
+          <Axis>
+            <Title />
+            <MajorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MajorGridLines>
+            <MinorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MinorGridLines>
+            <Margin>true</Margin>
+            <Visible>true</Visible>
+          </Axis>
+        </CategoryAxis>
+        <ZIndex>2</ZIndex>
+        <DataSetName>RSExecutionLog</DataSetName>
+        <PlotArea>
+          <Style>
+            <BackgroundColor>LightGrey</BackgroundColor>
+            <BorderStyle>
+              <Default>Solid</Default>
+            </BorderStyle>
+          </Style>
+        </PlotArea>
+        <ThreeDProperties>
+          <Rotation>30</Rotation>
+          <Inclination>30</Inclination>
+          <Shading>Simple</Shading>
+          <WallThickness>50</WallThickness>
+        </ThreeDProperties>
+        <PointWidth>0</PointWidth>
+        <SeriesGroupings>
+          <SeriesGrouping>
+            <StaticSeries>
+              <StaticMember>
+                <Label>Count</Label>
+              </StaticMember>
+            </StaticSeries>
+          </SeriesGrouping>
+        </SeriesGroupings>
+        <Top>0.5in</Top>
+        <Subtype>Plain</Subtype>
+        <ValueAxis>
+          <Axis>
+            <Title />
+            <MajorGridLines>
+              <ShowGridLines>true</ShowGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MajorGridLines>
+            <MinorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MinorGridLines>
+            <Margin>true</Margin>
+            <Visible>true</Visible>
+            <Scalar>true</Scalar>
+          </Axis>
+        </ValueAxis>
+        <Type>Column</Type>
+        <Width>5.5in</Width>
+        <CategoryGroupings>
+          <CategoryGrouping>
+            <DynamicCategories>
+              <Grouping Name="newChart1_CategoryGroup1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!DayOfWeek.Value</GroupExpression>
+                </GroupExpressions>
+              </Grouping>
+              <Label>=Fields!DayOfWeek.Value</Label>
+            </DynamicCategories>
+          </CategoryGrouping>
+        </CategoryGroupings>
+        <Palette>Default</Palette>
+        <ChartData>
+          <ChartSeries>
+            <DataPoints>
+              <DataPoint>
+                <DataValues>
+                  <DataValue>
+                    <Value>=Sum(Fields!Report_Count.Value)</Value>
+                  </DataValue>
+                </DataValues>
+                <DataLabel>
+                  <Visible>true</Visible>
+                </DataLabel>
+                <Marker />
+              </DataPoint>
+            </DataPoints>
+          </ChartSeries>
+        </ChartData>
+        <Title />
+        <Height>2.85in</Height>
+        <Left>0.1in</Left>
+      </Chart>
+      <Table Name="table1">
+        <ZIndex>1</ZIndex>
+        <DataSetName>dsReports</DataSetName>
+        <Top>3.4in</Top>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="table1_Group2">
+              <GroupExpressions>
+                <GroupExpression>=Fields!DayOfWeek.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Sorting>
+              <SortBy>
+                <SortExpression>=COUNT(Fields!Name.Value)</SortExpression>
+                <Direction>Descending</Direction>
+              </SortBy>
+            </Sorting>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="DayOfWeek">
+                          <rd:DefaultName>DayOfWeek</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <FontFamily>Verdana</FontFamily>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>5</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!DayOfWeek.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox5">
+                          <rd:DefaultName>textbox5</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>4</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox9">
+                          <Style>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <FontFamily>Verdana</FontFamily>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>3</ZIndex>
+                          <Value>=CountRows()</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.26042in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <Width>5.4877in</Width>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="ReportID">
+                      <rd:DefaultName>ReportID</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox7">
+                      <Style>
+                        <FontFamily>Verdana</FontFamily>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <Value>=Fields!Name.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox4">
+                      <Style>
+                        <FontFamily>Verdana</FontFamily>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <Value>=CountRows()</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+          <Grouping Name="table1_Details_Group">
+            <GroupExpressions>
+              <GroupExpression>=Fields!Name.Value</GroupExpression>
+            </GroupExpressions>
+          </Grouping>
+          <Sorting>
+            <SortBy>
+              <SortExpression>=COUNT(Fields!Name.Value)</SortExpression>
+              <Direction>Descending</Direction>
+            </SortBy>
+          </Sorting>
+        </Details>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <Style>
+                        <Color>#081bcb</Color>
+                        <BorderColor>
+                          <Bottom>#081bcb</Bottom>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Top>1pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontFamily>Verdana</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Day of Week</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox10">
+                      <Style>
+                        <Color>#081bcb</Color>
+                        <BorderColor>
+                          <Bottom>#081bcb</Bottom>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Top>1pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontFamily>Verdana</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Report Name</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <Style>
+                        <Color>#081bcb</Color>
+                        <BorderColor>
+                          <Bottom>#081bcb</Bottom>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Top>1pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontFamily>Verdana</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Count</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>2in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.4877in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.76042in</Height>
+        <Left>0.1in</Left>
+      </Table>
+      <Textbox Name="textbox1">
+        <Width>5.55208in</Width>
+        <Style>
+          <Color>#081bcb</Color>
+          <FontSize>18pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>0.07292in</Left>
+        <Height>0.41667in</Height>
+        <Value>Reports Executed By Weekday</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>4.375in</Height>
+  </Body>
+  <TopMargin>1in</TopMargin>
+</Report>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Textbox Name="OP_QTY_CMPL">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=IIF(Fields!MOS_STATUS.Value &gt; 1,"CLOSE CANCELED",IIF(Fields!OP_QTY_CMPL.Value &gt; 0,"ACTIVITY","NO ACTIVITY"))</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>OP_QTY_CMPL</rd:DefaultName>
+        <Height>0.25in</Height>
+        <Width>0.73958in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>0.25in</Height>
+    <Style />
+  </Body>
+  <Width>0.73958in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="PKI">
+      <DataSourceReference>PKI</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>14813c42-f0f8-4b85-b41f-3197eb9313f6</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@OPJOB">
+            <Value>=Parameters!OPJOB.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@OPNUM">
+            <Value>=Parameters!OPNUM.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     OP.OP_MOSJOB, OP.OP_OP_NUM, OP.OP_WCKEY, OP.OP_QTY_CMPL, OP.OP_STATUS, OP.OP_AVAIL, MOS.MOS_STATUS
+FROM         OP INNER JOIN
+                      MOS ON OP.OP_MOSTYPE = MOS.MOS_TYPE AND OP.OP_MOSJOB = MOS.MOS_JOB AND OP.OP_MOSLOT = MOS.MOS_LOT AND 
+                      OP.OP_MOSSEQNUM = MOS.MOS_SEQNUM1
+WHERE     (OP.OP_MOSJOB = @OPJOB) AND (OP.OP_OP_NUM = @OPNUM)</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OP_MOSJOB">
+          <DataField>OP_MOSJOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OP_OP_NUM">
+          <DataField>OP_OP_NUM</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="OP_WCKEY">
+          <DataField>OP_WCKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OP_QTY_CMPL">
+          <DataField>OP_QTY_CMPL</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="OP_STATUS">
+          <DataField>OP_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OP_AVAIL">
+          <DataField>OP_AVAIL</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MOS_STATUS">
+          <DataField>MOS_STATUS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="OPJOB">
+      <DataType>String</DataType>
+      <Prompt>JOB</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="OPNUM">
+      <DataType>Integer</DataType>
+      <Prompt>OPNUM</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>bbcca774-1441-4616-a9b9-d51157809f21</rd:ReportID>
+</Report>

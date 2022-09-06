@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="VM250_NetworkDictator">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=vm250;Initial Catalog=IS.NetworkDictator</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>c6c1d230-149c-4e00-9b9f-3e7107c243d9</DataSourceID>
+</RptDataSource>

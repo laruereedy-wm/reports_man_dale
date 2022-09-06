@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="PKI">
+      <rd:DataSourceID>d996e2bb-dd03-4b66-9a97-12d683a1d29f</rd:DataSourceID>
+      <DataSourceReference>PKI</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>8.5in</InteractiveHeight>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>11in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <RightMargin>0.1in</RightMargin>
+  <LeftMargin>0.1in</LeftMargin>
+  <PageHeader>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="textbox2">
+        <Top>0.04167in</Top>
+        <Width>3.625in</Width>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>16pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>2.29166in</Left>
+        <Value>Bad RQs Report</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.41667in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageHeader>
+  <BottomMargin>0.1in</BottomMargin>
+  <rd:ReportID>2989ba6d-12da-4675-afe3-d024791bc38b</rd:ReportID>
+  <PageWidth>11in</PageWidth>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Fields>
+        <Field Name="MOS_JOB">
+          <DataField>MOS_JOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_LOT">
+          <DataField>MOS_LOT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RQ_CRDATE">
+          <DataField>RQ_CRDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="RQ_IMKEY">
+          <DataField>RQ_IMKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RQ_QTY_REQ">
+          <DataField>RQ_QTY_REQ</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="DATE">
+          <DataField>DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="IM_TYPE">
+          <DataField>IM_TYPE</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MOS_TYPE">
+          <DataField>MOS_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_STATUS">
+          <DataField>MOS_STATUS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="RQ_QTY_ISS">
+          <DataField>RQ_QTY_ISS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IM_PLANNER">
+          <DataField>IM_PLANNER</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PR_MOSJOB">
+          <DataField>PR_MOSJOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QTY_OPEN">
+          <Value>=Fields!RQ_QTY_REQ.Value-Fields!RQ_QTY_ISS.Value</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     MOS.MOS_JOB, MOS.MOS_LOT, RQ.RQ_CRDATE, RQ.RQ_IMKEY, RQ.RQ_QTY_REQ, RQ.RQ_CRDATE AS DATE, IM.IM_TYPE, MOS.MOS_TYPE, 
+                      MOS.MOS_STATUS, RQ.RQ_QTY_ISS, IM.IM_PLANNER, PR.PR_MOSJOB
+FROM         MOS INNER JOIN
+                      RQ ON MOS.MOS_TYPE = RQ.RQ_MOSTYPE AND MOS.MOS_JOB = RQ.RQ_MOSJOB AND MOS.MOS_LOT = RQ.RQ_MOSLOT AND 
+                      MOS.MOS_SEQNUM1 = RQ.RQ_MOSSEQNUM INNER JOIN
+                      IM ON RQ.RQ_IMKEY = IM.IM_KEY INNER JOIN
+                      PR ON RQ.RQ_SEQNUM = PR.PR_RQSEQNUM
+WHERE     (MOS.MOS_LOT LIKE '0%' OR
+                      MOS.MOS_LOT LIKE '1% OR LIKE 2% OR LIKE 3%') AND (RQ.RQ_QTY_REQ &gt; 5) AND (IM.IM_TYPE = 1) AND (MOS.MOS_TYPE = 'S') AND 
+                      (MOS.MOS_STATUS = 1) OR
+                      (MOS.MOS_LOT LIKE '0%' OR
+                      MOS.MOS_LOT LIKE '1% OR LIKE 2% OR LIKE 3%') AND (RQ.RQ_QTY_REQ &gt; 5) AND (IM.IM_TYPE = 2) AND (MOS.MOS_TYPE = 'S') AND 
+                      (MOS.MOS_STATUS = 1) AND (IM.IM_PLANNER = 13)
+ORDER BY RQ.RQ_CRDATE DESC, RQ.RQ_IMKEY DESC</CommandText>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Code>Private keyName As String
+Private currentStatus As Boolean
+Function SetKey(ByVal keyValue As String) As Boolean
+    If(keyName = keyValue) Then
+        currentStatus=True
+        Return True
+    Else
+        keyName=keyValue
+        currentStatus=False
+        Return False
+    End If
+End Function
+
+Function GetStatus() As Boolean
+	return currentStatus
+End Function
+
+Private keyName2 As String
+Private currentStatus2 As Boolean
+Function SetKey2(ByVal keyValue As String) As Boolean
+    If(keyName2 = keyValue) Then
+        currentStatus2=True
+        Return True
+    Else
+        keyName2=keyValue
+        currentStatus2=False
+        Return False
+    End If
+End Function
+
+Function GetStatus2() As Boolean
+	return currentStatus2
+End Function</Code>
+  <Width>8.29167in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="tblAllOpened">
+        <DataSetName>mainData</DataSetName>
+        <Filters>
+          <Filter>
+            <FilterExpression>=Fields!QTY_OPEN.Value</FilterExpression>
+            <Operator>GreaterThan</Operator>
+            <FilterValues>
+              <FilterValue>=0</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
+        <Top>0.02605in</Top>
+        <Width>6.45834in</Width>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="DATE">
+                      <rd:DefaultName>DATE</rd:DefaultName>
+                      <Style>
+                        <Format>d</Format>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!DATE.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="MOS_JOB">
+                      <rd:DefaultName>MOS_JOB</rd:DefaultName>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!MOS_JOB.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="MOS_LOT">
+                      <rd:DefaultName>MOS_LOT</rd:DefaultName>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!MOS_LOT.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="PR_MOSJOB">
+                      <rd:DefaultName>PR_MOSJOB</rd:DefaultName>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!PR_MOSJOB.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="RQ_IMKEY">
+                      <rd:DefaultName>RQ_IMKEY</rd:DefaultName>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!RQ_IMKEY.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="RQ_QTY_REQ">
+                      <rd:DefaultName>RQ_QTY_REQ</rd:DefaultName>
+                      <Style>
+                        <Format>#,##0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!RQ_QTY_REQ.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+        </Style>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox1">
+                      <rd:DefaultName>textbox1</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>Gainsboro</BackgroundColor>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>11</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Create Date</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>Gainsboro</BackgroundColor>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>10</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>WM Order Number</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="WEEK1">
+                      <rd:DefaultName>WEEK1</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>Gainsboro</BackgroundColor>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <Format>d</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>9</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>WM Item</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox4">
+                      <rd:DefaultName>textbox4</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>Gainsboro</BackgroundColor>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <Format>d</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>WM MO</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox19">
+                      <rd:DefaultName>textbox19</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>Gainsboro</BackgroundColor>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <Format>d</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>PKI Part Number</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox30">
+                      <Style>
+                        <BackgroundColor>Gainsboro</BackgroundColor>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <Format>d</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>QTY Req.</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.35417in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.5625in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.75in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.15625in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.63542in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.5in</Height>
+        <Left>1.08759in</Left>
+      </Table>
+    </ReportItems>
+    <Height>2.85938in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <TopMargin>0.1in</TopMargin>
+  <PageHeight>8.5in</PageHeight>
+</Report>

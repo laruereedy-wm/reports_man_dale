@@ -1,0 +1,1385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="PKI">
+      <DataSourceReference>PKI</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>a808d30c-e07a-429a-a6e5-954688b26817</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="PK1">
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@CATALOG">
+            <Value>=Parameters!CATALOG.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SPECIES">
+            <Value>=Parameters!SPECIES.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     CASE 
+WHEN CHARINDEX(@CATALOG, IM_CATALOG) &gt; 0 THEN 10 
+WHEN CHARINDEX(LEFT(@CATALOG, 8), IM_CATALOG)&gt; 0 THEN 9 
+WHEN CHARINDEX(LEFT(@CATALOG, 6), IM_CATALOG) &gt; 0 THEN 8                      
+WHEN CHARINDEX(LEFT(@CATALOG, 5), IM_CATALOG) &gt; 0 THEN 7 
+WHEN PATINDEX('%' + LEFT(@CATALOG, 4) + '%', IM_CATALOG) &gt; 0 THEN 6 
+WHEN CHARINDEX(SUBSTRING(@CATALOG, 2, 5), IM_CATALOG) &gt; 0 THEN 5
+WHEN CHARINDEX(SUBSTRING(@CATALOG, 2, 6), IM_CATALOG) &gt; 0 THEN 4 
+WHEN CHARINDEX(SUBSTRING(@CATALOG,2, 4), IM_CATALOG) &gt; 0 THEN 3
+WHEN CHARINDEX(LEFT(@CATALOG, 3), IM_CATALOG) &gt; 0 THEN 2
+ELSE 1 END AS CATALOG, IM.IM_KEY, IM.IM_DESCR, IM.IM_CRDATE, IM.IM_STOCK_SW, IM.IM_STD_MAT, PD.PD_VNKEY, PD.PD_VEND_DESCR, PD.PD_VEND_PART_NO, IM.IM_CATALOG, 
+                      CASE RIGHT(IM.IM_CATALOG, 2) 
+                      WHEN 'CH' THEN 'CHERRY' WHEN 'MA' THEN 'MAPLE' WHEN 'PW' THEN 'WHITE OAK' WHEN 'WA' THEN 'WALNUT' WHEN 'OK' THEN 'RED OAK' WHEN 'DP' THEN 'PINE' WHEN  '_C' THEN 'CHERRY' 
+                      WHEN '_M' THEN 'MAPLE' 
+                      WHEN '_P' THEN 'WHITE OAK' 
+                      WHEN '_W' THEN 'WALNUT' 
+                      WHEN '_O' THEN 'RED OAK' 
+                      WHEN '_D' THEN 'PINE'
+                       ELSE 'NOT RECOGNIZED' END AS [Wood Species], ID.ID_LINE AS LINE_1, ID_1.ID_LINE AS LINE_2, ID_2.ID_LINE AS LINE_3, IM.IM_BUD_LMAT, PD.PD_Q_PRICE1, 
+                      PD.PD_Q_QTY1, VN.VN_STATUS, VN.VN_CLASS, VN.VN_NAME
+FROM         VN INNER JOIN
+                      PD ON VN.VN_KEY = PD.PD_VNKEY RIGHT OUTER JOIN
+                      IM ON PD.PD_IMKEY = IM.IM_KEY LEFT OUTER JOIN
+                      ID AS ID_2 ON IM.IM_KEY = ID_2.ID_IMKEY AND 3 = ID_2.ID_LINE_NO AND 'GEN' = ID_2.ID_CLASS LEFT OUTER JOIN
+                      ID ON IM.IM_KEY = ID.ID_IMKEY AND 1 = ID.ID_LINE_NO AND 'GEN' = ID.ID_CLASS LEFT OUTER JOIN
+                      ID AS ID_1 ON IM.IM_KEY = ID_1.ID_IMKEY AND 2 = ID_1.ID_LINE_NO AND 'GEN' = ID_1.ID_CLASS
+WHERE     (CASE 
+WHEN CHARINDEX(@CATALOG, IM_CATALOG) &gt; 0 THEN 10 
+WHEN CHARINDEX(LEFT(@CATALOG, 8), IM_CATALOG)&gt; 0 THEN 9 
+WHEN CHARINDEX(LEFT(@CATALOG, 6), IM_CATALOG) &gt; 0 THEN 8                      
+WHEN CHARINDEX(LEFT(@CATALOG, 5), IM_CATALOG) &gt; 0 THEN 7 
+WHEN PATINDEX('%' + LEFT(@CATALOG, 4) + '%', IM_CATALOG) &gt; 0 THEN 6 
+WHEN CHARINDEX(SUBSTRING(@CATALOG, 2, 5), IM_CATALOG) &gt; 0 THEN 5
+WHEN CHARINDEX(SUBSTRING(@CATALOG, 2, 6), IM_CATALOG) &gt; 0 THEN 4 
+WHEN CHARINDEX(SUBSTRING(@CATALOG,2, 4), IM_CATALOG) &gt; 0 THEN 3
+WHEN CHARINDEX(LEFT(@CATALOG, 3), IM_CATALOG) &gt; 0 THEN 2
+ELSE 1 END &gt; 1)AND (RIGHT(IM.IM_CATALOG, 2) = @SPECIES OR RIGHT(IM.IM_CATALOG, 1) = LEFT(@SPECIES,1))
+--WHERE     (IM.IM_CATALOG LIKE '%' + LEFT(@CATALOG,6) + '%')
+ORDER BY CATALOG DESC</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CATALOG">
+          <DataField>CATALOG</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="IM_DESCR">
+          <DataField>IM_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_CRDATE">
+          <DataField>IM_CRDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="IM_STOCK_SW">
+          <DataField>IM_STOCK_SW</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IM_STD_MAT">
+          <DataField>IM_STD_MAT</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IM_CATALOG">
+          <DataField>IM_CATALOG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PD_VNKEY">
+          <DataField>PD_VNKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PD_VEND_DESCR">
+          <DataField>PD_VEND_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PD_VEND_PART_NO">
+          <DataField>PD_VEND_PART_NO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Wood_Species">
+          <DataField>Wood Species</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LINE_1">
+          <DataField>LINE_1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LINE_2">
+          <DataField>LINE_2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LINE_3">
+          <DataField>LINE_3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_BUD_LMAT">
+          <DataField>IM_BUD_LMAT</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PD_Q_PRICE1">
+          <DataField>PD_Q_PRICE1</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PD_Q_QTY1">
+          <DataField>PD_Q_QTY1</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="VN_STATUS">
+          <DataField>VN_STATUS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="VN_CLASS">
+          <DataField>VN_CLASS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="VN_NAME">
+          <DataField>VN_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="MOS_ORDERS">
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT DISTINCT MOS_JOB
+FROM MOS
+WHERE (MOS_LOT &lt;&gt; '') AND (MOS_CRDATE &gt; (GETDATE()-12))
+ORDER BY MOS_JOB</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="MOS_JOB">
+          <DataField>MOS_JOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LOTSFORORDERS">
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@JOB">
+            <Value>=Parameters!JOB.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@JOBLOT">
+            <Value>=Parameters!JOBLOT.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT DISTINCT MOS_LOT
+FROM MOS
+WHERE (MOS_job = @JOB) and mos_lot = @JOBLOT</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="MOS_LOT">
+          <DataField>MOS_LOT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="existance">
+          <Value>=iif(TRIM(Fields!MOS_LOT.Value) = TRIM(Parameters!JOBLOT.Value),"true","False")</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>1.33333in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.89583in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.78125in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.58383in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.38368in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>WM Catalog Code</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Profit Key Code</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Vendor Part Code</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Wood Species</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox9">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Vendor Price</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox13">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Purchase Price</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox13</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Vendor</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="IM_CATALOG">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!IM_CATALOG.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>IM_CATALOG</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Width>3pt</Width>
+                            </TopBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Width>3pt</Width>
+                            </LeftBorder>
+                            <BackgroundColor>= IIF(Fields!CATALOG.Value = 9,"limegreen", IIF(Fields!CATALOG.Value = 8,"lightgreen", IIF(Fields!CATALOG.Value = 7,"chartreuse",IIF(Fields!CATALOG.Value = 6,"Lime","transparent"))))</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="IM_KEY">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!IM_KEY.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>IM_KEY</rd:DefaultName>
+                          <ActionInfo>
+                            <Actions>
+                              <Action>
+                                <Drillthrough>
+                                  <ReportName>=IIF(Parameters!SetImportParam.Value = "True","/Manufacturing_Reports/Purchasing/RunDecorativePartsImport", "/Manufacturing_Reports/Purchasing/Purchased Material Look up by Catalog Code")</ReportName>
+                                  <Parameters>
+                                    <Parameter Name="rq_imkey">
+                                      <Value>=Fields!IM_KEY.Value</Value>
+                                      <Omit>=IIF(Parameters!SetImportParam.Value = "True",False,True)</Omit>
+                                    </Parameter>
+                                    <Parameter Name="rq_mosjob">
+                                      <Value>=Parameters!JOB.Value</Value>
+                                      <Omit>=IIF(Parameters!SetImportParam.Value = "True",False,True)</Omit>
+                                    </Parameter>
+                                    <Parameter Name="rq_moslot">
+                                      <Value>=Parameters!JOBLOT.Value</Value>
+                                      <Omit>=IIF(Parameters!SetImportParam.Value = "True",False,True)</Omit>
+                                    </Parameter>
+                                    <Parameter Name="SetRunImport">
+                                      <Value>=Parameters!SetImportParam.Value</Value>
+                                      <Omit>=IIF(Parameters!SetImportParam.Value = "True",False,True)</Omit>
+                                    </Parameter>
+                                    <Parameter Name="rq_qty_req">
+                                      <Value>=Parameters!QtyRequired.Value</Value>
+                                      <Omit>=IIF(Parameters!SetImportParam.Value = "True",False,True)</Omit>
+                                    </Parameter>
+                                    <Parameter Name="CATALOG">
+                                      <Value>=Parameters!CATALOG.Value</Value>
+                                      <Omit>=IIF(Parameters!SetImportParam.Value = "True",True,False)</Omit>
+                                    </Parameter>
+                                    <Parameter Name="SPECIES">
+                                      <Value>=Parameters!SPECIES.Value</Value>
+                                      <Omit>=IIF(Parameters!SetImportParam.Value = "True",True,False)</Omit>
+                                    </Parameter>
+                                    <Parameter Name="JOB">
+                                      <Value>=Parameters!JOB.Value</Value>
+                                      <Omit>=IIF(Parameters!SetImportParam.Value = "True",True,False)</Omit>
+                                    </Parameter>
+                                    <Parameter Name="JOBLOT">
+                                      <Value>=Parameters!JOBLOT.Value</Value>
+                                      <Omit>=IIF(Parameters!SetImportParam.Value = "True",True,False)</Omit>
+                                    </Parameter>
+                                    <Parameter Name="SetImportParam">
+                                      <Value>False</Value>
+                                      <Omit>=IIF(Parameters!SetImportParam.Value = "True",True,False)</Omit>
+                                    </Parameter>
+                                    <Parameter Name="QtyRequired">
+                                      <Value>=Parameters!QtyRequired.Value</Value>
+                                      <Omit>=IIF(Parameters!SetImportParam.Value = "True",True,False)</Omit>
+                                    </Parameter>
+                                  </Parameters>
+                                </Drillthrough>
+                              </Action>
+                            </Actions>
+                          </ActionInfo>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Width>3pt</Width>
+                            </TopBorder>
+                            <BackgroundColor>= IIF(Fields!CATALOG.Value = 9,"limegreen", IIF(Fields!CATALOG.Value = 8,"lightgreen", IIF(Fields!CATALOG.Value = 7,"chartreuse",IIF(Fields!CATALOG.Value = 6,"Lime","transparent"))))</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="PD_VEND_PART_NO">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!PD_VEND_PART_NO.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>PD_VEND_PART_NO</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Width>3pt</Width>
+                            </TopBorder>
+                            <BackgroundColor>= IIF(Fields!CATALOG.Value = 9,"limegreen", IIF(Fields!CATALOG.Value = 8,"lightgreen", IIF(Fields!CATALOG.Value = 7,"chartreuse",IIF(Fields!CATALOG.Value = 6,"Lime","transparent"))))</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Wood_Species">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Wood_Species.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Wood_Species</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Width>3pt</Width>
+                            </TopBorder>
+                            <BackgroundColor>= IIF(Fields!CATALOG.Value = 9,"limegreen", IIF(Fields!CATALOG.Value = 8,"lightgreen", IIF(Fields!CATALOG.Value = 7,"chartreuse",IIF(Fields!CATALOG.Value = 6,"Lime","transparent"))))</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="IM_BUD_LMAT">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!PD_Q_PRICE1.Value</Value>
+                                  <Style>
+                                    <Format>'$'0.00;('$'0.00)</Format>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>IM_BUD_LMAT</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Width>3pt</Width>
+                            </TopBorder>
+                            <BackgroundColor>= IIF(Fields!CATALOG.Value = 9,"limegreen", IIF(Fields!CATALOG.Value = 8,"lightgreen", IIF(Fields!CATALOG.Value = 7,"chartreuse",IIF(Fields!CATALOG.Value = 6,"Lime","transparent"))))</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="IM_STD_MAT">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!IM_STD_MAT.Value</Value>
+                                  <Style>
+                                    <Format>'$'0.00;('$'0.00)</Format>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>IM_STD_MAT</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Width>3pt</Width>
+                            </TopBorder>
+                            <BackgroundColor>= IIF(Fields!CATALOG.Value = 9,"limegreen", IIF(Fields!CATALOG.Value = 8,"lightgreen", IIF(Fields!CATALOG.Value = 7,"chartreuse",IIF(Fields!CATALOG.Value = 6,"Lime","transparent"))))</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="VN_NAME">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!VN_NAME.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>VN_NAME</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Width>3pt</Width>
+                            </TopBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Width>3pt</Width>
+                            </RightBorder>
+                            <BackgroundColor>= IIF(Fields!CATALOG.Value = 9,"limegreen", IIF(Fields!CATALOG.Value = 8,"lightgreen", IIF(Fields!CATALOG.Value = 7,"chartreuse",IIF(Fields!CATALOG.Value = 6,"Lime","transparent"))))</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!IM_DESCR.Value &amp; " " &amp; Fields!LINE_1.Value &amp; " " &amp; Fields!LINE_2.Value &amp; " " &amp; Fields!LINE_3.Value</Value>
+                                  <Style>
+                                    <Color>#474747</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Width>3pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Width>3pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Width>3pt</Width>
+                            </RightBorder>
+                            <BackgroundColor>= IIF(Fields!CATALOG.Value = 9,"limegreen", IIF(Fields!CATALOG.Value = 8,"lightgreen", IIF(Fields!CATALOG.Value = 7,"chartreuse",IIF(Fields!CATALOG.Value = 6,"Lime","transparent"))))</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>7</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details" />
+                  <TablixMembers>
+                    <TablixMember />
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>PK1</DataSetName>
+            <Top>0.01389in</Top>
+            <Height>0.75in</Height>
+            <Width>8.97792in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="txtFooterReportName">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Globals!ReportName</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.75222in</Top>
+            <Height>0.125in</Height>
+            <Width>3.875in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>0.87722in</Height>
+        <Style />
+      </Body>
+      <Width>8.97792in</Width>
+      <Page>
+        <PageHeader>
+          <Height>0.93972in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="txtHeaderReportName">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=IIF(First(Fields!existance.Value, "LOTSFORORDERS")= "true", Globals!ReportName &amp; vbcrlf &amp; "For Order #  " &amp; Parameters!JOB.Value &amp; " Item #  " &amp; Parameters!JOBLOT.Value,"CHECK FOR CANCELED ITEM PLEASE")</Value>
+                      <Style>
+                        <FontSize>18pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Left>1.38889in</Left>
+              <Height>0.64583in</Height>
+              <Width>4.46056in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>=IIF(First(Fields!existance.Value, "LOTSFORORDERS") = False,"Red", "No Color")</BackgroundColor>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Image Name="imgWMLogo">
+              <Source>Embedded</Source>
+              <Value>wmlogo</Value>
+              <Height>0.60417in</Height>
+              <Width>1.33333in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="Textbox4">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>YES</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox4</rd:DefaultName>
+              <ActionInfo>
+                <Actions>
+                  <Action>
+                    <Drillthrough>
+                      <ReportName>/Manufacturing_Reports/Purchasing/Purchased Material Look up by Catalog Code</ReportName>
+                      <Parameters>
+                        <Parameter Name="SetImportParam">
+                          <Value>True</Value>
+                        </Parameter>
+                        <Parameter Name="CATALOG">
+                          <Value>=Parameters!CATALOG.Value</Value>
+                        </Parameter>
+                        <Parameter Name="JOB">
+                          <Value>=Parameters!JOB.Value</Value>
+                        </Parameter>
+                        <Parameter Name="JOBLOT">
+                          <Value>=Parameters!JOBLOT.Value</Value>
+                        </Parameter>
+                        <Parameter Name="SPECIES">
+                          <Value>=Parameters!SPECIES.Value</Value>
+                        </Parameter>
+                        <Parameter Name="QtyRequired">
+                          <Value>=Parameters!QtyRequired.Value</Value>
+                        </Parameter>
+                      </Parameters>
+                    </Drillthrough>
+                  </Action>
+                </Actions>
+              </ActionInfo>
+              <Top>0.39111in</Top>
+              <Left>5.89112in</Left>
+              <Height>0.22569in</Height>
+              <Width>0.38716in</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>Lime</BackgroundColor>
+                <VerticalAlign>Middle</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox6">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>NO</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox4</rd:DefaultName>
+              <ActionInfo>
+                <Actions>
+                  <Action>
+                    <Drillthrough>
+                      <ReportName>/Manufacturing_Reports/Purchasing/Purchased Material Look up by Catalog Code</ReportName>
+                      <Parameters>
+                        <Parameter Name="CATALOG">
+                          <Value>=Parameters!CATALOG.Value</Value>
+                        </Parameter>
+                        <Parameter Name="SPECIES">
+                          <Value>=Parameters!SPECIES.Value</Value>
+                        </Parameter>
+                        <Parameter Name="JOB">
+                          <Value>=Parameters!JOB.Value</Value>
+                        </Parameter>
+                        <Parameter Name="JOBLOT">
+                          <Value>=Parameters!JOBLOT.Value</Value>
+                        </Parameter>
+                        <Parameter Name="SetImportParam">
+                          <Value>False</Value>
+                        </Parameter>
+                        <Parameter Name="QtyRequired">
+                          <Value>=Parameters!QtyRequired.Value</Value>
+                        </Parameter>
+                      </Parameters>
+                    </Drillthrough>
+                  </Action>
+                </Actions>
+              </ActionInfo>
+              <Top>0.39112in</Top>
+              <Left>6.67236in</Left>
+              <Height>0.22569in</Height>
+              <Width>0.38716in</Width>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>Red</BackgroundColor>
+                <VerticalAlign>Middle</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox8">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=IIF(Parameters!SetImportParam.Value = "True","The Profit Key Code on which you click will be imported to Profitkey","No Part Will Be Imported")</Value>
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox8</rd:DefaultName>
+              <Left>5.84945in</Left>
+              <Height>0.36333in</Height>
+              <Width>1.21007in</Width>
+              <ZIndex>4</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>=IIF(Parameters!SetImportParam.Value = "True","Lime","Red")</BackgroundColor>
+                <VerticalAlign>Middle</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox10">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Change the quantity required in Header Parameter</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox10</rd:DefaultName>
+              <Left>7.05952in</Left>
+              <Height>0.36333in</Height>
+              <Width>1.36458in</Width>
+              <ZIndex>5</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox12">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!QtyRequired.Value</Value>
+                      <Style>
+                        <FontSize>11pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox12</rd:DefaultName>
+              <Top>0.39112in</Top>
+              <Left>7.59424in</Left>
+              <Height>0.25471in</Height>
+              <Width>0.29167in</Width>
+              <ZIndex>6</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox14">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Enter New Order</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox14</rd:DefaultName>
+              <ActionInfo>
+                <Actions>
+                  <Action>
+                    <Drillthrough>
+                      <ReportName>/Purchasing/Choose_Decorative_Part_OrderItem</ReportName>
+                    </Drillthrough>
+                  </Action>
+                </Actions>
+              </ActionInfo>
+              <Top>0.64806in</Top>
+              <Left>0.11333in</Left>
+              <Height>0.25in</Height>
+              <Width>1.22in</Width>
+              <ZIndex>7</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageFooter>
+          <Height>0.3125in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="ExecutionTime">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!ExecutionTime</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>ExecutionTime</rd:DefaultName>
+              <Top>0.13889in</Top>
+              <Height>0.14583in</Height>
+              <Width>3.875in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="txtFooterPageLabel">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Left>4.10292in</Left>
+              <Height>0.125in</Height>
+              <Width>3.875in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <LeftMargin>0.25in</LeftMargin>
+        <RightMargin>0.25in</RightMargin>
+        <TopMargin>0.5in</TopMargin>
+        <BottomMargin>0.5in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="CATALOG">
+      <DataType>String</DataType>
+      <Prompt>Search by WM Catalog Code or Part of a Code</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SPECIES">
+      <DataType>String</DataType>
+      <Prompt>MA, WA, OK, PW, CH</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="JOB">
+      <DataType>String</DataType>
+      <Prompt>JOB</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>MOS_ORDERS</DataSetName>
+          <ValueField>MOS_JOB</ValueField>
+          <LabelField>MOS_JOB</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="JOBLOT">
+      <DataType>String</DataType>
+      <Prompt>JOBLOT</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SetImportParam">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>false</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>SetImportParam</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="QtyRequired">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>1</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Set Quantity Required</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <EmbeddedImages>
+    <EmbeddedImage Name="wmlogo">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAIAAAAA6CAMAAABPsaHqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMAUExURQAAAAEBAQICAgMDAwQEBAUFBQYGBgcHBwgICAkJCQoKCgsLCwwMDA0NDQ4ODg8PDxAQEBERERISEhMTExQUFBUVFRYWFhcXFxgYGBkZGRoaGhsbGxwcHB0dHR4eHh8fHyAgICEhISIiIiMjIyQkJCUlJSYmJicnJygoKCkpKSoqKisrKywsLC0tLS4uLi8vLzAwMDExMTIyMjMzMzQ0NDU1NTY2Njc3Nzg4ODk5OTo6Ojs7Ozw8PD09PT4+Pj8/P0BAQEFBQUJCQkNDQ0REREVFRUZGRkdHR0hISElJSUpKSktLS0xMTE1NTU5OTk9PT1BQUFFRUVJSUlNTU1RUVFVVVVZWVldXV1hYWFlZWVpaWltbW1xcXF1dXV5eXl9fX2BgYGFhYWJiYmNjY2RkZGVlZWZmZmdnZ2hoaGlpaWpqamtra2xsbG1tbW5ubm9vb3BwcHFxcXJycnNzc3R0dHV1dXZ2dnd3d3h4eHl5eXp6ent7e3x8fH19fX5+fn9/f4CAgIGBgYKCgoODg4SEhIWFhYaGhoeHh4iIiImJiYqKiouLi4yMjI2NjY6Ojo+Pj5CQkJGRkZKSkpOTk5SUlJWVlZaWlpeXl5iYmJmZmZqampubm5ycnJ2dnZ6enp+fn6CgoKGhoaKioqOjo6SkpKWlpaampqenp6ioqKmpqaqqqqurq6ysrK2tra6urq+vr7CwsLGxsbKysrOzs7S0tLW1tba2tre3t7i4uLm5ubq6uru7u7y8vL29vb6+vr+/v8DAwMHBwcLCwsPDw8TExMXFxcbGxsfHx8jIyMnJycrKysvLy8zMzM3Nzc7Ozs/Pz9DQ0NHR0dLS0tPT09TU1NXV1dbW1tfX19jY2NnZ2dra2tvb29zc3N3d3d7e3t/f3+Dg4OHh4eLi
+4uPj4+Tk5OXl5ebm5ufn5+jo6Onp6erq6uvr6+zs7O3t7e7u7u/v7/Dw8PHx8fLy8vPz8/T09PX19fb29vf39/j4+Pn5+fr6+vv7+/z8/P39/f7+/v///+KwXX0AAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAADllJREFUWEftWHl8VfWVP2/LSyIII1iqZRHETtWKG6W02lorjso4LcMi2BbrCsoyllHZRAZCNl4WEgLZyAKyqQhlK4jIKptYJRAI2TdIQraX5OWt9917z3zPTcLe9sOH+Xw6f3jee/fd+1vO+f7O9ju/S/xPpu8AfAfg/w8ATdGYVV3RNcadzuxHm6awgquKx+tTMMj46DJeY7/S2QpGaJZrFxl3alDGGXcdf0JdACBduGGAAn5+ma8oxmNH/98iPwAze4MB/OsGl07S2X3FM7h2yNXUANZ2kToBoDeAbog2xmGi5sOTqgWhkMv5XEVGjwdoNeMjyzYIXECXaUDToCadg8Z6AkZbB3UCEHysBIIBcFTxU0TrMAWmwQx/m1RWvQZkyNQuigdpYNKBoos6urGoy4Fd5gNBpaNZoBjrUn3MPg4arZfPuJJ8WJiBUIYELmHFHZTp7XyCexg8A9JuKPgidZlA5AZ8aivu/fAFUTxzo8E36Pl7jiAzdZGsei7jqzMMrV+maukTjFeoSagTAPpqMp+8hR53VIrmfDCX+s3bTy4Hi4KU1ZcjvpL0ANym9tMpQ2+jvm8WQmOdpC1/Zq7r0iNIhzXZ3QaLdmisiy6aYMvD1PceM9ELpWI/DN727ODQbhWa6wN6pKpzzLVU+PZ612SyD3zmx7dSSFRbZytzjNm2TPTQRYpEhHZwZoYMuRiNQl0A1lPfdLeS92uyvwGVqhw4Zl3BvUNcfNRK5lKxHtpkLoJZ3FkVJlsnmWnvyVnrahQ9jyz0CLq0AMZoO63Up1HD
+MFG9ofQA6/smkCXXD95AAy2IejCgE8DZ74dt9wVY++pe6v417KHxVCossL0U0OcSDXSqaIJ4RZGcBIPrwrQlYUwvGtDADVCp/gWU1+1059Kcj1HIGAMnFoupfrWN1dgRPSxUiol+eIdh1CCQdAGYRhF4gNfMJIr3YtSFweSJthex9hsKGQc8Eg0dX8OPVMXNXHp6mG20zIZ515nITKsEGLTzLpHJgbQquI1etHrOlP7S/mMIFs9EOtA6QHQBsHUv6TDN0W70nJjsJNlW9v+AddfdZPoIKRkAwBBrkmkSoWDsq72DIsEsABHp1I9oGjqhoSzqbjdvM/K3AjmYZchqH2iaI7KR2rU9h8UK4o6dAOz9vGANcP5H6HttwLKT6M6hXlVpDQ25D+sQzclVwRC3GMPYJ7aReR96gEiLNb1lpaH+oOblg7eNuJ/CC9CMJGHEIr6an/PCaL0kOaDfO3mqzJPY7wRAj7IPuVfVg/PIvg8S94ZT2A5R/Y+s89ChtWGs5DwkXvw0cUU16LDc3iYxpQR5Mu24xxwGb2X9ufDPe9Nwv2iMdSf6scHpELuLqNzQoNr6xZz3AEMTC3UBGCSpSpa2gULiwaWlh+V5v2h0pClf0fIdbyUeM7R/PHnumnr8a57i3En30hBpQ9iqT/S4MMFE28FiXbfUwyGWSRIC7pLI1+LLIUbjmpUTH6MhEID4+uD1hRvzMFHBRtMF4FF7ofCHUY5Y6RVo2P0z0x/wrGqPd2/iqP49TTSsjP3N7/XrZrZGYWnBJT3NZDONk50K2mj+4b08h6y5iI/hD3AsmSMw98L83oPI9J6H2zmqj81moRfgv9VTw8hES2AZOMklALH2ZWJkUNNA00/hcsdup55OPC4MG/TKeJrmn0/WSC74oW2TPoHuaeaC4b/Y8E2KxfSeBARSfqFpSvDPEKbwn0yng6NMtCfAp4ZRhvoCURmfGjR066HPLRSvqbtuv3v/llvoU7eUGRJUnQBaewys
+k60DeWQ89aznwH8S2Y+w5n1w1jf9zT/I1/bZaBEa32jnzBBiz/Beq4OcbaJ0VvITkCh3UCafCaff8Obur/r5caJS1n9nekrVHHbTgdbx5q8U3kOWQ9xyD21QcijeaSS0yxKRvi10iuHrHHzXRIc4I2xsOKXrvGFwLd9Pr2NHIEtkoYk+Y/9GoqZouruR9Vlkz2//pIf16TaOom/YPcD6cOMTdJzr+1gGtOqfhlAO80dk/myT9eeQEE3fq9cXhPZUVofEQRAiwMDQCUBTMvrkQAOor5Is5j839n73OIVNUZ2DIgP7Q+1Lmb+lsLQM6gWrrKc7aoZZRiPPjaBetTzRRNM9PKqP08u/DO0bSVNZ/yvR0wpSWmgR8wqyHh1JS+Dio8Me1fgxGpN4awTcBrIlq1zSgBY4sU40EAxuIfvsmf3Lqsnyc47qW8kOMh9jdbeFjrxqfgJ+46CHi0PM7wa47TbLU+xzvRML17/rWXCbRJbwXkjHO2ymSbp3FP3rOeZFtsGlPS0IaP/98OpCopDuq8VtsH544CUnNO6bBYFy1Grqd9dOrutHtyX0SA1ok21UEeD55p7OEQQz8RjT3INkW6zpe8k6q91I7fx1iAOriSOiJA5qyTZ6h9vvpMfBdJz5ldJQOsV8xE5JwS1W6rtdok2TiukKAEHUgLgiy5z/PoXPA99fhdvDxni4bTqFn2DvUJoReIpeYr2kt+nQR6G0iBtmhELcoT0IdzW+Wx72wJVW0wPl4BJrpejAt7fSAFbz77Bu+oroGLfNslq2+lKJ5sL07VuaZIPADnkRgOQkqYPYp7jvDHmwGYlrOlGvEmSEGWF0WN1gp73+F60/4WCMaRh/QqapHjAzHfj6wa2Yq43tj9Vo66yU5kN6cRAlJPQhyx0N2krb/f4vyZ7Bmdgt958bRjQachPuapYUY9RmF03QRbr+qHU3FOTLIlsOjKVsstDUggGhi4N6PIXs2fEv1s3BXSGWXv/+6kSydzfn
+iDm9g+f62M07bQNbkc2VBTDFkPg/kD21/Adh+/0lYdTv+QfGkvkXw2aSqc+2z4f0PSSig3IAuBqAJO2R0yQ8eGfoeGy5QS57ksg2JENaQojC71vdxjV9utGTrsRQCslxM04EeZb9os0jPRbJxMC0biO3unhrDwqxPLQVlcdPKfzpioV284gi9Wmi7vTbb2VYJ10NAPOzTkGsn0++nAcDYC/Z/dr4hed1drE/ddSL2SUybO3zyyq1L//4xnHco+p45T44kN7qXAw3RjRsXuGWuiX72XER5+HV6o7RCy/wvomRDT4+819PjdnmkVJfDjJB+O81JlAhSfbeVkbMw8NhBT80IRuVH5sldgERxqjt/NC6fNXTPefhYAc38sG7AdnpYzWAmkG2HqMyl13NLWsBHHH2oGypsIA0XAUAJU3z5mXZqbmpKetyMxPXfpiZnrM6NSs7OyUrPSUnOyMteWVa5orMrOzVKTm5qZmrMlelZOW+3X9u5sr09OykzNzMjGXLczM+TMrKzlyZvGb5iuVpa5PTV2RmJK7LygTT9PRVaTlpK1akHW8DJqNcu1oDQN1W4y6qb6usPX+uub6k2Xmh2eU61+xqdTqbnK5WV0N9+wVndYu/pe58g/tCfVNDU3Obz1XW1NRS7amrr6kpr2uoq3e5appqG5sayr11de3uqrY6b/25Khc7naXVLm9+fXtjZWfQXccESkPiRjfvPsL5n7hPVvNnkXtVqFHZnrSGtXXF2hHmjWs82ucxyapanpt2wM3ONVx1SHh5Ktfmnm1XCg6ofv3D5BPtnHtSD6wr5UPc+EXsVubtCz9R+C+OVVyV3HY4oPuvCwD7Q8vI1cxzYn1r+qVlHvPO+91X0r77PwqqtMCoz5pT1JqXU1mve3k+u8fmVI3x+o/fe2bhIvDyc/KCxhLWFo72cOD3zyew8jaS7tifHF7E+uwXK/2896VCDk4eP02vfebN7eIaUhRfowGFS577lvWZi9170qf2
+/Vp9f3a9ZCnHCygg2l7f7ESgrf3VAdbezOTzQ/N4XFlw14yH5sUgteut8RvgshWvPbRV5wkz4lh7a43WmJD9wMu6OuutRtZqpzkD+vvhC5h3DetYvVyuMYGvcIGT9aURfOhgwYTjvGByHkNblXMiP/bw0ukxe/RjSfMK2Dc/i3lebGQi+z7a986X840SeFNE6lnfzs3RDp9v8vRMzT1/I9evb0yb7eLICSdYr1xQy0rUgj+18NE3UQ9ixnUB6FyGH6ILxwccmF3nWhA+QfY1I3J8je3+j2eix2eca9SmOgSyxJir46BQ3arJTPR5nFBbC0LTyQFoW7ngQc3bDhdXOOjEIcMrBXAAB8urASDQvR/HR8bFxSZHRS6JjotYsmRxbJwjPiohLjbGkRgbGf/Ir3Mi4pKXOhY5YpI+SFk7JSIiJTImbXFCUsyiZQsWRzoSoxcvjY5cGrlkUcySpVEJMVGxCTH/syTBkRQbF+1wxCVGJzkikmIPSrIx6BoN4MCTX1VWWVZcUl5eXllReKaosrS4rKy4tKikoqiw/Mxj/1Zbl1dWVFZRXVBUf2H+Lf9dWVxYdRZ95aerikuLz5WXFZ2uLC87XVZRebaooqK6suZMeU1h4ZmS0qKykpKS/OZT509XF5+BHBzskYquBqB5xJo+w0eQrKBIFdUM/tCM4RpPoCO4h1mg2ar3w2fjVpf6BocHqXJdYlgF3ZqcInAjOQ/TQYafGOEv86Hr60aBHGRwNsQpWJWSRYTKz3i1Aa9gXhb+sxOwJkzdlPiQ9UWPJiIEp2RRDMBV/kWalP2AJT4UkAbUwTga44yGVkO4ALvaBzAH8xXJiAgtORDKwdwYjeE4BTQMpzvf2fLXfesn3mej0TijgJ0wl5ULd8CE7wGGLAVbgxwBjYIfLYYqRaq8xUMevg6Af0gqf/EjnINJfg+mG5xvjm4UAOgvrw7uFmrq9duVFbLom6UbBGC4H7eLc4pZjA335ugGAUDn8kZM
+9tGgvMe4ebpRE8i6JRpVeaVpVBs3STcMQN6udGzlHRhulm4QANSPsDKCVUraDn3cFN2oE2LxEtxB3Ug1Esg3STdqgv9z+g7APxkA8/8CeFi9vkCYT3QAAAAASUVORK5CYII=</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://172.16.100.249/ReportServer</rd:ReportServerUrl>
+  <rd:ReportID>c80f717c-b782-4a19-83fa-f98c60bf8419</rd:ReportID>
+</Report>

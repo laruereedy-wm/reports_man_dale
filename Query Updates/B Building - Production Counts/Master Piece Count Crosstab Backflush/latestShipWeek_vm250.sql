@@ -1,0 +1,4 @@
+SELECT 
+	DATEADD(ww, 11, OH.ShipDate) AS SHIPDATE
+
+FROM OrderHeader AS OH

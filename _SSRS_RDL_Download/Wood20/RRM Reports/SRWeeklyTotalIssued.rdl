@@ -1,0 +1,1808 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="PKI">
+      <rd:DataSourceID>5337cd2c-fd37-4261-8222-2e1a00315897</rd:DataSourceID>
+      <DataSourceReference>PKI</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="partNumber">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Part Number</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="numWorkingDays">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>numWorkingDays</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>1in</RightMargin>
+  <LeftMargin>1in</LeftMargin>
+  <BottomMargin>1in</BottomMargin>
+  <rd:ReportID>54642da8-cf48-4d32-9fed-327260d42358</rd:ReportID>
+  <DataSets>
+    <DataSet Name="dsMinus0">
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_UNIT_S">
+          <DataField>IM_UNIT_S</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccountingMonth">
+          <DataField>AccountingMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NumberWorkingDays">
+          <DataField>NumberWorkingDays</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MonthEnd">
+          <DataField>MonthEnd</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="YearMonth">
+          <DataField>YearMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_ORIGIN_STATUS">
+          <DataField>TX_ORIGIN_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DEST_STATUS">
+          <DataField>TX_DEST_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_TYPE">
+          <DataField>TX_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_ON_HAND">
+          <DataField>IM_ON_HAND</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="testqty">
+          <Value>=IIf(Fields!TX_TYPE.Value="I" Or (Fields!TX_TYPE.Value="A" And Fields!TX_ORIGIN_STATUS.Value="A" And Fields!TX_DEST_STATUS.Value="I"),Fields!QTY.Value,IIf(Fields!TX_TYPE.Value="A" And Fields!TX_ORIGIN_STATUS.Value="A" And Fields!TX_DEST_STATUS.Value="J",Fields!QTY.Value,IIf(Fields!TX_TYPE.Value="A" And Fields!TX_ORIGIN_STATUS.Value="J" And Fields!TX_DEST_STATUS.Value="A",-Fields!QTY.Value,IIf(Fields!TX_TYPE.Value="A" And Fields!TX_ORIGIN_STATUS.Value="J" And Fields!TX_DEST_STATUS.Value="I",-Fields!QTY.Value,IIf(Fields!TX_TYPE.Value="A" And Fields!TX_ORIGIN_STATUS.Value="I" And Fields!TX_DEST_STATUS.Value="A",-Fields!QTY.Value,IIf(Fields!TX_TYPE.Value="A" And Fields!TX_ORIGIN_STATUS.Value="I" And Fields!TX_DEST_STATUS.Value="J",-Fields!QTY.Value,0))))))</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     IM.IM_KEY, IM.IM_UNIT_S, FiscalYearAccountingCalendar_1.AccountingMonth, FiscalYearAccountingCalendar_1.NumberWorkingDays, 
+                      FiscalYearAccountingCalendar_1.MonthEnd, FiscalYearAccountingCalendar_1.YearMonth, CASE WHEN TX.TX_TYPE = 'I' OR
+                      (TX.TX_TYPE = 'A' AND TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'I') THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'J' THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'I' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'J' THEN - TX.TX_QTY ELSE 0 END END END END END END AS QTY, 
+                      TX.TX_ORIGIN_STATUS, TX.TX_DEST_STATUS, TX.TX_TYPE, IM.IM_ON_HAND
+FROM         FiscalYearAccountingCalendar AS FiscalYearAccountingCalendar_1 CROSS JOIN
+                      IM INNER JOIN
+                      TX ON IM.IM_KEY = TX.TX_IMKEY
+WHERE     (TX.TX_TYPE = 'A' OR
+                      TX.TX_TYPE = 'I') AND (FiscalYearAccountingCalendar_1.ID =
+                          (SELECT     TOP (1) ID
+                            FROM          FiscalYearAccountingCalendar
+                            WHERE      ({ fn NOW() } BETWEEN BeginMonth AND MonthEnd))) AND (TX.TX_DATE BETWEEN FiscalYearAccountingCalendar_1.BeginMonth AND 
+                      FiscalYearAccountingCalendar_1.MonthEnd) AND (IM.IM_KEY = @partNumber)
+ORDER BY IM.IM_KEY</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@partNumber">
+            <Value>=Parameters!partNumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="dsMinus1">
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_UNIT_S">
+          <DataField>IM_UNIT_S</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccountingMonth">
+          <DataField>AccountingMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NumberWorkingDays">
+          <DataField>NumberWorkingDays</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MonthEnd">
+          <DataField>MonthEnd</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="YearMonth">
+          <DataField>YearMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_ORIGIN_STATUS">
+          <DataField>TX_ORIGIN_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DEST_STATUS">
+          <DataField>TX_DEST_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_TYPE">
+          <DataField>TX_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     IM.IM_KEY, IM.IM_UNIT_S, FiscalYearAccountingCalendar_1.AccountingMonth, FiscalYearAccountingCalendar_1.NumberWorkingDays, 
+                      FiscalYearAccountingCalendar_1.MonthEnd, FiscalYearAccountingCalendar_1.YearMonth, CASE WHEN TX.TX_TYPE = 'I' OR
+                      (TX.TX_TYPE = 'A' AND TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'I') THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'J' THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'I' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'J' THEN - TX.TX_QTY ELSE 0 END END END END END END AS QTY, 
+                      TX.TX_ORIGIN_STATUS, TX.TX_DEST_STATUS, TX.TX_TYPE
+FROM         FiscalYearAccountingCalendar AS FiscalYearAccountingCalendar_1 CROSS JOIN
+                      IM INNER JOIN
+                      TX ON IM.IM_KEY = TX.TX_IMKEY
+WHERE     (TX.TX_TYPE = 'A' OR
+                      TX.TX_TYPE = 'I') AND (FiscalYearAccountingCalendar_1.ID =
+                          (SELECT     TOP (1) ID - 1 AS ID
+                            FROM          FiscalYearAccountingCalendar
+                            WHERE      ({ fn NOW() } BETWEEN BeginMonth AND MonthEnd))) AND (TX.TX_DATE BETWEEN FiscalYearAccountingCalendar_1.BeginMonth AND 
+                      FiscalYearAccountingCalendar_1.MonthEnd) AND (IM.IM_KEY = @partNumber) AND (TX.TX_ORIGIN_STATUS &lt;&gt; 'J') AND (TX.TX_DEST_STATUS &lt;&gt; 'J')
+ORDER BY IM.IM_KEY</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@partNumber">
+            <Value>=Parameters!partNumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="dsMinus2">
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_UNIT_S">
+          <DataField>IM_UNIT_S</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccountingMonth">
+          <DataField>AccountingMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NumberWorkingDays">
+          <DataField>NumberWorkingDays</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MonthEnd">
+          <DataField>MonthEnd</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="YearMonth">
+          <DataField>YearMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_ORIGIN_STATUS">
+          <DataField>TX_ORIGIN_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DEST_STATUS">
+          <DataField>TX_DEST_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_TYPE">
+          <DataField>TX_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     IM.IM_KEY, IM.IM_UNIT_S, FiscalYearAccountingCalendar_1.AccountingMonth, FiscalYearAccountingCalendar_1.NumberWorkingDays, 
+                      FiscalYearAccountingCalendar_1.MonthEnd, FiscalYearAccountingCalendar_1.YearMonth, CASE WHEN TX.TX_TYPE = 'I' OR
+                      (TX.TX_TYPE = 'A' AND TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'I') THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'J' THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'I' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'J' THEN - TX.TX_QTY ELSE 0 END END END END END END AS QTY, 
+                      TX.TX_ORIGIN_STATUS, TX.TX_DEST_STATUS, TX.TX_TYPE
+FROM         FiscalYearAccountingCalendar AS FiscalYearAccountingCalendar_1 CROSS JOIN
+                      IM INNER JOIN
+                      TX ON IM.IM_KEY = TX.TX_IMKEY
+WHERE     (TX.TX_TYPE = 'A' OR
+                      TX.TX_TYPE = 'I') AND (FiscalYearAccountingCalendar_1.ID =
+                          (SELECT     TOP (1) ID - 2 AS ID
+                            FROM          FiscalYearAccountingCalendar
+                            WHERE      ({ fn NOW() } BETWEEN BeginMonth AND MonthEnd))) AND (TX.TX_DATE BETWEEN FiscalYearAccountingCalendar_1.BeginMonth AND 
+                      FiscalYearAccountingCalendar_1.MonthEnd) AND (IM.IM_KEY = @partNumber) AND (TX.TX_ORIGIN_STATUS &lt;&gt; 'J') AND (TX.TX_DEST_STATUS &lt;&gt; 'J')
+ORDER BY IM.IM_KEY</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@partNumber">
+            <Value>=Parameters!partNumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="dsMinus3">
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_UNIT_S">
+          <DataField>IM_UNIT_S</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccountingMonth">
+          <DataField>AccountingMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NumberWorkingDays">
+          <DataField>NumberWorkingDays</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MonthEnd">
+          <DataField>MonthEnd</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="YearMonth">
+          <DataField>YearMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_ORIGIN_STATUS">
+          <DataField>TX_ORIGIN_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DEST_STATUS">
+          <DataField>TX_DEST_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_TYPE">
+          <DataField>TX_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     IM.IM_KEY, IM.IM_UNIT_S, FiscalYearAccountingCalendar_1.AccountingMonth, FiscalYearAccountingCalendar_1.NumberWorkingDays, 
+                      FiscalYearAccountingCalendar_1.MonthEnd, FiscalYearAccountingCalendar_1.YearMonth, CASE WHEN TX.TX_TYPE = 'I' OR
+                      (TX.TX_TYPE = 'A' AND TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'I') THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'J' THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'I' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'J' THEN - TX.TX_QTY ELSE 0 END END END END END END AS QTY, 
+                      TX.TX_ORIGIN_STATUS, TX.TX_DEST_STATUS, TX.TX_TYPE
+FROM         FiscalYearAccountingCalendar AS FiscalYearAccountingCalendar_1 CROSS JOIN
+                      IM INNER JOIN
+                      TX ON IM.IM_KEY = TX.TX_IMKEY
+WHERE     (TX.TX_TYPE = 'A' OR
+                      TX.TX_TYPE = 'I') AND (FiscalYearAccountingCalendar_1.ID =
+                          (SELECT     TOP (1) ID - 3 AS ID
+                            FROM          FiscalYearAccountingCalendar
+                            WHERE      ({ fn NOW() } BETWEEN BeginMonth AND MonthEnd))) AND (TX.TX_DATE BETWEEN FiscalYearAccountingCalendar_1.BeginMonth AND 
+                      FiscalYearAccountingCalendar_1.MonthEnd) AND (IM.IM_KEY = @partNumber) AND (TX.TX_ORIGIN_STATUS &lt;&gt; 'J') AND (TX.TX_DEST_STATUS &lt;&gt; 'J')
+ORDER BY IM.IM_KEY</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@partNumber">
+            <Value>=Parameters!partNumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="dsMinus4">
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_UNIT_S">
+          <DataField>IM_UNIT_S</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccountingMonth">
+          <DataField>AccountingMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NumberWorkingDays">
+          <DataField>NumberWorkingDays</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MonthEnd">
+          <DataField>MonthEnd</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="YearMonth">
+          <DataField>YearMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_ORIGIN_STATUS">
+          <DataField>TX_ORIGIN_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DEST_STATUS">
+          <DataField>TX_DEST_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_TYPE">
+          <DataField>TX_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     IM.IM_KEY, IM.IM_UNIT_S, FiscalYearAccountingCalendar_1.AccountingMonth, FiscalYearAccountingCalendar_1.NumberWorkingDays, 
+                      FiscalYearAccountingCalendar_1.MonthEnd, FiscalYearAccountingCalendar_1.YearMonth, CASE WHEN TX.TX_TYPE = 'I' OR
+                      (TX.TX_TYPE = 'A' AND TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'I') THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'J' THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'I' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'J' THEN - TX.TX_QTY ELSE 0 END END END END END END AS QTY, 
+                      TX.TX_ORIGIN_STATUS, TX.TX_DEST_STATUS, TX.TX_TYPE
+FROM         FiscalYearAccountingCalendar AS FiscalYearAccountingCalendar_1 CROSS JOIN
+                      IM INNER JOIN
+                      TX ON IM.IM_KEY = TX.TX_IMKEY
+WHERE     (TX.TX_TYPE = 'A' OR
+                      TX.TX_TYPE = 'I') AND (FiscalYearAccountingCalendar_1.ID =
+                          (SELECT     TOP (1) ID - 4 AS ID
+                            FROM          FiscalYearAccountingCalendar
+                            WHERE      ({ fn NOW() } BETWEEN BeginMonth AND MonthEnd))) AND (TX.TX_DATE BETWEEN FiscalYearAccountingCalendar_1.BeginMonth AND 
+                      FiscalYearAccountingCalendar_1.MonthEnd) AND (IM.IM_KEY = @partNumber) AND (TX.TX_ORIGIN_STATUS &lt;&gt; 'J') AND (TX.TX_DEST_STATUS &lt;&gt; 'J')
+ORDER BY IM.IM_KEY</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@partNumber">
+            <Value>=Parameters!partNumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="dsMinus5">
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_UNIT_S">
+          <DataField>IM_UNIT_S</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccountingMonth">
+          <DataField>AccountingMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NumberWorkingDays">
+          <DataField>NumberWorkingDays</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MonthEnd">
+          <DataField>MonthEnd</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="YearMonth">
+          <DataField>YearMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_ORIGIN_STATUS">
+          <DataField>TX_ORIGIN_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DEST_STATUS">
+          <DataField>TX_DEST_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_TYPE">
+          <DataField>TX_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     IM.IM_KEY, IM.IM_UNIT_S, FiscalYearAccountingCalendar_1.AccountingMonth, FiscalYearAccountingCalendar_1.NumberWorkingDays, 
+                      FiscalYearAccountingCalendar_1.MonthEnd, FiscalYearAccountingCalendar_1.YearMonth, CASE WHEN TX.TX_TYPE = 'I' OR
+                      (TX.TX_TYPE = 'A' AND TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'I') THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'J' THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'I' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'J' THEN - TX.TX_QTY ELSE 0 END END END END END END AS QTY, 
+                      TX.TX_ORIGIN_STATUS, TX.TX_DEST_STATUS, TX.TX_TYPE
+FROM         FiscalYearAccountingCalendar AS FiscalYearAccountingCalendar_1 CROSS JOIN
+                      IM INNER JOIN
+                      TX ON IM.IM_KEY = TX.TX_IMKEY
+WHERE     (TX.TX_TYPE = 'A' OR
+                      TX.TX_TYPE = 'I') AND (FiscalYearAccountingCalendar_1.ID =
+                          (SELECT     TOP (1) ID - 5 AS ID
+                            FROM          FiscalYearAccountingCalendar
+                            WHERE      ({ fn NOW() } BETWEEN BeginMonth AND MonthEnd))) AND (TX.TX_DATE BETWEEN FiscalYearAccountingCalendar_1.BeginMonth AND 
+                      FiscalYearAccountingCalendar_1.MonthEnd) AND (IM.IM_KEY = @partNumber) AND (TX.TX_ORIGIN_STATUS &lt;&gt; 'J') AND (TX.TX_DEST_STATUS &lt;&gt; 'J')
+ORDER BY IM.IM_KEY</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@partNumber">
+            <Value>=Parameters!partNumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="dsMinus6">
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_UNIT_S">
+          <DataField>IM_UNIT_S</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccountingMonth">
+          <DataField>AccountingMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NumberWorkingDays">
+          <DataField>NumberWorkingDays</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MonthEnd">
+          <DataField>MonthEnd</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="YearMonth">
+          <DataField>YearMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_ORIGIN_STATUS">
+          <DataField>TX_ORIGIN_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DEST_STATUS">
+          <DataField>TX_DEST_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_TYPE">
+          <DataField>TX_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     IM.IM_KEY, IM.IM_UNIT_S, FiscalYearAccountingCalendar_1.AccountingMonth, FiscalYearAccountingCalendar_1.NumberWorkingDays, 
+                      FiscalYearAccountingCalendar_1.MonthEnd, FiscalYearAccountingCalendar_1.YearMonth, CASE WHEN TX.TX_TYPE = 'I' OR
+                      (TX.TX_TYPE = 'A' AND TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'I') THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'A' AND TX.TX_DEST_STATUS = 'J' THEN TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'J' AND TX.TX_DEST_STATUS = 'I' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'A' THEN - TX.TX_QTY ELSE CASE WHEN TX.TX_TYPE = 'A' AND 
+                      TX.TX_ORIGIN_STATUS = 'I' AND TX.TX_DEST_STATUS = 'J' THEN - TX.TX_QTY ELSE 0 END END END END END END AS QTY, 
+                      TX.TX_ORIGIN_STATUS, TX.TX_DEST_STATUS, TX.TX_TYPE
+FROM         FiscalYearAccountingCalendar AS FiscalYearAccountingCalendar_1 CROSS JOIN
+                      IM INNER JOIN
+                      TX ON IM.IM_KEY = TX.TX_IMKEY
+WHERE     (TX.TX_TYPE = 'A' OR
+                      TX.TX_TYPE = 'I') AND (FiscalYearAccountingCalendar_1.ID =
+                          (SELECT     TOP (1) ID
+                            FROM          FiscalYearAccountingCalendar
+                            WHERE      ({ fn NOW() } BETWEEN BeginMonth AND MonthEnd))) AND (TX.TX_DATE BETWEEN FiscalYearAccountingCalendar_1.BeginMonth AND 
+                      FiscalYearAccountingCalendar_1.MonthEnd) AND (IM.IM_KEY = @partNumber) AND (TX.TX_ORIGIN_STATUS &lt;&gt; 'J') AND (TX.TX_DEST_STATUS &lt;&gt; 'J')
+ORDER BY IM.IM_KEY</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@partNumber">
+            <Value>=Parameters!partNumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="dsTotalLeftToReceive">
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_STATUS">
+          <DataField>MOS_STATUS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MOS_WANTDATE">
+          <DataField>MOS_WANTDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="VN_NAME">
+          <DataField>VN_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PH_KEY">
+          <DataField>PH_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_UNIT_S">
+          <DataField>IM_UNIT_S</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_QTY">
+          <DataField>MOS_QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MOS_QTY_REC">
+          <DataField>MOS_QTY_REC</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="LTR">
+          <DataField>LTR</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT DISTINCT 
+                      IM.IM_KEY, MOS.MOS_STATUS, MOS.MOS_WANTDATE, VN.VN_NAME, PH.PH_KEY, IM.IM_UNIT_S, MOS.MOS_QTY, MOS.MOS_QTY_REC, 
+                      MOS.MOS_QTY - MOS.MOS_QTY_REC AS LTR
+FROM         IM INNER JOIN
+                      MOS ON IM.IM_KEY = MOS.MOS_IMKEY INNER JOIN
+                      OL ON MOS.MOS_OLREFNO = OL.OL_REF_NO AND MOS.MOS_OLPHKEY = OL.OL_PHKEY INNER JOIN
+                      PH ON OL.OL_PHKEY = PH.PH_KEY INNER JOIN
+                      VN ON PH.PH_VNKEY = VN.VN_KEY
+WHERE     (MOS.MOS_STATUS &lt; 3) AND (MOS.MOS_QTY - MOS.MOS_QTY_REC &gt; 0) AND (IM.IM_KEY = @partNumber)
+ORDER BY MOS.MOS_WANTDATE</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@partNumber">
+            <Value>=Parameters!partNumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Width>7in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="tblMinus4">
+        <ZIndex>7</ZIndex>
+        <DataSetName>dsMinus4</DataSetName>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Width>0.625in</Width>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.12153in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.15625in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.12153in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.05208in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.12153in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
+            <Width>0.05208in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.25in</Height>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox5">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=First(Fields!YearMonth.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox17">
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!NumberWorkingDays.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtQtyMinus4">
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIf(Sum(Fields!QTY.Value) Is Nothing, 0, Format(Sum(Fields!QTY.Value), "#,###"))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox19">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=First(Fields!IM_UNIT_S.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox20">
+                      <Style>
+                        <Format>D0</Format>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIf(Sum(Fields!QTY.Value) Is Nothing, 0, Round(Sum(Fields!QTY.Value)/Fields!NumberWorkingDays.Value, 0))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtWorkingDaysMinus4">
+                      <Style>
+                        <Format>D0</Format>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!NumberWorkingDays.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+        <Left>5.375in</Left>
+      </Table>
+      <Table Name="table3">
+        <ZIndex>6</ZIndex>
+        <DataSetName>dsTotalLeftToReceive</DataSetName>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Top>0.25in</Top>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="table3_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!IM_KEY.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox1">
+                          <rd:DefaultName>textbox1</rd:DefaultName>
+                          <Style>
+                            <FontStyle>Italic</FontStyle>
+                            <FontWeight>700</FontWeight>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>9</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>PO Number</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox7">
+                          <Style>
+                            <FontStyle>Italic</FontStyle>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>8</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Vendor</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox8">
+                          <Style>
+                            <FontStyle>Italic</FontStyle>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>7</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>Due On</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ColSpan>2</ColSpan>
+                      <ReportItems>
+                        <Textbox Name="textbox9">
+                          <Style>
+                            <FontStyle>Italic</FontStyle>
+                            <FontWeight>700</FontWeight>
+                          </Style>
+                          <ZIndex>6</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>PO Balance (LTR)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.08333in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox11">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!PH_KEY.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox12">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!VN_NAME.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox13">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <Format>d</Format>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!MOS_WANTDATE.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox14">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0</Format>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!LTR.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox16">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <Format>D0</Format>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=First(Fields!IM_UNIT_S.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.08333in</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.37352in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.02717in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.33127in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.37796in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.14007in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.24999in</Height>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ColSpan>5</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="txtTotalLeftToReceive">
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Round(Sum(Fields!LTR.Value), 0)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.08333in</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+        <Left>4.75in</Left>
+      </Table>
+      <Table Name="table2">
+        <ZIndex>5</ZIndex>
+        <DataSetName>dsMinus0</DataSetName>
+        <Top>1.125in</Top>
+        <Width>6.125in</Width>
+        <TableColumns>
+          <TableColumn>
+            <Width>3.25in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.875in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox85">
+                      <Style>
+                        <BorderColor>
+                          <Default>WhiteSmoke</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontStyle>Italic</FontStyle>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>="Weekly On Hand Average:"</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtWeeklyOnHandAvg">
+                      <Style>
+                        <BorderColor>
+                          <Default>WhiteSmoke</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontStyle>Italic</FontStyle>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value> =Round(Fields!IM_ON_HAND.Value / ReportItems!txtAvgWeeklyUsage.Value, 2)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <Style>
+                        <BorderColor>
+                          <Default>WhiteSmoke</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontStyle>Italic</FontStyle>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>="Weekly On Hand Average + Order Average:"</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox15">
+                      <rd:DefaultName>textbox15</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>WhiteSmoke</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontStyle>Italic</FontStyle>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Round((Fields!IM_ON_HAND.Value + ReportItems!txtTotalLeftToReceive.Value)/ReportItems!txtAvgWeeklyUsage.Value, 2)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+      </Table>
+      <Table Name="table1">
+        <ZIndex>4</ZIndex>
+        <DataSetName>dsMinus0</DataSetName>
+        <Top>0.75in</Top>
+        <Width>6.31818in</Width>
+        <TableColumns>
+          <TableColumn>
+            <Width>2.06818in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.75in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.375in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.25in</Height>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox10">
+                      <Style>
+                        <BorderColor>
+                          <Default>WhiteSmoke</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontStyle>Italic</FontStyle>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>All Periods Total Qty Issued</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtTotalIssued">
+                      <Style>
+                        <BorderColor>
+                          <Default>WhiteSmoke</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=CInt(ReportItems!txtQtyMinus2.Value) + CInt(ReportItems!txtQtyMinus1.Value) + CInt(ReportItems!txtQtyMinus0.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>WhiteSmoke</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!IM_UNIT_S.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox4">
+                      <rd:DefaultName>textbox4</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>WhiteSmoke</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Average Weekly Usage</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtAvgWeeklyUsage">
+                      <Style>
+                        <BorderColor>
+                          <Default>WhiteSmoke</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Round((ReportItems!txtTotalIssued.Value / Parameters!numWorkingDays.Value) * 5, 0)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>WhiteSmoke</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!IM_UNIT_S.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+      </Table>
+      <Table Name="tblMinus3">
+        <ZIndex>3</ZIndex>
+        <DataSetName>dsMinus3</DataSetName>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Width>0.74999in</Width>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.14583in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.1875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.14583in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.0625in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.14583in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
+            <Width>0.0625in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.25in</Height>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox24">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=First(Fields!YearMonth.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox25">
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!NumberWorkingDays.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtQtyMinus3">
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIf(Sum(Fields!QTY.Value) Is Nothing, 0, Format(Sum(Fields!QTY.Value), "#,###"))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox27">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=First(Fields!IM_UNIT_S.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox43">
+                      <Style>
+                        <Format>D0</Format>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIf(Sum(Fields!QTY.Value) Is Nothing, 0, Round(Sum(Fields!QTY.Value)/Fields!NumberWorkingDays.Value, 0))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtWorkingDaysMinus3">
+                      <Style>
+                        <Format>D0</Format>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!NumberWorkingDays.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+        <Left>6.125in</Left>
+      </Table>
+      <Table Name="tblMinus2">
+        <ZIndex>2</ZIndex>
+        <DataSetName>dsMinus2</DataSetName>
+        <Width>4.5in</Width>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
+            <Width>0.375in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.25in</Height>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox28">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=First(Fields!YearMonth.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox29">
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!NumberWorkingDays.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtQtyMinus2">
+                      <Style>
+                        <Format>#,##0</Format>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIf(Sum(Fields!QTY.Value) Is Nothing, 0, Sum(Fields!QTY.Value))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox31">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=First(Fields!IM_UNIT_S.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox42">
+                      <Style>
+                        <Format>D0</Format>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIf(Sum(Fields!QTY.Value) Is Nothing, 0, Round(Sum(Fields!QTY.Value)/Fields!NumberWorkingDays.Value, 0))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtWorkingDaysMinus2">
+                      <Style>
+                        <Format>D0</Format>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!NumberWorkingDays.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+      </Table>
+      <Table Name="tblMinus1">
+        <ZIndex>1</ZIndex>
+        <DataSetName>dsMinus1</DataSetName>
+        <Top>0.25in</Top>
+        <Width>4.5in</Width>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
+            <Width>0.375in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.25in</Height>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox32">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=First(Fields!YearMonth.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox33">
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!NumberWorkingDays.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtQtyMinus1">
+                      <Style>
+                        <Format>#,##0</Format>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIf(Sum(Fields!QTY.Value) Is Nothing, 0, Sum(Fields!QTY.Value))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox35">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=First(Fields!IM_UNIT_S.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox41">
+                      <Style>
+                        <Format>D0</Format>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIf(Sum(Fields!QTY.Value) Is Nothing, 0, Round(Sum(Fields!QTY.Value)/Fields!NumberWorkingDays.Value, 0))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtWorkingDaysMinus1">
+                      <Style>
+                        <Format>D0</Format>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!NumberWorkingDays.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+      </Table>
+      <Table Name="tblMinus0">
+        <DataSetName>dsMinus0</DataSetName>
+        <Top>0.5in</Top>
+        <Width>4.5in</Width>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
+            <Width>0.375in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.25in</Height>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox36">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=First(Fields!YearMonth.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox37">
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!NumberWorkingDays.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtQtyMinus0">
+                      <Style>
+                        <Format>#,##0</Format>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIf(Sum(Fields!QTY.Value) Is Nothing, 0, Sum(Fields!QTY.Value))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox39">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=First(Fields!IM_UNIT_S.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox40">
+                      <Style>
+                        <Format>D0</Format>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIf(Sum(Fields!QTY.Value) Is Nothing, 0, Round(Sum(Fields!QTY.Value)/Fields!NumberWorkingDays.Value, 0))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtWorkingDaysMinus0">
+                      <Style>
+                        <Format>D0</Format>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!NumberWorkingDays.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+      </Table>
+    </ReportItems>
+    <Height>1.625in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+</Report>

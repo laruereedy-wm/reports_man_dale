@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="PKI">
+      <DataSourceReference>PKI</DataSourceReference>
+      <rd:DataSourceID>5337cd2c-fd37-4261-8222-2e1a00315897</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>1in</BottomMargin>
+  <RightMargin>1in</RightMargin>
+  <ReportParameters>
+    <ReportParameter Name="partNumber">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Part Number</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <DataSetName>mainData</DataSetName>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox4">
+                      <ZIndex>2</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!ID_LINE.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox5">
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!ID_IMKEY.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!ID_CLASS.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.17708in</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <TableColumns>
+          <TableColumn>
+            <Width>3.68421in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.65789in</Width>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.65789in</Width>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.17708in</Height>
+  </Body>
+  <rd:ReportID>54642da8-cf48-4d32-9fed-327260d42358</rd:ReportID>
+  <LeftMargin>1in</LeftMargin>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Query>
+        <CommandText>SELECT     ID_IMKEY, ID_CLASS, ID_LINE, ID_LINE_NO
+FROM         ID
+WHERE     (ID_CLASS = 'PHN') AND (ID_IMKEY = @partNumber)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@partNumber">
+            <Value>=Parameters!partNumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>PKI</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="ID_IMKEY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ID_IMKEY</DataField>
+        </Field>
+        <Field Name="ID_CLASS">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ID_CLASS</DataField>
+        </Field>
+        <Field Name="ID_LINE">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ID_LINE</DataField>
+        </Field>
+        <Field Name="ID_LINE_NO">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>ID_LINE_NO</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Width>5in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+</Report>

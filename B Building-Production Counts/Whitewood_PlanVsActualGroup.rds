@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Whitewood_PlanVsActualGroup">
+  <ConnectionProperties>
+    <Extension>XML</Extension>
+    <ConnectString>http://vm204/xml/PlanVsActualGroup.xml</ConnectString>
+    <IntegratedSecurity>true</IntegratedSecurity>
+  </ConnectionProperties>
+  <DataSourceID>a253ccc0-b907-488d-896b-cd8959e24952</DataSourceID>
+</RptDataSource>

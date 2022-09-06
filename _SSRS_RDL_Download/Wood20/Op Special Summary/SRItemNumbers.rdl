@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="WOOD20">
+      <rd:DataSourceID>736d0d84-634b-4010-8b9b-f52cae977877</rd:DataSourceID>
+      <DataSourceReference>WOOD20</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>8in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="orderNumber">
+      <DataType>String</DataType>
+      <Prompt>PMorderNumber</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>11in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <RightMargin>0.1in</RightMargin>
+  <LeftMargin>0.1in</LeftMargin>
+  <BottomMargin>0.1in</BottomMargin>
+  <rd:ReportID>2ecd8cc0-27d8-460f-a46b-fa106bfde3cd</rd:ReportID>
+  <PageWidth>11in</PageWidth>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Fields>
+        <Field Name="ORDER">
+          <DataField>ORDER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEM">
+          <DataField>ITEM</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ITEM_INT">
+          <Value>=CInt(Fields!ITEM.Value)</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>WOOD20</DataSourceName>
+        <CommandText>SELECT DISTINCT [ORDER], ITEM
+FROM         vOliveAshOrders
+WHERE     (MOS_STATUS &gt; 0) AND ([ORDER] = @orderNumber)
+ORDER BY ITEM</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@orderNumber">
+            <Value>=Parameters!orderNumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Code>'To allow the display of multiple item numbers per ordernumber
+Private itemNumbers As String
+Function SetItemNumber(ByVal currentValue As String) As Boolean
+	If(itemNumbers Is Nothing) 
+		itemNumbers = currentValue
+	Else
+		itemNumbers += ", " &amp; currentValue
+	End If
+	return True
+End Function
+
+Function GetItemNumbers() As String
+	return itemNumbers 
+End Function
+</Code>
+  <Width>2.375in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="table2">
+        <DataSetName>mainData</DataSetName>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="table2_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!ORDER.Value</GroupExpression>
+                <GroupExpression>= Code.SetItemNumber(Fields!ITEM.Value)</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox14">
+                          <rd:DefaultName>textbox14</rd:DefaultName>
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>700</FontWeight>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Code.GetItemNumbers()</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <TableColumns>
+          <TableColumn>
+            <Width>2.375in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.25in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+  <PageHeight>8in</PageHeight>
+</Report>

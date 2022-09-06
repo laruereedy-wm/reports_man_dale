@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Test_PKI">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=VM200;Initial Catalog=pk1</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>921f56ec-d8a3-48d8-ae21-04b8db0d33c0</DataSourceID>
+</RptDataSource>

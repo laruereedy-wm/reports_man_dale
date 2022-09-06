@@ -1,0 +1,1411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="Expeditor">
+      <rd:DataSourceID>c48c715b-cb6d-4d18-8fe1-fca219b0b1e5</rd:DataSourceID>
+      <DataSourceReference>Expeditor</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <RightMargin>0.1in</RightMargin>
+  <LeftMargin>0.1in</LeftMargin>
+  <PageHeader>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="textbox1">
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Width>5in</Width>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>18pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>1.45833in</Left>
+        <Value>Pending Queue by Shipweek</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.33in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageHeader>
+  <BottomMargin>0.1in</BottomMargin>
+  <rd:ReportID>7fd2a26b-e911-4d4a-a698-055b97d318e8</rd:ReportID>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Fields>
+        <Field Name="MACDTE">
+          <DataField>MACDTE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="SHIPDT">
+          <DataField>SHIPDT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING">
+          <DataField>TRACKING</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="JBCMPL">
+          <DataField>JBCMPL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PARTTYPE">
+          <DataField>PARTTYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DSNGRP">
+          <DataField>DSNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITMDSC">
+          <DataField>ITMDSC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CABTYP">
+          <DataField>CABTYP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRFIX1">
+          <DataField>PRFIX1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRFIX2">
+          <DataField>PRFIX2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HEIGHT">
+          <DataField>HEIGHT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DEPTH">
+          <DataField>DEPTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FINSID">
+          <DataField>FINSID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SIDEFN">
+          <DataField>SIDEFN</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FINISHCODE">
+          <DataField>FINISHCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrigFinish">
+          <DataField>OrigFinish</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EqvFinish">
+          <DataField>EqvFinish</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Finish_Type">
+          <DataField>Finish_Type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PERSAMPLEEQV">
+          <DataField>PERSAMPLEEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="OPAQUEEQV">
+          <DataField>OPAQUEEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="NATURALEQV">
+          <DataField>NATURALEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="VINTAGEEQV">
+          <DataField>VINTAGEEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMOPAQUEEQV">
+          <DataField>HEIRLOOMOPAQUEEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMNONOPAQUEEQV">
+          <DataField>HEIRLOOMNONOPAQUEEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="PLASTICEQV">
+          <DataField>PLASTICEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="TWOSTEPEQV">
+          <DataField>TWOSTEPEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="STAINEQV">
+          <DataField>STAINEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SPRAYSTAINEQV">
+          <DataField>SPRAYSTAINEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="COTTAGEEQV">
+          <DataField>COTTAGEEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="PERSAMPLE">
+          <DataField>PERSAMPLE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="OPAQUE">
+          <DataField>OPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="NATURAL">
+          <DataField>NATURAL</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="VINTAGE">
+          <DataField>VINTAGE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMOPAQUE">
+          <DataField>HEIRLOOMOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMNONOPAQUE">
+          <DataField>HEIRLOOMNONOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="PLASTIC">
+          <DataField>PLASTIC</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="TWOSTEP">
+          <DataField>TWOSTEP</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="COTTAGE">
+          <DataField>COTTAGE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SPRAYSTAIN">
+          <DataField>SPRAYSTAIN</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="STAIN">
+          <DataField>STAIN</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEM">
+          <DataField>ITEM</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="DG42_QTY">
+          <Value>=IIF(Fields!DSNGRP.Value = " ", Fields!ORDRNO.Value &amp; Fields!ITEM.Value, Nothing)</Value>
+        </Field>
+        <Field Name="DG84_QTY">
+          <Value>=IIF(Fields!DSNGRP.Value = "X", Fields!ORDRNO.Value &amp; Fields!ITEM.Value, Nothing)</Value>
+        </Field>
+        <Field Name="DGBH1_QTY">
+          <Value>=IIF(Fields!DSNGRP.Value = "Z", Fields!ORDRNO.Value &amp; Fields!ITEM.Value, Nothing)</Value>
+        </Field>
+        <Field Name="DGBH2_QTY">
+          <Value>=IIF(Fields!DSNGRP.Value = "Y", Fields!ORDRNO.Value &amp; Fields!ITEM.Value, Nothing)</Value>
+        </Field>
+        <Field Name="DG_LABEL">
+          <Value>=IIF(Fields!DSNGRP.Value = " ", "42 Line",
+IIF(Fields!DSNGRP.Value = "X", "84 Line",
+IIF(Fields!DSNGRP.Value = "Z", "BH1 Line",
+IIF(Fields!DSNGRP.Value = "Y", "BH2 Line", Nothing))))</Value>
+        </Field>
+        <Field Name="FINISH_GROUP">
+          <Value>=IIF(Fields!OPAQUE.Value = True and Fields!COTTAGE.Value = False and Fields!HEIRLOOMOPAQUE.Value = False And Fields!PERSAMPLE.Value = False and Fields!VINTAGE.Value = False, "Opaque",
+IIF(Fields!NATURAL.Value = True and Fields!HEIRLOOMNONOPAQUE.Value = False, "Natural",
+IIF(Fields!NATURAL.Value = True and Fields!HEIRLOOMNONOPAQUE.Value = True, "Natural/Glaze",
+IIF(Fields!VINTAGE.Value = True, "Vintage",
+IIF(Fields!COTTAGE.Value = True and Fields!VINTAGE.Value = False, "Cottage",
+IIF(Fields!HEIRLOOMOPAQUE.Value = True, "Opaque Heirloom",
+IIF(Fields!HEIRLOOMNONOPAQUE.Value = True and Fields!NATURAL.Value = False and Fields!SPRAYSTAIN.Value = False and Fields!TWOSTEP.Value = False, "Heirloom",
+IIF(Fields!TWOSTEP.Value = True and Fields!HEIRLOOMNONOPAQUE.Value = False, "Two Step",
+IIF(Fields!TWOSTEP.Value = True and Fields!HEIRLOOMNONOPAQUE.Value = True, "Two Step/Glaze",
+IIF(Fields!SPRAYSTAIN.Value = True and Fields!HEIRLOOMNONOPAQUE.Value = True, "Sandstone II",
+IIF(Fields!SPRAYSTAIN.Value = True and Fields!HEIRLOOMNONOPAQUE.Value = False, "Spray Stain",
+IIF(Fields!STAIN.Value = True and Fields!COTTAGE.Value = False and Fields!HEIRLOOMNONOPAQUE.Value = False and Fields!PERSAMPLE.Value = False and Fields!TWOSTEP.Value = False, "Stain",
+IIF (Fields!PERSAMPLE.Value = True and Fields!PERSAMPLEEQV.Value Is Nothing, "Special",
+IIF(Fields!PLASTIC.Value = True, "Plastic", 
+IIF(Not Fields!FINISH_GROUP_EQV.Value is nothing , Fields!FINISH_GROUP_EQV.Value, "Other")))))))))))))))</Value>
+        </Field>
+        <Field Name="FINISH_GROUP_EQV">
+          <Value>=IIF(Fields!OPAQUEEQV.Value = True and Fields!COTTAGEEQV.Value = False and Fields!HEIRLOOMOPAQUEEQV.Value = False and Fields!VINTAGEEQV.Value = False, "Opaque",
+IIF(Fields!NATURALEQV.Value = True and Fields!HEIRLOOMNONOPAQUEEQV.Value = False, "Natural",
+IIF(Fields!NATURALEQV.Value = True and Fields!HEIRLOOMNONOPAQUEEQV.Value = True, "Natural/Glaze",
+IIF(Fields!VINTAGEEQV.Value = True, "Vintage",
+IIF(Fields!COTTAGEEQV.Value = True and Fields!VINTAGEEQV.Value = False, "Cottage",
+IIF(Fields!HEIRLOOMOPAQUEEQV.Value = True, "Opaque Heirloom",
+IIF(Fields!HEIRLOOMNONOPAQUEEQV.Value = True and Fields!NATURALEQV.Value = False and Fields!SPRAYSTAINEQV.Value = False and Fields!TWOSTEPEQV.Value = False, "Heirloom",
+IIF(Fields!TWOSTEPEQV.Value = True and Fields!HEIRLOOMNONOPAQUEEQV.Value = False, "Two Step",
+IIF(Fields!TWOSTEPEQV.Value = True and Fields!HEIRLOOMNONOPAQUEEQV.Value = True, "Two Step/Glaze",
+IIF(Fields!SPRAYSTAINEQV.Value = True and Fields!HEIRLOOMNONOPAQUEEQV.Value = True, "Sandstone II",
+IIF(Fields!SPRAYSTAINEQV.Value = True and Fields!HEIRLOOMNONOPAQUEEQV.Value = False, "Spray Stain",
+IIF(Fields!STAINEQV.Value = True and Fields!COTTAGEEQV.Value = False and Fields!HEIRLOOMNONOPAQUEEQV.Value = False and Fields!PERSAMPLEEQV.Value = False and Fields!TWOSTEPEQV.Value = False, "Stain",
+IIF(Fields!PLASTICEQV.Value = True, "Plastic", nothing)))))))))))))</Value>
+        </Field>
+        <Field Name="FINISH_GROUP_CUSTOM_SORT">
+          <Value>=IIF(Fields!FINISH_GROUP.Value = "Opaque", 1,
+IIF(Fields!FINISH_GROUP.Value = "Opaque Heirloom", 2,
+IIF(Fields!FINISH_GROUP.Value = "Vintage", 3,
+IIF(Fields!FINISH_GROUP.Value = "Stain", 4,
+IIF(Fields!FINISH_GROUP.Value = "Two Step", 5,
+IIF(Fields!FINISH_GROUP.Value = "Two Step/Glaze", 6,
+IIF(Fields!FINISH_GROUP.Value = "Heirloom", 7,
+IIF(Fields!FINISH_GROUP.Value = "Cottage", 8,
+IIF(Fields!FINISH_GROUP.Value = "Natural", 9,
+IIF(Fields!FINISH_GROUP.Value = "Natural/Glaze", 10,
+IIF(Fields!FINISH_GROUP.Value = "Spray Stain", 11,
+IIF(Fields!FINISH_GROUP.Value = "Sandstone II", 12, 13))))))))))))</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>Expeditor</DataSourceName>
+        <CommandText>SELECT DISTINCT 
+                      F07OrdHeader01.MACDTE, F07OrdHeader01.SHIPDT, LASTSCAN.TRACKING, F07Item.QTY, F07OrdHeader01.JBCMPL, F07Item.PARTTYPE, 
+                      F07OrdHeader01.DSNGRP, F07Item.ITMDSC, F07Item.CABTYP, F07Item.PRFIX1, F07Item.PRFIX2, F07Item.WIDTH, F07Item.HEIGHT, F07Item.DEPTH, 
+                      F07Item.FINSID, F07Style.SIDEFN, FINISHES_0.FINISHCODE, Finishing.dbo.CURRENTEQVFINISHES.OrigFinish, 
+                      Finishing.dbo.CURRENTEQVFINISHES.EqvFinish, Finishing.dbo.CURRENTEQVFINISHES.Finish_Type, FINISHES_1.PERSAMPLE AS PERSAMPLEEQV, 
+                      FINISHES_1.OPAQUE AS OPAQUEEQV, FINISHES_1.[NATURAL] AS NATURALEQV, FINISHES_1.VINTAGE AS VINTAGEEQV, 
+                      FINISHES_1.HEIRLOOMOPAQUE AS HEIRLOOMOPAQUEEQV, FINISHES_1.HEIRLOOMNONOPAQUE AS HEIRLOOMNONOPAQUEEQV, 
+                      FINISHES_1.PLASTIC AS PLASTICEQV, FINISHES_1.TWOSTEP AS TWOSTEPEQV, FINISHES_1.STAIN AS STAINEQV, 
+                      FINISHES_1.SPRAYSTAIN AS SPRAYSTAINEQV, FINISHES_1.COTTAGE AS COTTAGEEQV, FINISHES_0.PERSAMPLE, FINISHES_0.OPAQUE, 
+                      FINISHES_0.[NATURAL], FINISHES_0.VINTAGE, FINISHES_0.HEIRLOOMOPAQUE, FINISHES_0.HEIRLOOMNONOPAQUE, FINISHES_0.PLASTIC, 
+                      FINISHES_0.TWOSTEP, FINISHES_0.COTTAGE, FINISHES_0.SPRAYSTAIN, FINISHES_0.STAIN, LASTSCAN.ORDRNO, LASTSCAN.ITEM
+FROM         Finishing.dbo.FINISHES AS FINISHES_0 RIGHT OUTER JOIN
+                      Finishing.dbo.FINISHES AS FINISHES_1 RIGHT OUTER JOIN
+                      Finishing.dbo.CURRENTEQVFINISHES RIGHT OUTER JOIN
+                      LASTSCAN INNER JOIN
+                      F07Item ON LASTSCAN.ORDRNO = F07Item.ORDNO AND LASTSCAN.ITEM = F07Item.ITEMNO INNER JOIN
+                      F07OrdHeader01 ON F07Item.ORDNO = F07OrdHeader01.ORDNO INNER JOIN
+                      F07Style ON F07Item.ORDNO = F07Style.ORDNO AND F07Item.STYSEQ = F07Style.STYSEQ ON 
+                      Finishing.dbo.CURRENTEQVFINISHES.OrigFinish = F07Style.SIDEFN AND Finishing.dbo.CURRENTEQVFINISHES.ORDRNO = F07Style.ORDNO ON 
+                      FINISHES_1.FINISHCODE = Finishing.dbo.CURRENTEQVFINISHES.EqvFinish ON FINISHES_0.FINISHCODE = F07Style.SIDEFN
+WHERE     (LASTSCAN.ITEM &lt;&gt; '777') AND (LASTSCAN.ITEM &lt;&gt; '888') AND (LASTSCAN.ITEM &lt;&gt; '999') AND (LASTSCAN.TRACKING = N'35') AND 
+                      (F07Item.PARTTYPE = 'CABINET') AND (F07Item.CABTYP &lt;&gt; 'CF') AND (F07OrdHeader01.MACDTE IS NOT NULL)
+ORDER BY LASTSCAN.ORDRNO</CommandText>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Code />
+  <Width>8.19011in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <DataSetName>mainData</DataSetName>
+        <Top>0.125in</Top>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="table1_SHIPDT">
+              <GroupExpressions>
+                <GroupExpression>=Fields!MACDTE.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Sorting>
+              <SortBy>
+                <SortExpression>=Fields!MACDTE.Value</SortExpression>
+                <Direction>Ascending</Direction>
+              </SortBy>
+            </Sorting>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="SHIPDATE">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>d</Format>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>29</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!MACDTE.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox5">
+                          <rd:DefaultName>textbox5</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>28</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=ReportItems!txt42Line.Value + ReportItems!txt84Line.Value + ReportItems!txtBH1Line.Value + ReportItems!txtBH2Line.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txt42Line">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>27</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Count(Fields!DG42_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txt84Line">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>26</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Count(Fields!DG84_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txtBH1Line">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>25</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Count(Fields!DGBH1_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txtBH2Line">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>24</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Count(Fields!DGBH2_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.21in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+          <TableGroup>
+            <Grouping Name="table1_Group3">
+              <GroupExpressions>
+                <GroupExpression>=Fields!FINISH_GROUP.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Sorting>
+              <SortBy>
+                <SortExpression>=Fields!FINISH_GROUP_CUSTOM_SORT.Value</SortExpression>
+                <Direction>Ascending</Direction>
+              </SortBy>
+            </Sorting>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <Visibility>
+                    <ToggleItem>SHIPDATE</ToggleItem>
+                  </Visibility>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Finish">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <PaddingLeft>20pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>23</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!FINISH_GROUP.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox12">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>22</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=ReportItems!txt42Fin.Value + ReportItems!txt84Fin.Value + ReportItems!txtBH1Fin.Value + ReportItems!txtBH2Fin.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txt42Fin">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>21</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Count(Fields!DG42_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txt84Fin">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>20</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Count(Fields!DG84_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txtBH1Fin">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>19</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Count(Fields!DGBH1_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txtBH2Fin">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>18</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Count(Fields!DGBH2_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+          <TableGroup>
+            <Grouping Name="table1_Group2">
+              <GroupExpressions>
+                <GroupExpression>=Fields!DG_LABEL.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Sorting>
+              <SortBy>
+                <SortExpression>=Fields!DG_LABEL.Value</SortExpression>
+                <Direction>Ascending</Direction>
+              </SortBy>
+            </Sorting>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <Visibility>
+                    <Hidden>true</Hidden>
+                    <ToggleItem>Finish</ToggleItem>
+                  </Visibility>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="DESIGNGROUP">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>d</Format>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>35pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>17</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!DG_LABEL.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox2">
+                          <rd:DefaultName>textbox2</rd:DefaultName>
+                          <Style>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>16</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txt42v">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>15</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Count(Fields!DG42_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txt84v">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>14</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Count(Fields!DG84_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txtBH1v">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>13</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Count(Fields!DGBH1_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txtBH2v">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>12</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Count(Fields!DGBH2_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.21in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <Width>8.03958in</Width>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <Visibility>
+                <Hidden>true</Hidden>
+                <ToggleItem>DESIGNGROUP</ToggleItem>
+              </Visibility>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox10">
+                      <Style>
+                        <BackgroundColor>White</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <Format>d</Format>
+                        <PaddingLeft>50pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!ORDRNO.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox22">
+                      <Style>
+                        <BackgroundColor>White</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <Format>#,##0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!ITEM.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <rd:DefaultName>textbox6</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>White</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <Format>#,##0</Format>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!PRFIX2.Value+Fields!CABTYP.Value+Fields!WIDTH.Value+Fields!HEIGHT.Value+Fields!DEPTH.Value+Fields!FINSID.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="FINISHCODE">
+                      <rd:DefaultName>FINISHCODE</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>White</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <Format>#,##0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!FINISHCODE.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox13">
+                      <Style>
+                        <BackgroundColor>White</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <Format>#,##0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>="Qty:  " &amp; Fields!QTY.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox14">
+                      <Style>
+                        <BackgroundColor>White</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <Format>#,##0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!PARTTYPE.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.21in</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox15">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>35</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Ship Date</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>34</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Total Items</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox17">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>33</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>42 Line</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox18">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>32</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>84 Line</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox19">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>31</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>BH1</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox16">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>30</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>BH2</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.22in</Height>
+            </TableRow>
+          </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.86458in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.2in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.2in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.2in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.2in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>1.32in</Height>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <Visibility>
+                <Hidden>true</Hidden>
+              </Visibility>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox11">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>11</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Overall Totals</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox21">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>10</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=ReportItems!txt42LineTotal.Value + ReportItems!txt84LineTotal.Value + ReportItems!txtBH1LineTotal.Value + ReportItems!txtBH2LineTotal.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txt42LineTotal">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>9</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Count(Fields!DG42_QTY.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txt84LineTotal">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Count(Fields!DG84_QTY.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtBH1LineTotal">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Count(Fields!DGBH1_QTY.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="txtBH2LineTotal">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Count(Fields!DGBH2_QTY.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.22in</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+        <Left>0.04167in</Left>
+      </Table>
+    </ReportItems>
+    <Height>1.695in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <PageFooter>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="txtPageNumber">
+        <Top>0.01563in</Top>
+        <Width>3.09375in</Width>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>9pt</FontSize>
+          <TextAlign>Left</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Height>0.21875in</Height>
+        <Value>=WeekdayName(Weekday(Globals!ExecutionTime)) &amp; ", " &amp; MonthName(Month(Globals!ExecutionTime))  &amp; " " &amp; Day(Globals!ExecutionTime) &amp; ", " &amp; Year(Globals!ExecutionTime) &amp; ",   " &amp; TimeValue(Globals!ExecutionTime)</Value>
+      </Textbox>
+      <Textbox Name="textbox74">
+        <rd:DefaultName>textbox74</rd:DefaultName>
+        <Top>0.04167in</Top>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>9pt</FontSize>
+          <TextAlign>Right</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>5.94011in</Left>
+        <Height>0.19792in</Height>
+        <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.25in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageFooter>
+  <TopMargin>0.1in</TopMargin>
+</Report>

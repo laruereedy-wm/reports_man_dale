@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Last Check Folder-Woodstart Orders", "Last Check Folder-Woodstart Orders.rptproj", "{512C1321-7FBA-494F-A53C-E05FE4955178}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{512C1321-7FBA-494F-A53C-E05FE4955178}.Debug|Default.ActiveCfg = Debug
+		{512C1321-7FBA-494F-A53C-E05FE4955178}.Debug|Default.Build.0 = DebugLocal
+		{512C1321-7FBA-494F-A53C-E05FE4955178}.Debug|Default.Deploy.0 = DebugLocal
+		{512C1321-7FBA-494F-A53C-E05FE4955178}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{512C1321-7FBA-494F-A53C-E05FE4955178}.DebugLocal|Default.Build.0 = DebugLocal
+		{512C1321-7FBA-494F-A53C-E05FE4955178}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{512C1321-7FBA-494F-A53C-E05FE4955178}.Release|Default.ActiveCfg = Release
+		{512C1321-7FBA-494F-A53C-E05FE4955178}.Release|Default.Build.0 = Release
+		{512C1321-7FBA-494F-A53C-E05FE4955178}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="SMART.SalesPeople">
+      <rd:DataSourceID>8a5ce59b-97e7-4527-b1b4-1ce3be210193</rd:DataSourceID>
+      <DataSourceReference>SMART.SalesPeople</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="salespersonid">
+      <DataType>String</DataType>
+      <Prompt>salespersonid</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>1in</RightMargin>
+  <LeftMargin>1in</LeftMargin>
+  <BottomMargin>1in</BottomMargin>
+  <rd:ReportID>cd370e0b-ea37-419e-af1c-07bd0ad8fe71</rd:ReportID>
+  <DataSets>
+    <DataSet Name="SalesPeople">
+      <Fields>
+        <Field Name="SALESPERSONID">
+          <DataField>SALESPERSONID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FIRSTNAME">
+          <DataField>FIRSTNAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MIDDLENAME">
+          <DataField>MIDDLENAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LASTNAME">
+          <DataField>LASTNAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TERRITORY">
+          <DataField>TERRITORY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SMARTUSERNAME">
+          <DataField>SMARTUSERNAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EMAILADDRESS">
+          <DataField>EMAILADDRESS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ACTIVE">
+          <DataField>ACTIVE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="REGISTERED">
+          <DataField>REGISTERED</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>SMART.SalesPeople</DataSourceName>
+        <CommandText>SELECT * FROM SalesPeople WHERE SALESPERSONID = @salespersonid</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@salespersonid">
+            <Value>=Parameters!salespersonid.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Width>2in</Width>
+  <Body>
+    <ReportItems>
+      <Textbox Name="txtSalesPerson">
+        <ToggleImage>
+          <InitialState>true</InitialState>
+        </ToggleImage>
+        <Style>
+          <BackgroundColor>WhiteSmoke</BackgroundColor>
+          <FontSize>6pt</FontSize>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Value>=Fields!FIRSTNAME.Value &amp; " " &amp; Fields!MIDDLENAME.Value &amp; " " &amp; Fields!LASTNAME.Value</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.14582in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+</Report>

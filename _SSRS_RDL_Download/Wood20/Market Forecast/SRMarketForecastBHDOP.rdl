@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="MarketForecast1">
+      <DataSourceReference>MarketForecast1</DataSourceReference>
+      <rd:DataSourceID>22b8f3b3-7b04-404e-8bda-5f44403ba10c</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>0.2in</BottomMargin>
+  <RightMargin>0.1in</RightMargin>
+  <ReportParameters>
+    <ReportParameter Name="PM_MSAID">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>PM_MSAID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="PMForecastYear">
+      <DataType>Integer</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>PMForecastYear</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ACTUAL_BY1">
+      <DataType>Integer</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ACTUAL_BY1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Territory">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Territory</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <DataSetName>MainData</DataSetName>
+        <TableGroups>
+          <TableGroup>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox4">
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>6pt</FontSize>
+                            <Format>P1</Format>
+                            <PaddingRight>2pt</PaddingRight>
+                            <FontStyle>Italic</FontStyle>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=IIf(Code.IsNeg(Code.DivZero(Parameters!ACTUAL_BY1.Value,Sum(Fields!BH_M_POT.Value),0)), "(" &amp; FormatPercent((Code.DivZero(Parameters!ACTUAL_BY1.Value,Sum(Fields!BH_M_POT.Value),0) * -1), 1) &amp; ")", Code.DivZero(Parameters!ACTUAL_BY1.Value,Sum(Fields!BH_M_POT.Value),0))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.14583in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+            <Grouping Name="table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!MSAID.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+          </TableGroup>
+        </TableGroups>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.6in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.14583in</Height>
+  </Body>
+  <rd:ReportID>f33df083-1e56-497d-9f7c-3ed6360e1916</rd:ReportID>
+  <DataSets>
+    <DataSet Name="MainData">
+      <Query>
+        <CommandText>SELECT     FIPS, TERRITORY, MSAID, BH_M_POT, WM_M_POT, YEAR
+FROM         MARKETPOTENTIAL
+WHERE     (YEAR = @PMForecastYear - 2) AND (MSAID = @PM_MSAID) AND (TERRITORY = @Territory)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@PMForecastYear">
+            <Value>=Parameters!PMForecastYear.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@PM_MSAID">
+            <Value>=Parameters!PM_MSAID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Territory">
+            <Value>=Parameters!Territory.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="FIPS">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>FIPS</DataField>
+        </Field>
+        <Field Name="TERRITORY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TERRITORY</DataField>
+        </Field>
+        <Field Name="MSAID">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>MSAID</DataField>
+        </Field>
+        <Field Name="BH_M_POT">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>BH_M_POT</DataField>
+        </Field>
+        <Field Name="WM_M_POT">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>WM_M_POT</DataField>
+        </Field>
+        <Field Name="YEAR">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>YEAR</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="NoRows">
+      <Query>
+        <CommandText>SELECT     1 AS NoRowsCheck</CommandText>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="NoRowsCheck">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>NoRowsCheck</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Code>'Handle divide by zero gracefully and improved readability of an IIf
+Public Function DivZero(ByVal Numerator As Object, ByVal Denominator As Object, ByVal DivZeroDefault As Object) As Object 
+	If Denominator &lt;&gt; 0 Then 
+	    Return Numerator/Denominator 
+	Else 
+	    Return DivZeroDefault 
+	End If 
+End Function 
+
+Public Function IsNeg(ByVal perValue As Double) As Boolean
+	If(perValue &lt; 0) Then
+	    return True
+	End If
+	return False
+End Function</Code>
+  <Width>0.6in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+</Report>

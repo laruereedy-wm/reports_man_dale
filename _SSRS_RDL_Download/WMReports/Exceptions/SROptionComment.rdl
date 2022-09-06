@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="OrderEntry">
+      <DataSourceReference>/Data Sources/OrderEntry</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>6d3da520-ed11-449f-88b2-b142651a087d</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="WIPS">
+      <DataSourceReference>/WIPS_Reports/_DataSource/vm250</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>14a9eaff-6471-46ed-a166-8a6d3c15cd78</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="OrderOptionComment">
+      <Query>
+        <DataSourceName>WIPS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@OrderNum">
+            <Value>=Parameters!OrderNum.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ItemNum">
+            <Value>=Parameters!ItemNum.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     OrderOptions.RelativeRecordNum, OrderOptions.OrderNum, OrderOptions.ItemNum, OrderOptions.OptionAccessCode, OrderOptions.OptionAccessCode, 
+                      OrderOptions.OptionDesc, OrderOptions.OptionQty, tmpOrderComments_1.Comment AS COM1, tmpOrderComments_2.Comment AS COM2, 
+                      tmpOrderComments.Comment AS COM3, tmpOrderComments_3.Comment AS COM4
+FROM         OrderOptions LEFT OUTER JOIN
+                      tmpOrderComments AS tmpOrderComments_1 ON OrderOptions.OptionAccessCode = tmpOrderComments_1.OptionCode AND 
+                      OrderOptions.RelativeRecordNum = tmpOrderComments_1.RelativeRecordNum - 1 LEFT OUTER JOIN
+                      tmpOrderComments ON OrderOptions.OptionAccessCode = tmpOrderComments.OptionCode AND 
+                      OrderOptions.RelativeRecordNum = tmpOrderComments.RelativeRecordNum - 3 LEFT OUTER JOIN
+                      tmpOrderComments AS tmpOrderComments_2 ON OrderOptions.OptionAccessCode = tmpOrderComments_2.OptionCode AND 
+                      OrderOptions.RelativeRecordNum = tmpOrderComments_2.RelativeRecordNum - 2 LEFT OUTER JOIN
+                      tmpOrderComments AS tmpOrderComments_3 ON OrderOptions.OptionAccessCode = tmpOrderComments_3.OptionCode AND 
+                      OrderOptions.RelativeRecordNum = tmpOrderComments_3.RelativeRecordNum - 4
+WHERE     (OrderOptions.OrderNum = @OrderNum) AND (OrderOptions.ItemNum = @ItemNum)</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="RelativeRecordNum">
+          <DataField>RelativeRecordNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OrderNum">
+          <DataField>OrderNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ItemNum">
+          <DataField>ItemNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OptionDesc">
+          <DataField>OptionDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OptionAccessCode">
+          <DataField>OptionAccessCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OptionQty">
+          <DataField>OptionQty</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="COM1">
+          <DataField>COM1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OptionID">
+          <DataField>OptionID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="COM2">
+          <DataField>COM2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM3">
+          <DataField>COM3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM4">
+          <DataField>COM4</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>WIPS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@OrderNum">
+            <Value>=Parameters!OrderNum.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ItemNum">
+            <Value>=Parameters!ItemNum.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     OO.RelativeRecordNum, OO.OrderNum, OO.ItemNum, OO.OptionDesc , OO.OptionAccessCode , OO.OptionQty, OH.CrossoverPackageNum, '' AS COM1, '' AS COM2, ''AS COM3, '' AS COM4 
+                      
+FROM         OrderOptions AS OO INNER JOIN
+                      OrderHeader AS OH ON OH.OrderNum = OO.OrderNum
+WHERE     (OO.OrderNum = @OrderNum) AND (OO.ItemNum = @ItemNum)
+ORDER BY OO.RelativeRecordNum</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="RelativeRecordNum">
+          <DataField>RelativeRecordNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OrderNum">
+          <DataField>OrderNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ItemNum">
+          <DataField>ItemNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OptionDesc">
+          <DataField>OptionDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OptionAccessCode">
+          <DataField>OptionAccessCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OptionQty">
+          <DataField>OptionQty</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CrossoverPackageNum">
+          <DataField>CrossoverPackageNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM1">
+          <DataField>COM1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM2">
+          <DataField>COM2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM3">
+          <DataField>COM3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM4">
+          <DataField>COM4</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="FULLOPTIONCOM">
+      <Query>
+        <DataSourceName>WIPS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@OrderNum">
+            <Value>=Parameters!OrderNum.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ItemNum">
+            <Value>=Parameters!ItemNum.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT
+        [RelativeRecordNum],
+        [OrderNum],
+        [ItemSeqNum] AS ItemNum,
+        [Comment] AS OptionDesc,
+        [OptionCode] AS OptionAccessCode,
+        '' AS OptionQty,
+        '' AS CrossoverPackageNum
+
+        FROM [WIPS_Production].[dbo].[tmpOrderComments]
+        WHERE  OrderNum =@OrderNum
+        AND ItemSeqNum= @ItemNum
+
+        UNION SELECT OO.[RelativeRecordNum],
+        OO.[OrderNum],
+        [ItemNum],
+        [OptionDesc],
+        [OptionAccessCode],
+        [OptionQty],
+        OH.CrossoverPackageNum
+
+        FROM [WIPS_Production].[dbo].OrderOptions AS OO
+
+        JOIN [WIPS_Production].[dbo].OrderHeader AS OH
+        ON OH.OrderNum = OO.OrderNum
+        WHERE  OO.OrderNum =@OrderNum
+        AND ItemNum=@ItemNum
+
+        ORDER BY RelativeRecordNum ASC</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="RelativeRecordNum">
+          <DataField>RelativeRecordNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OrderNum">
+          <DataField>OrderNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ItemNum">
+          <DataField>ItemNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OptionDesc">
+          <DataField>OptionDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OptionAccessCode">
+          <DataField>OptionAccessCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OptionQty">
+          <DataField>OptionQty</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CrossoverPackageNum">
+          <DataField>CrossoverPackageNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>8.89042in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.18583in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="OptionAccessCode">
+                          <CanGrow>true</CanGrow>
+                          <CanShrink>true</CanShrink>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>= TRIM(Fields!OptionDesc.Value) &amp; "  " &amp; TRIM(Fields!COM1.Value) &amp; TRIM(Fields!COM2.Value) &amp; TRIM(Fields!COM3.Value) &amp; TRIM(Fields!COM4.Value)</Value>
+                                  <Style>
+                                    <FontSize>=IIF(Fields!COM3.Value Like "*PRINT*" OR Fields!COM4.Value Like "*PRINT*" OR Fields!COM1.Value Like "*PRINT*" OR Fields!COM2.Value Like "*PRINT*","8pt","6pt")</FontSize>
+                                    <FontWeight>=IIF(Fields!COM1.Value LIKE "*PRINT*" OR Fields!COM2.Value LIKE "*PRINT*" OR Fields!COM3.Value LIKE "*PRINT*" OR Fields!COM4.Value LIKE "*PRINT*" OR Fields!COM1.Value LIKE "* 155 *" OR Fields!COM2.Value LIKE "* 155 *" OR Fields!COM3.Value LIKE "* 155 *" OR Fields!COM4.Value LIKE "* 155 *","Bold","Default")</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>OptionAccessCode</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>=IIF(Fields!COM3.Value Like "*PRINT*" OR Fields!COM4.Value Like "*PRINT*" OR Fields!COM1.Value Like "*PRINT*" OR Fields!COM2.Value Like "*PRINT*","Red","LightGrey")</Color>
+                              <Style>Solid</Style>
+                              <Width>=IIF(Fields!COM3.Value Like "*PRINT*" OR Fields!COM4.Value Like "*PRINT*" OR Fields!COM1.Value Like "*PRINT*" OR Fields!COM2.Value Like "*PRINT*","3pt","1pt")</Width>
+                            </Border>
+                            <BackgroundColor>=IIF(Fields!COM3.Value Like "*PRINT*" OR Fields!COM4.Value Like "*PRINT*" OR Fields!COM1.Value Like "*PRINT*" OR Fields!COM2.Value Like "*PRINT*","White","Pink")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <rd:Selected>true</rd:Selected>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="OptionAccessCode">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!OptionAccessCode.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!OptionAccessCode.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>0.64583in</Size>
+                    <CellContents>
+                      <Textbox Name="OptionAccessCode1">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!OptionAccessCode.Value</Value>
+                                <Style>
+                                  <FontSize>=IIF(Fields!COM3.Value Like "*PRINT*" OR Fields!COM4.Value Like "*PRINT*" OR Fields!COM1.Value Like "*PRINT*" OR Fields!COM2.Value Like "*PRINT*","8pt","6pt")</FontSize>
+                                  <FontWeight>=IIF(Fields!COM1.Value LIKE "*PRINT*" OR Fields!COM2.Value LIKE "*PRINT*" OR Fields!COM3.Value LIKE "*PRINT*" OR Fields!COM4.Value LIKE "*PRINT*","Bold","Default")</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>OptionAccessCode1</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>=IIF(Fields!COM3.Value Like "*PRINT*" OR Fields!COM4.Value Like "*PRINT*" OR Fields!COM1.Value Like "*PRINT*" OR Fields!COM2.Value Like "*PRINT*","Red","LightGrey")</Color>
+                            <Style>Solid</Style>
+                            <Width>=IIF(Fields!COM3.Value Like "*PRINT*" OR Fields!COM4.Value Like "*PRINT*" OR Fields!COM1.Value Like "*PRINT*" OR Fields!COM2.Value Like "*PRINT*","3pt","1pt")</Width>
+                          </Border>
+                          <BackgroundColor>=IIF(Fields!COM3.Value Like "*PRINT*" OR Fields!COM4.Value Like "*PRINT*" OR Fields!COM1.Value Like "*PRINT*" OR Fields!COM2.Value Like "*PRINT*","White","Pink")</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>OrderOptionComment</DataSetName>
+            <Height>0.18583in</Height>
+            <Width>9.53625in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>0.19624in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>9.53625in</Width>
+      <Page>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
+        <Style>
+          <BackgroundColor>Plum</BackgroundColor>
+        </Style>
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="OrderNum">
+      <DataType>String</DataType>
+      <Prompt>Order Num</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ItemNum">
+      <DataType>String</DataType>
+      <Prompt>Item Num</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://172.16.100.249/ReportServer</rd:ReportServerUrl>
+  <rd:ReportID>a2bcb1ba-583c-4b3c-9fe0-bbf24d947257</rd:ReportID>
+</Report>

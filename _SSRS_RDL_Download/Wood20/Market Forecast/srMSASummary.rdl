@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="MarketForecast1">
+      <DataSourceReference>MarketForecast1</DataSourceReference>
+      <rd:DataSourceID>22b8f3b3-7b04-404e-8bda-5f44403ba10c</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <ReportParameters>
+    <ReportParameter Name="PMForecastYear">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>PMForecastYear</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="pmMSAID">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>pmMSAID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Territory">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Territory</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <DataSetName>MainData</DataSetName>
+        <TableGroups>
+          <TableGroup>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox3">
+                          <rd:DefaultName>textbox3</rd:DefaultName>
+                          <ZIndex>1</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>="Overall Strategy Statement: "</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox1">
+                          <rd:DefaultName>textbox1</rd:DefaultName>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontSize>8pt</FontSize>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!SUMMARY.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.14583in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+            <Grouping Name="table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!MSAID.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+          </TableGroup>
+        </TableGroups>
+        <Visibility>
+          <Hidden>=IsNothing(Fields!SUMMARY.Value)</Hidden>
+        </Visibility>
+        <Style>
+          <BackgroundColor>Gainsboro</BackgroundColor>
+        </Style>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.63391in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>7.91817in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.14583in</Height>
+  </Body>
+  <rd:ReportID>f33df083-1e56-497d-9f7c-3ed6360e1916</rd:ReportID>
+  <DataSets>
+    <DataSet Name="MainData">
+      <Query>
+        <CommandText>SELECT     MSAID, TERRITORY, SUMMARY, TARGET, FORECASTYEAR
+FROM         MSASUMMARY
+WHERE     (MSAID = @pmMSAID) AND (FORECASTYEAR = @PMForecastYear) AND (TERRITORY = @Territory)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@pmMSAID">
+            <Value>=Parameters!pmMSAID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@PMForecastYear">
+            <Value>=Parameters!PMForecastYear.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Territory">
+            <Value>=Parameters!Territory.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="MSAID">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>MSAID</DataField>
+        </Field>
+        <Field Name="TERRITORY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TERRITORY</DataField>
+        </Field>
+        <Field Name="SUMMARY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>SUMMARY</DataField>
+        </Field>
+        <Field Name="TARGET">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>TARGET</DataField>
+        </Field>
+        <Field Name="FORECASTYEAR">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>FORECASTYEAR</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="NoRows">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     1 AS NoRowsCheck</CommandText>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="NoRowsCheck">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>NoRowsCheck</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Width>9.55208in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+</Report>

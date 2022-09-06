@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "B Building-Production Queue", "B Building-Production Queue.rptproj", "{DDAB9FBC-0BE7-4F3D-BF4B-BCEBB130C1F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDAB9FBC-0BE7-4F3D-BF4B-BCEBB130C1F6}.Debug|Default.ActiveCfg = Debug
+		{DDAB9FBC-0BE7-4F3D-BF4B-BCEBB130C1F6}.Debug|Default.Build.0 = DebugLocal
+		{DDAB9FBC-0BE7-4F3D-BF4B-BCEBB130C1F6}.Debug|Default.Deploy.0 = DebugLocal
+		{DDAB9FBC-0BE7-4F3D-BF4B-BCEBB130C1F6}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{DDAB9FBC-0BE7-4F3D-BF4B-BCEBB130C1F6}.DebugLocal|Default.Build.0 = DebugLocal
+		{DDAB9FBC-0BE7-4F3D-BF4B-BCEBB130C1F6}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{DDAB9FBC-0BE7-4F3D-BF4B-BCEBB130C1F6}.Release|Default.ActiveCfg = Release
+		{DDAB9FBC-0BE7-4F3D-BF4B-BCEBB130C1F6}.Release|Default.Build.0 = Release
+		{DDAB9FBC-0BE7-4F3D-BF4B-BCEBB130C1F6}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

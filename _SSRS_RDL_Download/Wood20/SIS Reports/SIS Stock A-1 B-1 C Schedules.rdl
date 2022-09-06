@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="SIS">
+      <rd:DataSourceID>9633aa69-eee3-4ad2-a091-c8cf3aee9286</rd:DataSourceID>
+      <DataSourceReference>SIS</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>8.5in</InteractiveHeight>
+  <Description>Stock Door Schedule</Description>
+  <ReportParameters>
+    <ReportParameter Name="year">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>= Year(Now())</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Please Enter the Stock Schedule Year:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="scheduleSelect">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>= "Live"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Live or Development:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>="Live"</Value>
+            <Label>Live</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="Dev"</Value>
+            <Label>Development</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>14in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <LeftMargin>0.5in</LeftMargin>
+  <BottomMargin>0.1in</BottomMargin>
+  <rd:ReportID>d17fc1eb-99d8-4923-afde-2fa37725a0f4</rd:ReportID>
+  <PageWidth>14in</PageWidth>
+  <DataSets>
+    <DataSet Name="liveSchedule">
+      <Fields>
+        <Field Name="STOCKDATE">
+          <DataField>STOCKDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="STOCKCURRENTDATE">
+          <DataField>STOCKCURRENTDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="GROUPVALUE">
+          <DataField>GROUPVALUE</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="BUCKET">
+          <DataField>BUCKET</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="STOCKMONTH">
+          <DataField>STOCKMONTH</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>SIS</DataSourceName>
+        <CommandText>SELECT     STOCKDATE, STOCKCURRENTDATE, GROUPVALUE, BUCKET, MONTH(STOCKDATE) AS STOCKMONTH
+FROM         STOCKDOORSCHEDULE
+WHERE     (GROUPVALUE = 0 OR
+                      GROUPVALUE = 1 OR
+                      GROUPVALUE = 3 OR
+                      GROUPVALUE = 5 OR
+                      GROUPVALUE = 7) AND (YEAR(STOCKDATE) = @year)
+ORDER BY STOCKDATE, GROUPVALUE</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@year">
+            <Value>=Parameters!year.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="devSchedule">
+      <Fields>
+        <Field Name="STOCKDATE">
+          <DataField>STOCKDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="STOCKCURRENTDATE">
+          <DataField>STOCKCURRENTDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="GROUPVALUE">
+          <DataField>GROUPVALUE</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="BUCKET">
+          <DataField>BUCKET</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>SIS</DataSourceName>
+        <CommandText>SELECT     STOCKDATE, STOCKCURRENTDATE, GROUPVALUE, BUCKET
+FROM         STOCKDOORSCHEDULE_dev
+WHERE     (GROUPVALUE = 0 OR
+                      GROUPVALUE = 1 OR
+                      GROUPVALUE = 3 OR
+                      GROUPVALUE = 5 OR
+                      GROUPVALUE = 7) AND (YEAR(STOCKDATE) = @year)
+ORDER BY STOCKDATE, GROUPVALUE</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@year">
+            <Value>=Parameters!year.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Code />
+  <Width>10.90625in</Width>
+  <Body>
+    <ReportItems>
+      <Rectangle Name="rectangle11">
+        <Left>0.09375in</Left>
+        <ZIndex>12</ZIndex>
+        <ReportItems>
+          <Subreport Name="subreport11">
+            <Parameters>
+              <Parameter Name="year">
+                <Value>=Parameters!year.Value</Value>
+              </Parameter>
+              <Parameter Name="stockMonth">
+                <Value>=11</Value>
+              </Parameter>
+              <Parameter Name="scheduleSelect">
+                <Value>=Parameters!scheduleSelect.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>0.32292in</Top>
+            <ReportName>srStockDoorScheduleMonth</ReportName>
+            <Width>10.70833in</Width>
+            <ZIndex>1</ZIndex>
+            <Left>0.05208in</Left>
+          </Subreport>
+          <Textbox Name="textbox11">
+            <Style>
+              <FontSize>18pt</FontSize>
+              <FontWeight>700</FontWeight>
+              <TextAlign>Center</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.30209in</Height>
+            <Value>="November"</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>6.03971in</Top>
+        <PageBreakAtEnd>true</PageBreakAtEnd>
+        <Height>0.45834in</Height>
+      </Rectangle>
+      <Rectangle Name="rectangle5">
+        <Left>0.09375in</Left>
+        <ZIndex>11</ZIndex>
+        <ReportItems>
+          <Subreport Name="subreport5">
+            <Parameters>
+              <Parameter Name="year">
+                <Value>=Parameters!year.Value</Value>
+              </Parameter>
+              <Parameter Name="stockMonth">
+                <Value>=10</Value>
+              </Parameter>
+              <Parameter Name="scheduleSelect">
+                <Value>=Parameters!scheduleSelect.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>0.32292in</Top>
+            <ReportName>srStockDoorScheduleMonth</ReportName>
+            <Width>10.70833in</Width>
+            <ZIndex>1</ZIndex>
+            <Left>0.05208in</Left>
+          </Subreport>
+          <Textbox Name="textbox5">
+            <Style>
+              <FontSize>18pt</FontSize>
+              <FontWeight>700</FontWeight>
+              <TextAlign>Center</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.30209in</Height>
+            <Value>="October"</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>5.44596in</Top>
+        <PageBreakAtEnd>true</PageBreakAtEnd>
+        <Height>0.45834in</Height>
+      </Rectangle>
+      <Rectangle Name="rectangle10">
+        <Left>0.09375in</Left>
+        <ZIndex>10</ZIndex>
+        <ReportItems>
+          <Subreport Name="subreport10">
+            <Parameters>
+              <Parameter Name="year">
+                <Value>=Parameters!year.Value</Value>
+              </Parameter>
+              <Parameter Name="stockMonth">
+                <Value>=9</Value>
+              </Parameter>
+              <Parameter Name="scheduleSelect">
+                <Value>=Parameters!scheduleSelect.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>0.32292in</Top>
+            <ReportName>srStockDoorScheduleMonth</ReportName>
+            <Width>10.70833in</Width>
+            <ZIndex>1</ZIndex>
+            <Left>0.05208in</Left>
+          </Subreport>
+          <Textbox Name="textbox10">
+            <Style>
+              <FontSize>18pt</FontSize>
+              <FontWeight>700</FontWeight>
+              <TextAlign>Center</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.30209in</Height>
+            <Value>="September"</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>4.88867in</Top>
+        <PageBreakAtEnd>true</PageBreakAtEnd>
+        <Height>0.45834in</Height>
+      </Rectangle>
+      <Rectangle Name="rectangle9">
+        <Left>0.09375in</Left>
+        <ZIndex>9</ZIndex>
+        <ReportItems>
+          <Subreport Name="subreport9">
+            <Parameters>
+              <Parameter Name="year">
+                <Value>=Parameters!year.Value</Value>
+              </Parameter>
+              <Parameter Name="stockMonth">
+                <Value>=8</Value>
+              </Parameter>
+              <Parameter Name="scheduleSelect">
+                <Value>=Parameters!scheduleSelect.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>0.32292in</Top>
+            <ReportName>srStockDoorScheduleMonth</ReportName>
+            <Width>10.70833in</Width>
+            <ZIndex>1</ZIndex>
+            <Left>0.05208in</Left>
+          </Subreport>
+          <Textbox Name="textbox9">
+            <Style>
+              <FontSize>18pt</FontSize>
+              <FontWeight>700</FontWeight>
+              <TextAlign>Center</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.30209in</Height>
+            <Value>="August"</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>4.30533in</Top>
+        <PageBreakAtEnd>true</PageBreakAtEnd>
+        <Height>0.45834in</Height>
+      </Rectangle>
+      <Rectangle Name="rectangle8">
+        <Left>0.09375in</Left>
+        <ZIndex>8</ZIndex>
+        <ReportItems>
+          <Subreport Name="subreport8">
+            <Parameters>
+              <Parameter Name="year">
+                <Value>=Parameters!year.Value</Value>
+              </Parameter>
+              <Parameter Name="stockMonth">
+                <Value>=7</Value>
+              </Parameter>
+              <Parameter Name="scheduleSelect">
+                <Value>=Parameters!scheduleSelect.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>0.32292in</Top>
+            <ReportName>srStockDoorScheduleMonth</ReportName>
+            <Width>10.70833in</Width>
+            <ZIndex>1</ZIndex>
+            <Left>0.05208in</Left>
+          </Subreport>
+          <Textbox Name="textbox8">
+            <Style>
+              <FontSize>18pt</FontSize>
+              <FontWeight>700</FontWeight>
+              <TextAlign>Center</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.30209in</Height>
+            <Value>="July"</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>3.75325in</Top>
+        <PageBreakAtEnd>true</PageBreakAtEnd>
+        <Height>0.45834in</Height>
+      </Rectangle>
+      <Rectangle Name="rectangle7">
+        <Left>0.09375in</Left>
+        <ZIndex>7</ZIndex>
+        <ReportItems>
+          <Subreport Name="subreport7">
+            <Parameters>
+              <Parameter Name="year">
+                <Value>=Parameters!year.Value</Value>
+              </Parameter>
+              <Parameter Name="stockMonth">
+                <Value>=6</Value>
+              </Parameter>
+              <Parameter Name="scheduleSelect">
+                <Value>=Parameters!scheduleSelect.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>0.32292in</Top>
+            <ReportName>srStockDoorScheduleMonth</ReportName>
+            <Width>10.70833in</Width>
+            <ZIndex>1</ZIndex>
+            <Left>0.05208in</Left>
+          </Subreport>
+          <Textbox Name="textbox7">
+            <Style>
+              <FontSize>18pt</FontSize>
+              <FontWeight>700</FontWeight>
+              <TextAlign>Center</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.30209in</Height>
+            <Value>="June"</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>3.18033in</Top>
+        <PageBreakAtEnd>true</PageBreakAtEnd>
+        <Height>0.45834in</Height>
+      </Rectangle>
+      <Rectangle Name="rectangle6">
+        <Left>0.09375in</Left>
+        <ZIndex>6</ZIndex>
+        <ReportItems>
+          <Subreport Name="subreport6">
+            <Parameters>
+              <Parameter Name="year">
+                <Value>=Parameters!year.Value</Value>
+              </Parameter>
+              <Parameter Name="stockMonth">
+                <Value>=5</Value>
+              </Parameter>
+              <Parameter Name="scheduleSelect">
+                <Value>=Parameters!scheduleSelect.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>0.32292in</Top>
+            <ReportName>srStockDoorScheduleMonth</ReportName>
+            <Width>10.70833in</Width>
+            <ZIndex>1</ZIndex>
+            <Left>0.05208in</Left>
+          </Subreport>
+          <Textbox Name="textbox6">
+            <Style>
+              <FontSize>18pt</FontSize>
+              <FontWeight>700</FontWeight>
+              <TextAlign>Center</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.30209in</Height>
+            <Value>="May"</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>2.62825in</Top>
+        <PageBreakAtEnd>true</PageBreakAtEnd>
+        <Height>0.45834in</Height>
+      </Rectangle>
+      <Rectangle Name="rectangle4">
+        <Left>0.09375in</Left>
+        <ZIndex>5</ZIndex>
+        <ReportItems>
+          <Subreport Name="subreport4">
+            <Parameters>
+              <Parameter Name="year">
+                <Value>=Parameters!year.Value</Value>
+              </Parameter>
+              <Parameter Name="stockMonth">
+                <Value>=4</Value>
+              </Parameter>
+              <Parameter Name="scheduleSelect">
+                <Value>=Parameters!scheduleSelect.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>0.32292in</Top>
+            <ReportName>srStockDoorScheduleMonth</ReportName>
+            <Width>10.70833in</Width>
+            <ZIndex>1</ZIndex>
+            <Left>0.05208in</Left>
+            <Height>0.13542in</Height>
+          </Subreport>
+          <Textbox Name="textbox4">
+            <Style>
+              <FontSize>18pt</FontSize>
+              <FontWeight>700</FontWeight>
+              <TextAlign>Center</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.30209in</Height>
+            <Value>="April"</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>2.06575in</Top>
+        <PageBreakAtEnd>true</PageBreakAtEnd>
+        <Height>0.56251in</Height>
+      </Rectangle>
+      <Rectangle Name="rectangle3">
+        <Left>0.09375in</Left>
+        <ZIndex>4</ZIndex>
+        <ReportItems>
+          <Subreport Name="subreport3">
+            <Parameters>
+              <Parameter Name="year">
+                <Value>=Parameters!year.Value</Value>
+              </Parameter>
+              <Parameter Name="stockMonth">
+                <Value>=3</Value>
+              </Parameter>
+              <Parameter Name="scheduleSelect">
+                <Value>=Parameters!scheduleSelect.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>0.32292in</Top>
+            <ReportName>srStockDoorScheduleMonth</ReportName>
+            <Width>10.70833in</Width>
+            <ZIndex>1</ZIndex>
+            <Left>0.05208in</Left>
+          </Subreport>
+          <Textbox Name="textbox3">
+            <Style>
+              <FontSize>18pt</FontSize>
+              <FontWeight>700</FontWeight>
+              <TextAlign>Center</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.30209in</Height>
+            <Value>="March"</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>1.51367in</Top>
+        <PageBreakAtEnd>true</PageBreakAtEnd>
+        <Height>0.45834in</Height>
+      </Rectangle>
+      <Rectangle Name="rectangle2">
+        <Left>0.09375in</Left>
+        <ZIndex>3</ZIndex>
+        <ReportItems>
+          <Subreport Name="subreport2">
+            <Parameters>
+              <Parameter Name="year">
+                <Value>=Parameters!year.Value</Value>
+              </Parameter>
+              <Parameter Name="stockMonth">
+                <Value>=2</Value>
+              </Parameter>
+              <Parameter Name="scheduleSelect">
+                <Value>=Parameters!scheduleSelect.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>0.32292in</Top>
+            <ReportName>srStockDoorScheduleMonth</ReportName>
+            <Width>10.70833in</Width>
+            <ZIndex>1</ZIndex>
+            <Left>0.05208in</Left>
+          </Subreport>
+          <Textbox Name="textbox2">
+            <Style>
+              <FontSize>18pt</FontSize>
+              <FontWeight>700</FontWeight>
+              <TextAlign>Center</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.30209in</Height>
+            <Value>="February"</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>0.972in</Top>
+        <PageBreakAtEnd>true</PageBreakAtEnd>
+        <Height>0.45834in</Height>
+      </Rectangle>
+      <Rectangle Name="rectangle1">
+        <Left>0.09375in</Left>
+        <ZIndex>2</ZIndex>
+        <ReportItems>
+          <Subreport Name="subreport1">
+            <Parameters>
+              <Parameter Name="year">
+                <Value>=Parameters!year.Value</Value>
+              </Parameter>
+              <Parameter Name="stockMonth">
+                <Value>=1</Value>
+              </Parameter>
+              <Parameter Name="scheduleSelect">
+                <Value>=Parameters!scheduleSelect.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>0.32292in</Top>
+            <ReportName>srStockDoorScheduleMonth</ReportName>
+            <Width>10.70833in</Width>
+            <ZIndex>1</ZIndex>
+            <Left>0.05208in</Left>
+          </Subreport>
+          <Textbox Name="textbox1">
+            <Style>
+              <FontSize>18pt</FontSize>
+              <FontWeight>700</FontWeight>
+              <TextAlign>Center</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.30209in</Height>
+            <Value>="January"</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>0.40625in</Top>
+        <PageBreakAtEnd>true</PageBreakAtEnd>
+        <Height>0.45834in</Height>
+      </Rectangle>
+      <Textbox Name="textbox15">
+        <Width>7.40625in</Width>
+        <Style>
+          <FontSize>12pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.08854in</Left>
+        <Height>0.19792in</Height>
+        <Value>="SIS Stock A-1 B-1 C Schedule " &amp; IIf(Parameters!scheduleSelect.Value = "Live", "Live", "Development")</Value>
+      </Textbox>
+      <Rectangle Name="rectangle13">
+        <Left>0.09375in</Left>
+        <ReportItems>
+          <Subreport Name="subreport13">
+            <Parameters>
+              <Parameter Name="year">
+                <Value>=Parameters!year.Value</Value>
+              </Parameter>
+              <Parameter Name="stockMonth">
+                <Value>=12</Value>
+              </Parameter>
+              <Parameter Name="scheduleSelect">
+                <Value>=Parameters!scheduleSelect.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>0.32292in</Top>
+            <ReportName>srStockDoorScheduleMonth</ReportName>
+            <Width>10.70833in</Width>
+            <ZIndex>1</ZIndex>
+            <Left>0.05208in</Left>
+          </Subreport>
+          <Textbox Name="textbox13">
+            <Style>
+              <FontSize>18pt</FontSize>
+              <FontWeight>700</FontWeight>
+              <TextAlign>Center</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Height>0.30209in</Height>
+            <Value>="December"</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>6.61458in</Top>
+        <PageBreakAtEnd>true</PageBreakAtEnd>
+        <Height>0.45834in</Height>
+      </Rectangle>
+    </ReportItems>
+    <Height>7.12109in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <TopMargin>0.1in</TopMargin>
+  <PageHeight>8.5in</PageHeight>
+</Report>

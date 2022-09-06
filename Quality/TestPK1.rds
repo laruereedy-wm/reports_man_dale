@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="TestPK1">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=VM200;Initial Catalog=pk1</ConnectString>
+    <Prompt>Specify a user name and password for data source TestPK1:</Prompt>
+  </ConnectionProperties>
+  <DataSourceID>42f0c7af-9580-45ab-ab8c-c689e3c09ebe</DataSourceID>
+</RptDataSource>

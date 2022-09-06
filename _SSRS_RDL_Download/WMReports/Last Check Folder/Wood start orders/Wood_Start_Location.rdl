@@ -1,0 +1,1540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <Description>needs reviewed</Description>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="PK1">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:DataSourceID>5038857e-d2ba-4739-b6f1-2aa8c4bb6e2c</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>PK1</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@scanvalue">
+            <Value>=Parameters!scanvalue.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     PR.PR_MOSJOB, RQ.RQ_IMKEY AS MOS_IMKEY, MOS_1.MOS_USER_1 AS [Deliver to Loc.], MOS_1.MOS_STATUS, RQ.RQ_MOSJOB, RQ.RQ_MOSLOT, 
+                      OP.OP_SEQNUM, LX.LX_EMKEY, LX.LX_WCKEY, OP.OP_MOSJOB, REC_STAT.mos_job, REC_STAT.rec_location AS TX_DEST, REC_STAT.rec_status_descr, 
+                      MOS.MOS_JOB AS Expr1, MOS.MOS_LOT, MOS.MOS_STATUS AS [Job Status], MOS_1.MOS_CRDATE, MOS_1.MOS_CLOSE_DATE, LX.LX_DATETIME, OP.OP_WCKEY, 
+                      OP.OP_WC_STATUS, OP.OP_STATUS, OP.OP_AVAIL, OP.OP_QTY, RQ.RQ_QTY_REQ, RQ.RQ_QTY_ISS, MOS_1.MOS_QTY, MOS_1.MOS_QTY_REC AS MORECIEVED, 
+                      MOS_1.MOS_USER_2 AS RNO_DESCR, MOS_1.MOS_USER_3, MOS_1.MOS_USER_4, CSSI_TEMP_BIN_TRACKING.BIN_LOCATION, 
+                      CSSI_TEMP_BIN_TRACKING.BIN_NUMERIC, CSSI_TEMP_BIN_TRACKING.USERNAME, CSSI_TEMP_BIN_TRACKING.TRACKINGDATETIME
+FROM         CSSI_TEMP_BIN_TRACKING RIGHT OUTER JOIN
+                      PR ON CSSI_TEMP_BIN_TRACKING.MOS_JOB COLLATE Latin1_General_BIN = PR.PR_MOSJOB RIGHT OUTER JOIN
+                      MOS INNER JOIN
+                      RQ ON MOS.MOS_TYPE = RQ.RQ_MOSTYPE AND MOS.MOS_JOB = RQ.RQ_MOSJOB AND MOS.MOS_LOT = RQ.RQ_MOSLOT AND 
+                      MOS.MOS_SEQNUM1 = RQ.RQ_MOSSEQNUM ON PR.PR_RQSEQNUM = RQ.RQ_SEQNUM LEFT OUTER JOIN
+                      REC_STAT RIGHT OUTER JOIN
+                      OP LEFT OUTER JOIN
+                      LX ON OP.OP_SEQNUM = LX.LX_OPSEQNUM ON REC_STAT.mos_job COLLATE Latin1_General_BIN = OP.OP_MOSJOB ON PR.PR_MOSJOB = OP.OP_MOSJOB AND 
+                      PR.PR_MOSSEQNUM = OP.OP_MOSSEQNUM AND PR.PR_MOSTYPE = OP.OP_MOSTYPE AND PR.PR_MOSLOT = OP.OP_MOSLOT LEFT OUTER JOIN
+                      MOS AS MOS_1 ON PR.PR_MOSTYPE = MOS_1.MOS_TYPE AND PR.PR_MOSJOB = MOS_1.MOS_JOB AND PR.PR_MOSLOT = MOS_1.MOS_LOT AND 
+                      PR.PR_MOSSEQNUM = MOS_1.MOS_SEQNUM1
+WHERE     (MOS.MOS_LOT = RIGHT(@scanvalue, 3)) AND (MOS.MOS_JOB = UPPER(LEFT(@scanvalue, 11))) AND (OP.OP_WCKEY = '433' OR
+                      OP.OP_WCKEY = '475') OR
+                      (MOS.MOS_LOT = RIGHT(@scanvalue, 3)) AND (MOS.MOS_JOB = UPPER(LEFT(@scanvalue, 11))) AND (OP.OP_WCKEY LIKE '%W2121%' OR
+                      OP.OP_WCKEY LIKE '%070%') OR
+                      (MOS.MOS_LOT = RIGHT(@scanvalue, 3)) AND (MOS.MOS_JOB = UPPER(LEFT(@scanvalue, 11))) AND (PR.PR_MOSJOB IS NULL)
+ORDER BY PR.PR_MOSJOB, LX.LX_DATETIME</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="PR_MOSJOB">
+          <DataField>PR_MOSJOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_IMKEY">
+          <DataField>MOS_IMKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RQ_MOSJOB">
+          <DataField>RQ_MOSJOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RQ_MOSLOT">
+          <DataField>RQ_MOSLOT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Deliver_to_Loc_">
+          <DataField>Deliver to Loc.</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OP_SEQNUM">
+          <DataField>OP_SEQNUM</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="LX_EMKEY">
+          <DataField>LX_EMKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_STATUS">
+          <DataField>MOS_STATUS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="LX_WCKEY">
+          <DataField>LX_WCKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OP_MOSJOB">
+          <DataField>OP_MOSJOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DEST">
+          <DataField>TX_DEST</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="mos_job">
+          <DataField>mos_job</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="rec_status_descr">
+          <DataField>rec_status_descr</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_LOT">
+          <DataField>MOS_LOT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Expr1">
+          <DataField>Expr1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Job_Status">
+          <DataField>Job Status</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MOS_CRDATE">
+          <DataField>MOS_CRDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="OP_WCKEY">
+          <DataField>OP_WCKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_CLOSE_DATE">
+          <DataField>MOS_CLOSE_DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="OP_WC_STATUS">
+          <DataField>OP_WC_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LX_DATETIME">
+          <DataField>LX_DATETIME</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="OP_STATUS">
+          <DataField>OP_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OP_AVAIL">
+          <DataField>OP_AVAIL</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="OP_QTY">
+          <DataField>OP_QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="RQ_QTY_REQ">
+          <DataField>RQ_QTY_REQ</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="RQ_QTY_ISS">
+          <DataField>RQ_QTY_ISS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MOS_QTY">
+          <DataField>MOS_QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MORECIEVED">
+          <DataField>MORECIEVED</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="RNO_DESCR">
+          <DataField>RNO_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_USER_3">
+          <DataField>MOS_USER_3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_USER_4">
+          <DataField>MOS_USER_4</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BIN_LOCATION">
+          <DataField>BIN_LOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="STATUS_DATA">
+          <Value>=IIF(Fields!RQ_QTY_ISS.Value &gt;= Fields!MOS_QTY.Value,"Issued",IIF(Fields!MORECIEVED.Value &gt;= Fields!MOS_QTY.Value ,"Received”,”No Action”)) + “ “+IIF(Fields!MOS_STATUS.Value = 0,"Staged",IIf( Fields!MOS_STATUS.Value =  1,”Open”,"Closed"))</Value>
+        </Field>
+        <Field Name="USERNAME">
+          <DataField>USERNAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BIN_NUMERIC">
+          <DataField>BIN_NUMERIC</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TRACKINGDATETIME">
+          <DataField>TRACKINGDATETIME</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="STOCK_DATA">
+          <Value>=IIF(Fields!RQ_QTY_ISS.Value&gt;=Fields!RQ_QTY_REQ.Value,"Issued","In Stock")</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Id_line_1">
+      <Query>
+        <DataSourceName>PK1</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@scanvalue">
+            <Value>=Parameters!scanvalue.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     RQ.RQ_MOSJOB, RQ.RQ_MOSLOT, IM.IM_KEY, IM.IM_DESCR, IM_STOCK_SW, ID.ID_CLASS, ID.ID_LINE_NO, ID.ID_LINE
+FROM         RQ INNER JOIN
+                      IM ON RQ.RQ_IMKEY = IM.IM_KEY INNER JOIN
+                      ID ON IM.IM_KEY = ID.ID_IMKEY
+WHERE     (RQ.RQ_MOSLOT = RIGHT(@scanvalue, 3)) AND (RQ.RQ_MOSJOB = UPPER(LEFT(@scanvalue, 11))) AND (ID.ID_CLASS = 'GEN') AND (ID.ID_LINE_NO = 1)</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="RQ_MOSJOB">
+          <DataField>RQ_MOSJOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RQ_MOSLOT">
+          <DataField>RQ_MOSLOT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_DESCR">
+          <DataField>IM_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID_CLASS">
+          <DataField>ID_CLASS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_STOCK_SW">
+          <DataField>IM_STOCK_SW</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ID_LINE_NO">
+          <DataField>ID_LINE_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ID_LINE">
+          <DataField>ID_LINE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Id_line_2">
+      <Query>
+        <DataSourceName>PK1</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@scanvalue">
+            <Value>=Parameters!scanvalue.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     RQ.RQ_MOSJOB, RQ.RQ_MOSLOT, IM.IM_KEY, IM.IM_DESCR, ID.ID_CLASS, ID.ID_LINE_NO, ID.ID_LINE
+FROM         RQ INNER JOIN
+                      IM ON RQ.RQ_IMKEY = IM.IM_KEY INNER JOIN
+                      ID ON IM.IM_KEY = ID.ID_IMKEY
+WHERE     (RQ.RQ_MOSLOT = RIGHT(@scanvalue, 3)) AND (RQ.RQ_MOSJOB = UPPER(LEFT(@scanvalue, 11))) AND (ID.ID_CLASS = 'GEN') AND (ID.ID_LINE_NO = 2)</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="RQ_MOSJOB">
+          <DataField>RQ_MOSJOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RQ_MOSLOT">
+          <DataField>RQ_MOSLOT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_DESCR">
+          <DataField>IM_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID_CLASS">
+          <DataField>ID_CLASS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID_LINE_NO">
+          <DataField>ID_LINE_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ID_LINE">
+          <DataField>ID_LINE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Id_line_3">
+      <Query>
+        <DataSourceName>PK1</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@scanvalue">
+            <Value>=Parameters!scanvalue.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     RQ.RQ_MOSJOB, RQ.RQ_MOSLOT, IM.IM_KEY, IM.IM_DESCR, ID.ID_CLASS, ID.ID_LINE_NO, ID.ID_LINE
+FROM         RQ INNER JOIN
+                      IM ON RQ.RQ_IMKEY = IM.IM_KEY INNER JOIN
+                      ID ON IM.IM_KEY = ID.ID_IMKEY
+WHERE     (RQ.RQ_MOSLOT = RIGHT(@scanvalue, 3)) AND (RQ.RQ_MOSJOB = UPPER(LEFT(@scanvalue, 11))) AND (ID.ID_CLASS = 'GEN') AND (ID.ID_LINE_NO = 3)</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="RQ_MOSJOB">
+          <DataField>RQ_MOSJOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RQ_MOSLOT">
+          <DataField>RQ_MOSLOT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_DESCR">
+          <DataField>IM_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID_CLASS">
+          <DataField>ID_CLASS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID_LINE_NO">
+          <DataField>ID_LINE_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ID_LINE">
+          <DataField>ID_LINE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="IM_DESCR_INFO">
+      <Query>
+        <DataSourceName>PK1</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@scanvalue">
+            <Value>=Parameters!scanvalue.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     RQ.RQ_MOSJOB, RQ.RQ_MOSLOT, IM.IM_KEY, IM.IM_DESCR
+FROM         RQ INNER JOIN
+                      IM ON RQ.RQ_IMKEY = IM.IM_KEY 
+WHERE     (RQ.RQ_MOSLOT = RIGHT(@scanvalue, 3)) AND (RQ.RQ_MOSJOB = UPPER(LEFT(@scanvalue, 11)))</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="RQ_MOSJOB">
+          <DataField>RQ_MOSJOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RQ_MOSLOT">
+          <DataField>RQ_MOSLOT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_DESCR">
+          <DataField>IM_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="MULTILOC">
+      <Query>
+        <DataSourceName>PK1</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@scanvalue">
+            <Value>=Parameters!scanvalue.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     TS.TS_SNNUMBER, COUNT(TS.TS_SNNUMBER) AS ERRORNUMBER
+FROM         TS INNER JOIN
+                      SN ON TS.TS_SNNUMBER = SN.SN_NUMBER
+GROUP BY SN.SN_ORG_NO, SN.SN_GRP_NO, TS.TS_SNNUMBER
+HAVING      (SN.SN_GRP_NO = RIGHT(@scanvalue, 3)) AND (SN.SN_ORG_NO = UPPER(LEFT(@scanvalue, 11)))</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="ERRORNUMBER">
+          <DataField>ERRORNUMBER</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TS_SNNUMBER">
+          <DataField>TS_SNNUMBER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="TEMPLOC">
+      <Query>
+        <DataSourceName>PK1</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@scanvalue">
+            <Value>=Parameters!scanvalue.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     BIN_LOCATION, PARENT_MOS_JOB, PARENT_MOS_LOT, BIN_NUMERIC
+FROM         CSSI_TEMP_BIN_TRACKING
+GROUP BY BIN_LOCATION, PARENT_MOS_JOB, PARENT_MOS_LOT, BIN_NUMERIC
+HAVING      (PARENT_MOS_LOT = RIGHT(@scanvalue, 3)) AND (PARENT_MOS_JOB = UPPER(LEFT(@scanvalue, 11)))</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="BIN_LOCATION">
+          <DataField>BIN_LOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PARENT_MOS_JOB">
+          <DataField>PARENT_MOS_JOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PARENT_MOS_LOT">
+          <DataField>PARENT_MOS_LOT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BIN_NUMERIC">
+          <DataField>BIN_NUMERIC</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="List1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>10.84375in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>3.32847in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Rectangle Name="List1_Contents">
+                          <ReportItems>
+                            <Tablix Name="table1">
+                              <TablixBody>
+                                <TablixColumns>
+                                  <TablixColumn>
+                                    <Width>0.89583in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>1in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>0.82292in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>2.63543in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>0.72916in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>0.53125in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>0.77083in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>0.83333in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>1.92708in</Width>
+                                  </TablixColumn>
+                                </TablixColumns>
+                                <TablixRows>
+                                  <TablixRow>
+                                    <Height>0.22in</Height>
+                                    <TablixCells>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="textbox2">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>Shop Order</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>textbox2</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#1c3a70</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox4">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>Part Code</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox4</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#1c3a70</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="textbox3">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>API State</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>textbox3</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#1c3a70</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="textbox4">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>DESCRIPTION</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>textbox3</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#1c3a70</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox6">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>STATUS</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox6</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#1c3a70</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox8">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>Deliver to Loc </Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>8pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox8</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#1c3a70</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox12">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>User</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox12</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#1c3a70</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox14">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>Bin Loc.</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox12</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#1c3a70</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox7">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>DATETIME</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox7</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#1c3a70</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                    </TablixCells>
+                                  </TablixRow>
+                                  <TablixRow>
+                                    <Height>0.21in</Height>
+                                    <TablixCells>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="OP_MOSJOB">
+                                            <CanGrow>true</CanGrow>
+                                            <HideDuplicates>DataSet1</HideDuplicates>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!PR_MOSJOB.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>=IIF(Fields!MORECIEVED.Value = Fields!MOS_QTY.Value ,"Aqua",IIF(Fields!MOS_STATUS.Value = 1,"Transparent","Aqua"))</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="MOS_IMKEY">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!MOS_IMKEY.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>=IIF(Fields!MORECIEVED.Value = Fields!MOS_QTY.Value ,"Aqua",IIF(Fields!MOS_STATUS.Value = 1,"Transparent","Aqua"))</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="rec_status_descr">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!rec_status_descr.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>=IIF(Fields!MORECIEVED.Value = Fields!MOS_QTY.Value ,"Aqua",IIF(Fields!MOS_STATUS.Value = 1,"Transparent","Aqua"))</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="RNO_DESCR">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!RNO_DESCR.Value &amp; "  " &amp; Fields!MOS_USER_3.Value &amp; " " &amp; LOOKUP(Fields!MOS_IMKEY.Value,Fields!IM_KEY.Value, Fields!ID_LINE.Value, "Id_line_1") &amp; " " &amp; LOOKUP(Fields!MOS_IMKEY.Value,Fields!IM_KEY.Value, Fields!ID_LINE.Value, "Id_line_2") &amp; " " &amp; LOOKUP(Fields!MOS_IMKEY.Value,Fields!IM_KEY.Value, Fields!ID_LINE.Value, "Id_line_3") &amp; " " &amp; LOOKUP(Fields!MOS_IMKEY.Value,Fields!IM_KEY.Value, Fields!IM_DESCR.Value, "IM_DESCR_INFO")</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>RNO_DESCR</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>=IIF(Fields!MORECIEVED.Value = Fields!MOS_QTY.Value ,"Aqua",IIF(Fields!MOS_STATUS.Value = 1,"Transparent","Aqua"))</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="MOS_STATUS">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=IIF(LOOKUP(Fields!MOS_IMKEY.Value,Fields!IM_KEY.Value, Fields!IM_STOCK_SW.Value, "Id_line_1")= 1, Fields!STOCK_DATA.Value,Fields!STATUS_DATA.Value)</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>MOS_STATUS</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>=IIF(Fields!MORECIEVED.Value = Fields!MOS_QTY.Value ,"Aqua",IIF(Fields!MOS_STATUS.Value = 1,"Transparent","Aqua"))</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Deliver_to_Loc_">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!Deliver_to_Loc_.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Deliver_to_Loc_</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>=IIF(Fields!MORECIEVED.Value = Fields!MOS_QTY.Value ,"Aqua",IIF(Fields!MOS_STATUS.Value = 1,"Transparent","Aqua"))</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="LX_EMKEY">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!LX_EMKEY.Value &amp; Fields!USERNAME.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>8pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>=IIF(Fields!MORECIEVED.Value = Fields!MOS_QTY.Value ,"Aqua",IIF(Fields!MOS_STATUS.Value = 1,"Transparent","Aqua"))</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="TX_DEST">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!TX_DEST.Value &amp; Fields!BIN_NUMERIC.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>= IIF( LOOKUP(Fields!PR_MOSJOB.Value, Fields!TS_SNNUMBER.Value, Fields!ERRORNUMBER.Value, "MULTILOC")=2,"8pt","10pt")</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>=IIF(Fields!MORECIEVED.Value = Fields!MOS_QTY.Value ,"Aqua",IIF(Fields!MOS_STATUS.Value = 1,"Transparent","Aqua"))</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="LX_DATETIME">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!LX_DATETIME.Value &amp; Fields!TRACKINGDATETIME.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>LX_DATETIME</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>DimGray</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>=IIF(Fields!MORECIEVED.Value = Fields!MOS_QTY.Value ,"Aqua",IIF(Fields!MOS_STATUS.Value = 1,"Transparent","Aqua"))</BackgroundColor>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                    </TablixCells>
+                                  </TablixRow>
+                                </TablixRows>
+                              </TablixBody>
+                              <TablixColumnHierarchy>
+                                <TablixMembers>
+                                  <TablixMember />
+                                  <TablixMember />
+                                  <TablixMember />
+                                  <TablixMember />
+                                  <TablixMember />
+                                  <TablixMember />
+                                  <TablixMember />
+                                  <TablixMember />
+                                  <TablixMember />
+                                </TablixMembers>
+                              </TablixColumnHierarchy>
+                              <TablixRowHierarchy>
+                                <TablixMembers>
+                                  <TablixMember>
+                                    <KeepWithGroup>After</KeepWithGroup>
+                                    <RepeatOnNewPage>true</RepeatOnNewPage>
+                                    <KeepTogether>true</KeepTogether>
+                                  </TablixMember>
+                                  <TablixMember>
+                                    <Group Name="table1_MOS_LOT">
+                                      <GroupExpressions>
+                                        <GroupExpression>=Fields!MOS_LOT.Value</GroupExpression>
+                                      </GroupExpressions>
+                                    </Group>
+                                    <SortExpressions>
+                                      <SortExpression>
+                                        <Value>=Fields!MOS_LOT.Value</Value>
+                                      </SortExpression>
+                                    </SortExpressions>
+                                    <TablixMembers>
+                                      <TablixMember>
+                                        <Group Name="table1_Details_Group">
+                                          <DataElementName>Detail</DataElementName>
+                                        </Group>
+                                        <TablixMembers>
+                                          <TablixMember />
+                                        </TablixMembers>
+                                        <DataElementName>Detail_Collection</DataElementName>
+                                        <DataElementOutput>Output</DataElementOutput>
+                                        <KeepTogether>true</KeepTogether>
+                                      </TablixMember>
+                                    </TablixMembers>
+                                  </TablixMember>
+                                </TablixMembers>
+                              </TablixRowHierarchy>
+                              <DataSetName>DataSet1</DataSetName>
+                              <Top>0.61278in</Top>
+                              <Left>0.05208in</Left>
+                              <Height>0.43in</Height>
+                              <Width>10.14583in</Width>
+                              <Style />
+                            </Tablix>
+                            <Textbox Name="SCANIN">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=("JOB NUMBER       ") + Fields!RQ_MOSJOB.Value</Value>
+                                      <Style>
+                                        <FontFamily>Tahoma</FontFamily>
+                                        <FontSize>14pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>SCANIN</rd:DefaultName>
+                              <Height>0.27in</Height>
+                              <Width>3.98959in</Width>
+                              <ZIndex>1</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="SCANIN2">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=("      JOB LOT      ") + Fields!RQ_MOSLOT.Value</Value>
+                                      <Style>
+                                        <FontFamily>Tahoma</FontFamily>
+                                        <FontSize>14pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>SCANIN</rd:DefaultName>
+                              <Top>0.27167in</Top>
+                              <Height>0.22833in</Height>
+                              <Width>3.15626in</Width>
+                              <ZIndex>2</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Tablix Name="Tablix2">
+                              <TablixBody>
+                                <TablixColumns>
+                                  <TablixColumn>
+                                    <Width>1.4375in</Width>
+                                  </TablixColumn>
+                                </TablixColumns>
+                                <TablixRows>
+                                  <TablixRow>
+                                    <Height>0.27167in</Height>
+                                    <TablixCells>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox16">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>D15 SPEC LOCATION</Value>
+                                                    <Style>
+                                                      <FontSize>8pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox16</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                    </TablixCells>
+                                  </TablixRow>
+                                  <TablixRow>
+                                    <Height>0.25in</Height>
+                                    <TablixCells>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="TX_DEST1">
+                                            <CanGrow>true</CanGrow>
+                                            <CanShrink>true</CanShrink>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!TX_DEST.Value &amp; " " &amp; Fields!BIN_NUMERIC.Value</Value>
+                                                    <Style>
+                                                      <FontSize>14pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>Red</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>TX_DEST1</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                    </TablixCells>
+                                  </TablixRow>
+                                </TablixRows>
+                              </TablixBody>
+                              <TablixColumnHierarchy>
+                                <TablixMembers>
+                                  <TablixMember />
+                                </TablixMembers>
+                              </TablixColumnHierarchy>
+                              <TablixRowHierarchy>
+                                <TablixMembers>
+                                  <TablixMember>
+                                    <KeepWithGroup>After</KeepWithGroup>
+                                  </TablixMember>
+                                  <TablixMember>
+                                    <Group Name="Details">
+                                      <GroupExpressions>
+                                        <GroupExpression>=Fields!TX_DEST.Value</GroupExpression>
+                                        <GroupExpression>=Fields!BIN_NUMERIC.Value</GroupExpression>
+                                      </GroupExpressions>
+                                      <Filters>
+                                        <Filter>
+                                          <FilterExpression>=Fields!Deliver_to_Loc_.Value</FilterExpression>
+                                          <Operator>In</Operator>
+                                          <FilterValues>
+                                            <FilterValue>D8</FilterValue>
+                                            <FilterValue>D12</FilterValue>
+                                            <FilterValue>D15</FilterValue>
+                                            <FilterValue>D10</FilterValue>
+                                            <FilterValue>D12</FilterValue>
+                                          </FilterValues>
+                                        </Filter>
+                                      </Filters>
+                                    </Group>
+                                  </TablixMember>
+                                </TablixMembers>
+                              </TablixRowHierarchy>
+                              <DataSetName>DataSet1</DataSetName>
+                              <Top>0.10625in</Top>
+                              <Left>8.07639in</Left>
+                              <Height>0.52167in</Height>
+                              <Width>1.4375in</Width>
+                              <ZIndex>3</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Tablix>
+                            <Subreport Name="srNonStockLoc">
+                              <ReportName>/Last Check Folder/Wood start orders/srNonStockLoc</ReportName>
+                              <Parameters>
+                                <Parameter Name="locscanvalue">
+                                  <Value>=Parameters!scanvalue.Value</Value>
+                                </Parameter>
+                              </Parameters>
+                              <OmitBorderOnPageBreak>true</OmitBorderOnPageBreak>
+                              <Top>0.10625in</Top>
+                              <Left>6.66667in</Left>
+                              <Height>0.47875in</Height>
+                              <Width>1.39583in</Width>
+                              <ZIndex>4</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Subreport>
+                            <Subreport Name="Subreport1">
+                              <ReportName>/Last Check Folder/Wood start orders/SR_TEMP_LOADER_LOCATION</ReportName>
+                              <Parameters>
+                                <Parameter Name="scanvalue">
+                                  <Value>=Parameters!scanvalue.Value</Value>
+                                </Parameter>
+                              </Parameters>
+                              <Top>0.00111in</Top>
+                              <Left>4.22917in</Left>
+                              <Height>0.59778in</Height>
+                              <Width>2.4375in</Width>
+                              <ZIndex>5</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Subreport>
+                          </ReportItems>
+                          <KeepTogether>true</KeepTogether>
+                          <Style />
+                        </Rectangle>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Group Name="list1_RQ_MOSJOB">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!RQ_MOSJOB.Value</GroupExpression>
+                        </GroupExpressions>
+                        <PageBreak>
+                          <BreakLocation>Between</BreakLocation>
+                        </PageBreak>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!RQ_MOSJOB.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <DataElementOutput>Output</DataElementOutput>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet1</DataSetName>
+            <PageBreak>
+              <BreakLocation>End</BreakLocation>
+            </PageBreak>
+            <Top>0.09736in</Top>
+            <Height>3.32847in</Height>
+            <Width>10.84375in</Width>
+            <Style>
+              <FontFamily>Tahoma</FontFamily>
+              <FontSize>14pt</FontSize>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>3.42583in</Height>
+        <Style />
+      </Body>
+      <Width>10.84375in</Width>
+      <Page>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="scanvalue">
+      <DataType>String</DataType>
+      <Prompt>Scan Order Bar Code</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://172.16.100.249/ReportServer</rd:ReportServerUrl>
+  <rd:ReportID>1676c307-35d7-4a12-a219-723b0ed5fd40</rd:ReportID>
+</Report>

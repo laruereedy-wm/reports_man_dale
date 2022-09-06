@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="Expeditor">
+      <rd:DataSourceID>81df5a6f-5be0-4ea2-a33d-1fede4516c98</rd:DataSourceID>
+      <DataSourceReference>Expeditor</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="ordernumber">
+      <DataType>String</DataType>
+      <Prompt>ordernumber</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="itemnumber">
+      <DataType>String</DataType>
+      <Prompt>itemnumber</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>1in</RightMargin>
+  <LeftMargin>1in</LeftMargin>
+  <BottomMargin>1in</BottomMargin>
+  <rd:ReportID>f389ec8b-eeec-47dc-a1c0-9bc296dfbb93</rd:ReportID>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Fields>
+        <Field Name="MANUFORDER">
+          <DataField>MANUFORDER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SCANTIME">
+          <DataField>SCANTIME</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING">
+          <DataField>TRACKING</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>Expeditor</DataSourceName>
+        <CommandText>SELECT     OPENMOS.MANUFORDER, MAX(vBLUTRK.SCANTIME) AS SCANTIME, vBLUTRK.TRACKING + vBLUTRK.SUBTRACKING AS TRACKING
+FROM         OPENMOS LEFT OUTER JOIN
+                      PROFITKEYDB.pk1.dbo.lx AS lx_1 ON OPENMOS.MANUFORDER = lx_1.LX_MOSJOB LEFT OUTER JOIN
+                      vBLUTRK ON OPENMOS.MANUFORDER = vBLUTRK.MONUMB
+WHERE     (OPENMOS.ORDERNO = @ordernumber) AND (OPENMOS.ITEMNO = @itemnumber) AND (lx_1.LX_MOSJOB IS NULL)
+GROUP BY OPENMOS.MANUFORDER, vBLUTRK.TRACKING, vBLUTRK.SUBTRACKING</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ordernumber">
+            <Value>=Parameters!ordernumber.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@itemnumber">
+            <Value>=Parameters!itemnumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Width>3.40625in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="mainTable">
+        <DataSetName>mainData</DataSetName>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="mainTable_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!MANUFORDER.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Sorting>
+              <SortBy>
+                <SortExpression>=Fields!MANUFORDER.Value</SortExpression>
+                <Direction>Ascending</Direction>
+              </SortBy>
+            </Sorting>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="MANUFORDER">
+                          <rd:DefaultName>MANUFORDER</rd:DefaultName>
+                          <Style>
+                            <BorderColor>
+                              <Default>Gainsboro</Default>
+                            </BorderColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>2</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!MANUFORDER.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="SCANTIME">
+                          <rd:DefaultName>SCANTIME</rd:DefaultName>
+                          <Style>
+                            <BorderColor>
+                              <Default>Gainsboro</Default>
+                            </BorderColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=First(Fields!SCANTIME.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="TRACKING">
+                          <rd:DefaultName>TRACKING</rd:DefaultName>
+                          <Style>
+                            <BorderColor>
+                              <Default>Gainsboro</Default>
+                            </BorderColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=First(Fields!TRACKING.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <Style>
+          <BorderColor>
+            <Default>Gainsboro</Default>
+          </BorderColor>
+          <FontFamily>Tahoma</FontFamily>
+        </Style>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.77083in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.51042in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.25in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+</Report>

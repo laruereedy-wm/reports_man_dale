@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="table1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.75in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.5in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.5in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox11">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!CODE.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <ZIndex>4</ZIndex>
+                      <Style>
+                        <RightBorder>
+                          <Style>Solid</Style>
+                        </RightBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox12">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=First(Fields!IM_COMMODITY.Value)</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <ZIndex>3</ZIndex>
+                      <Style>
+                        <RightBorder>
+                          <Style>Solid</Style>
+                        </RightBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox15">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!DISPLAY.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <ZIndex>2</ZIndex>
+                      <Style>
+                        <RightBorder>
+                          <Style>Solid</Style>
+                        </RightBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox16">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!PARTDESCRIPTION.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <RightBorder>
+                          <Style>Solid</Style>
+                        </RightBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="CONSUMPTION">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Sum(Fields!CONSUMPTION.Value)</Value>
+                              <Style>
+                                <Format>c2</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>CONSUMPTION</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents />
+                </TablixCell>
+                <TablixCell>
+                  <CellContents />
+                </TablixCell>
+                <TablixCell>
+                  <CellContents />
+                </TablixCell>
+                <TablixCell>
+                  <CellContents />
+                </TablixCell>
+                <TablixCell>
+                  <CellContents />
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="table1_Group1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!DISPLAY.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!CODE.Value</Value>
+                  <Direction>Descending</Direction>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!IM_COMMODITY.Value</Value>
+                  <Direction>Descending</Direction>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!IM_PROD_CODE.Value</Value>
+                  <Direction>Descending</Direction>
+                </SortExpression>
+              </SortExpressions>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="table1_Group2">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!IM_KEY.Value</GroupExpression>
+                      <GroupExpression>=Fields!IM_DESCR.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!IM_KEY.Value</Value>
+                    </SortExpression>
+                    <SortExpression>
+                      <Value>=Fields!IM_DESCR.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>true</Hidden>
+                      </Visibility>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>mainData</DataSetName>
+        <Filters>
+          <Filter>
+            <FilterExpression>=IIf(Fields!IM_PROD_CODE.Value = "WAX", Fields!IM_COMMODITY.Value, Nothing)</FilterExpression>
+            <Operator>NotEqual</Operator>
+            <FilterValues>
+              <FilterValue>="R21"</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
+        <Height>0.25in</Height>
+        <Width>7.75in</Width>
+        <Style />
+      </Tablix>
+    </ReportItems>
+    <Height>0.25in</Height>
+    <Style />
+  </Body>
+  <Width>7.84375in</Width>
+  <Page>
+    <LeftMargin>0.1in</LeftMargin>
+    <RightMargin>0.1in</RightMargin>
+    <TopMargin>0.1in</TopMargin>
+    <BottomMargin>0.1in</BottomMargin>
+    <Style />
+  </Page>
+  <Description>R05-SR Total Cost of Consumed Sand Paper January to June</Description>
+  <Author>BJ Kaledas</Author>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="PKI">
+      <DataSourceReference>PKI</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>9837a824-4ccc-4e19-915c-180de6d0296c</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@startDate">
+            <Value>=Parameters!startDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@endDate">
+            <Value>=Parameters!endDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     IM.IM_KEY, IM.IM_AVG_MAT, TX.TX_QTY, TX.TX_TYPE, TX.TX_ORIGIN_STATUS, TX.TX_DEST_STATUS, TX.TX_DATE, IM.IM_PROD_CODE, 
+                      IM.IM_TYPE, IM.IM_COMMODITY, IM.IM_DESCR
+FROM         TX INNER JOIN
+                      IM ON TX.TX_IMKEY = IM.IM_KEY
+WHERE     (IM.IM_TYPE = 2) AND (TX.TX_TYPE = 'A' OR
+                      TX.TX_TYPE = 'I') AND (TX.TX_ORIGIN_STATUS = 'A') AND (TX.TX_DEST_STATUS = 'I') AND (TX.TX_DATE &gt;= @startDate) AND 
+                      (TX.TX_DATE &lt;= @endDate) AND (IM.IM_PROD_CODE = 'BES' OR
+                      IM.IM_PROD_CODE = 'DIS' OR
+                      IM.IM_PROD_CODE = 'SCO' OR
+                      IM.IM_PROD_CODE = 'SHE' OR
+                      IM.IM_PROD_CODE = 'SMI') AND (IM.IM_COMMODITY = 'R01') AND (NOT (TX.TX_COMMENT LIKE '0000%'))
+ORDER BY IM.IM_KEY</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_AVG_MAT">
+          <DataField>IM_AVG_MAT</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_QTY">
+          <DataField>TX_QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_TYPE">
+          <DataField>TX_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_ORIGIN_STATUS">
+          <DataField>TX_ORIGIN_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DEST_STATUS">
+          <DataField>TX_DEST_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DATE">
+          <DataField>TX_DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="IM_PROD_CODE">
+          <DataField>IM_PROD_CODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_TYPE">
+          <DataField>IM_TYPE</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IM_COMMODITY">
+          <DataField>IM_COMMODITY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_DESCR">
+          <DataField>IM_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PARTDESCRIPTION">
+          <Value>=IIF(Fields!IM_PROD_CODE.Value = "AER", "TOUCHUP - AEROSOL - NO KITS",
+IIF(Fields!IM_PROD_CODE.Value = "BES", "DRY SAND PAPER",
+IIF(Fields!IM_PROD_CODE.Value = "BIS", "TOUCHUP - BURN-IN STOCK - NO KITS",
+IIF(Fields!IM_PROD_CODE.Value = "CAN", "PAINT CANS", 
+IIF(Fields!IM_PROD_CODE.Value = "DIS", "DRY SAND PAPER",
+IIF(Fields!IM_PROD_CODE.Value = "FSK", "TOUCHUP - FILLSTICK - NO KITS",
+IIF(Fields!IM_PROD_CODE.Value = "GLU", "ALL OTHER GLUES", 
+IIF(Fields!IM_PROD_CODE.Value = "HMT", "HOT MELT GLUES",
+IIF(Fields!IM_PROD_CODE.Value = "LAM", "LAMBS WOOL &amp; WASHING",
+IIF(Fields!IM_PROD_CODE.Value = "MTU", "TOUCHUP - MARKER - NO KITS", 
+IIF(Fields!IM_PROD_CODE.Value = "PUT", "PUTTY &amp; WOOD DOUGH",
+IIF(Fields!IM_PROD_CODE.Value = "RAG", "RAGS &amp; PAPER WIPES",
+IIF(Fields!IM_PROD_CODE.Value = "REM", "PAINT REMOVER", 
+IIF(Fields!IM_PROD_CODE.Value = "REW", "RAGS, REWASH",
+IIF(Fields!IM_PROD_CODE.Value = "SCO", "DRY SAND PAPER",
+IIF(Fields!IM_PROD_CODE.Value = "SEA", "SEALERS", 
+IIF(Fields!IM_PROD_CODE.Value = "SHE", "DRY SAND PAPER",
+IIF(Fields!IM_PROD_CODE.Value = "SMI", "DRY SAND PAPER",
+IIF(Fields!IM_PROD_CODE.Value = "STA", "STAINS", 
+IIF(Fields!IM_PROD_CODE.Value = "STW", "STEEL WOOL",
+IIF(Fields!IM_PROD_CODE.Value = "TAC", "TACK CLOTH",
+IIF(Fields!IM_PROD_CODE.Value = "THI", "THINNERS", 
+IIF(Fields!IM_PROD_CODE.Value = "VAR", "VARNISH",
+IIF(Fields!IM_PROD_CODE.Value = "WAX", "WAXES",
+IIF(Fields!IM_PROD_CODE.Value = "HIC", "CONC. HINGES",
+IIF(Fields!IM_PROD_CODE.Value = "HIN", "HINGES",
+IIF(Fields!IM_PROD_CODE.Value = "KNO", "ALL KNOBS",
+IIF(Fields!IM_PROD_CODE.Value = "PUL", "ALL PULLS", Nothing))))))))))))))))))))))))))))</Value>
+        </Field>
+        <Field Name="PRODUCT_CODE_HEADER">
+          <Value>=Fields!IM_COMMODITY.Value &amp; " " &amp; Fields!IM_PROD_CODE.Value &amp; " - " &amp; Fields!PARTDESCRIPTION.Value</Value>
+        </Field>
+        <Field Name="CODE">
+          <Value>=IIF(Fields!IM_PROD_CODE.Value = "AER", "F",
+IIF(Fields!IM_PROD_CODE.Value = "BES", "S",
+IIF(Fields!IM_PROD_CODE.Value = "BIS", "F",
+IIF(Fields!IM_PROD_CODE.Value = "CAN", "F", 
+IIF(Fields!IM_PROD_CODE.Value = "DIS", "S",
+IIF(Fields!IM_PROD_CODE.Value = "FSK", "F",
+IIF(Fields!IM_PROD_CODE.Value = "GLU", "OG", 
+IIF(Fields!IM_PROD_CODE.Value = "HMT", "HG",
+IIF(Fields!IM_PROD_CODE.Value = "LAM", "F",
+IIF(Fields!IM_PROD_CODE.Value = "MTU", "F", 
+IIF(Fields!IM_PROD_CODE.Value = "PUT", "F",
+IIF(Fields!IM_PROD_CODE.Value = "RAG", "F",
+IIF(Fields!IM_PROD_CODE.Value = "REM", "F", 
+IIF(Fields!IM_PROD_CODE.Value = "REW", "F",
+IIF(Fields!IM_PROD_CODE.Value = "SCO", "S",
+IIF(Fields!IM_PROD_CODE.Value = "SEA", "F", 
+IIF(Fields!IM_PROD_CODE.Value = "SHE", "S",
+IIF(Fields!IM_PROD_CODE.Value = "SMI", "S",
+IIF(Fields!IM_PROD_CODE.Value = "STA", "F", 
+IIF(Fields!IM_PROD_CODE.Value = "STW", "F",
+IIF(Fields!IM_PROD_CODE.Value = "TAC", "F",
+IIF(Fields!IM_PROD_CODE.Value = "THI", "F", 
+IIF(Fields!IM_PROD_CODE.Value = "VAR", "F",
+IIF(Fields!IM_PROD_CODE.Value = "WAX", "F",
+IIF(Fields!IM_PROD_CODE.Value = "HIC", "HKP",
+IIF(Fields!IM_PROD_CODE.Value = "HIN", "HKP",
+IIF(Fields!IM_PROD_CODE.Value = "KNO", "HKP",
+IIF(Fields!IM_PROD_CODE.Value = "PUL", "HKP", Nothing))))))))))))))))))))))))))))</Value>
+        </Field>
+        <Field Name="DISPLAY">
+          <Value>=IIF(Fields!IM_PROD_CODE.Value = "BES", "ALL MONTHS LESS STEEL WOOL",
+IIF(Fields!IM_PROD_CODE.Value = "DIS", "ALL MONTHS LESS STEEL WOOL",
+IIF(Fields!IM_PROD_CODE.Value = "SCO", "ALL MONTHS LESS STEEL WOOL",
+IIF(Fields!IM_PROD_CODE.Value = "SHE", "ALL MONTHS LESS STEEL WOOL",
+IIF(Fields!IM_PROD_CODE.Value = "SMI", "ALL MONTHS LESS STEEL WOOL", Fields!IM_PROD_CODE.Value)))))</Value>
+        </Field>
+        <Field Name="CONSUMPTION">
+          <Value>=Fields!TX_QTY.Value * Fields!IM_AVG_MAT.Value</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="year">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Please Enter the Year Checking:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="startDate">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=CDate(STR(1) + "/" + STR(1) + "/" + STR(Parameters!year.Value) + " " + STR(12) + ":" + STR(00) + ":" + STR(00) + " AM")</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_1</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="endDate">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=CDate(STR(6) + "/" + STR(30) + "/" + STR(Parameters!year.Value) + " " + STR(11) + ":" + STR(59) + ":" + STR(59) + " PM")</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_2</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>9bda3b3a-7c7f-4804-8d19-79baaafe5a9e</rd:ReportID>
+</Report>

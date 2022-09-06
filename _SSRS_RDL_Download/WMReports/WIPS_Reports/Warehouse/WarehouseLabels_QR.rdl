@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="vm250">
+      <DataSourceReference>vm250</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>3287ae23-a3a5-4865-a4a0-d128fed9f128</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="ReportData">
+      <Query>
+        <DataSourceName>vm250</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@FilterFirst">
+            <Value>=Parameters!FilterFirst.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@FilterLast">
+            <Value>=Parameters!FilterLast.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT
+  WHL.WHL_WarehouseLoc
+FROM
+  WIPS_WarehouseLocation_WHL AS WHL
+WHERE WHL.WHL_WarehouseLoc BETWEEN @FilterFirst AND @FilterLast
+ORDER BY WHL.WHL_WarehouseLoc</CommandText>
+        <rd:DesignerState><QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational"><SelectedColumns><ColumnExpression ColumnOwner="WIPS_WarehouseLocation_WHL" ColumnName="WHL_WarehouseLoc" /></SelectedColumns></QueryDefinition></rd:DesignerState>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="WHL_WarehouseLoc">
+          <DataField>WHL_WarehouseLoc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="FilterFirst">
+      <Query>
+        <DataSourceName>vm250</DataSourceName>
+        <CommandText>SELECT TOP 1
+  WHL.WHL_WarehouseLoc
+FROM
+  WIPS_WarehouseLocation_WHL AS WHL
+ORDER BY WHL.WHL_WarehouseLoc</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="WHL_WarehouseLoc">
+          <DataField>WHL_WarehouseLoc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="FilterLast">
+      <Query>
+        <DataSourceName>vm250</DataSourceName>
+        <CommandText>SELECT TOP 1
+  WHL.WHL_WarehouseLoc
+FROM
+  WIPS_WarehouseLocation_WHL AS WHL
+ORDER BY WHL.WHL_WarehouseLoc DESC</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="WHL_WarehouseLoc">
+          <DataField>WHL_WarehouseLoc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.75in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>3in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Image Name="LocCode1">
+                          <Source>External</Source>
+                          <Value>="http://utilityweb.wmdomain.local/QRImage/" + Fields!WHL_WarehouseLoc.Value</Value>
+                          <Sizing>FitProportional</Sizing>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>5pt</PaddingLeft>
+                            <PaddingRight>5pt</PaddingRight>
+                            <PaddingTop>15pt</PaddingTop>
+                            <PaddingBottom>15pt</PaddingBottom>
+                          </Style>
+                        </Image>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="WHL_WarehouseLoc1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!WHL_WarehouseLoc.Value</Value>
+                                  <Style>
+                                    <FontSize>56pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>WHL_WarehouseLoc1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingTop>15pt</PaddingTop>
+                            <PaddingBottom>15pt</PaddingBottom>
+                            <WritingMode>Rotate270</WritingMode>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>1.75in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox6">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontSize>24pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox6</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>3pt</Width>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>3in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Image Name="LocCode2">
+                          <Source>External</Source>
+                          <Value>="http://utilityweb.wmdomain.local/QRImage/" + Fields!WHL_WarehouseLoc.Value</Value>
+                          <Sizing>FitProportional</Sizing>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>5pt</PaddingLeft>
+                            <PaddingRight>5pt</PaddingRight>
+                            <PaddingTop>15pt</PaddingTop>
+                            <PaddingBottom>15pt</PaddingBottom>
+                          </Style>
+                        </Image>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="WHL_WarehouseLoc2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!WHL_WarehouseLoc.Value</Value>
+                                  <Style>
+                                    <FontSize>56pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>WHL_WarehouseLoc1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingTop>15pt</PaddingTop>
+                            <PaddingBottom>15pt</PaddingBottom>
+                            <WritingMode>Rotate270</WritingMode>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Details" />
+                  <TablixMembers>
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>ReportData</DataSetName>
+            <Height>7.75in</Height>
+            <Width>3.75in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>7.75in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>3.75in</Width>
+      <Page>
+        <PageHeight>8in</PageHeight>
+        <PageWidth>4in</PageWidth>
+        <InteractiveHeight>5in</InteractiveHeight>
+        <InteractiveWidth>3in</InteractiveWidth>
+        <LeftMargin>0.125in</LeftMargin>
+        <RightMargin>0.125in</RightMargin>
+        <TopMargin>0.125in</TopMargin>
+        <BottomMargin>0.125in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="FilterFirst">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>FilterFirst</DataSetName>
+          <ValueField>WHL_WarehouseLoc</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Starting Location</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="FilterLast">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>FilterLast</DataSetName>
+          <ValueField>WHL_WarehouseLoc</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Ending Location</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://172.16.100.249/ReportServer</rd:ReportServerUrl>
+  <rd:ReportID>49313dae-14d0-4c46-ab5a-2d7c0809ec2e</rd:ReportID>
+</Report>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="MarketForecast1">
+      <DataSourceReference>MarketForecast1</DataSourceReference>
+      <rd:DataSourceID>22b8f3b3-7b04-404e-8bda-5f44403ba10c</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>0.1in</BottomMargin>
+  <RightMargin>0.1in</RightMargin>
+  <ReportParameters>
+    <ReportParameter Name="PMForecastYear">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>PMForecastYear</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="pmMSAID">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>pmMSAID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Territory">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Territory</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>false</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <DataSetName>MainData</DataSetName>
+        <TableGroups>
+          <TableGroup>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Image Name="image2">
+                          <Sizing>Fit</Sizing>
+                          <Source>Embedded</Source>
+                          <Style />
+                          <Value>target</Value>
+                        </Image>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.17708in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+            <Grouping Name="table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!MSAID.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+          </TableGroup>
+        </TableGroups>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.17708in</Width>
+            <Visibility>
+              <Hidden>=IIf(Fields!TARGET.Value &lt;&gt; "False", False, True)</Hidden>
+            </Visibility>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.17708in</Height>
+  </Body>
+  <rd:ReportID>f33df083-1e56-497d-9f7c-3ed6360e1916</rd:ReportID>
+  <EmbeddedImages>
+    <EmbeddedImage Name="target">
+      <ImageData>Qk3mAQAAAAAAADYAAAAoAAAADAAAAAwAAAABABgAAAAAAAAAAADEDgAAxA4AAAAAAAAAAAAA////////////////////////////////////////////////////////////sLD/VVX/IiL/IyP/WFj/t7f//////////////////Pz/enr/DAz/aWn/ubn/vLz/bm7/ExP/ior//v7/////////q6v/CQn/oqL/////////////////tbX/Fhb/t7f/////////RUX/X1//////ycn/Njb/MDD/u7v/////dXX/VFT/////////EhL/rq7/////R0f/AAD/AAD/MjL/////wMD/IyP/////////ERH/ra3/////Vlb/AAD/AAD/QUH/////wMD/IiL/////////Pz//Xl7/////3t7/Xl7/V1f/1NT/////dHT/UVH/////////oaH/CAj/oaH/////////////////tLT/ERH/r6//////////+/v/bGz/Cgr/ZWX/trb/urr/bW3/DAz/fHz//Pz//////////////f3/oKD/QUH/ERH/EhL/SEj/qqr/////////////////////////////////////////////////////////////</ImageData>
+      <MIMEType>image/bmp</MIMEType>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <DataSets>
+    <DataSet Name="MainData">
+      <Query>
+        <CommandText>SELECT     MSAID, TERRITORY, SUMMARY, TARGET, FORECASTYEAR
+FROM         MSASUMMARY
+WHERE     (MSAID = @pmMSAID) AND (FORECASTYEAR = @PMForecastYear) AND (TERRITORY = @Territory)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@pmMSAID">
+            <Value>=Parameters!pmMSAID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@PMForecastYear">
+            <Value>=Parameters!PMForecastYear.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Territory">
+            <Value>=Parameters!Territory.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="MSAID">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>MSAID</DataField>
+        </Field>
+        <Field Name="TERRITORY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TERRITORY</DataField>
+        </Field>
+        <Field Name="SUMMARY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>SUMMARY</DataField>
+        </Field>
+        <Field Name="TARGET">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>TARGET</DataField>
+        </Field>
+        <Field Name="FORECASTYEAR">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>FORECASTYEAR</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Code />
+  <Width>0.17708in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+</Report>

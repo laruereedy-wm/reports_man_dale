@@ -1,0 +1,1592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="matrix1">
+        <TablixCorner>
+          <TablixCornerRows>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="textbox33">
+                    <CanGrow>true</CanGrow>
+                    <CanShrink>true</CanShrink>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=Fields!VGroupbyname1.Value</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <ZIndex>5</ZIndex>
+                    <Style>
+                      <BackgroundColor>Silver</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+            </TablixCornerRow>
+          </TablixCornerRows>
+        </TablixCorner>
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox6">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=CountDistinct(Fields!ORDRNO.Value &amp; Fields!ITEM.Value &amp; IIF(Parameters!HGroupby1.Value= "FRAMED_FRAMELESS", Fields!FRAMED_FRAMELESS.Value, 
+IIF(Parameters!HGroupby1.Value= "FINISH_GROUP", Fields!FINISH_GROUP.Value, Fields!HGroupby1.Value) &amp; IIF(Parameters!VGroupby1.Value= "FRAMED_FRAMELESS", Fields!FRAMED_FRAMELESS.Value, 
+IIF(Parameters!VGroupby1.Value= "FINISH_GROUP", Fields!FINISH_GROUP.Value, Fields!VGroupby1.Value))))</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox5">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=CountDistinct(Fields!ORDRNO.Value &amp; Fields!ITEM.Value &amp; IIF(Parameters!HGroupby1.Value= "FRAMED_FRAMELESS", Fields!FRAMED_FRAMELESS.Value, 
+IIF(Parameters!HGroupby1.Value= "FINISH_GROUP", Fields!FINISH_GROUP.Value, Fields!HGroupby1.Value) &amp; IIF(Parameters!VGroupby1.Value= "FRAMED_FRAMELESS", Fields!FRAMED_FRAMELESS.Value, 
+IIF(Parameters!VGroupby1.Value= "FINISH_GROUP", Fields!FINISH_GROUP.Value, Fields!VGroupby1.Value))))</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox7">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=CountDistinct(Fields!ORDRNO.Value &amp; Fields!ITEM.Value &amp; IIF(Parameters!HGroupby1.Value= "FRAMED_FRAMELESS", Fields!FRAMED_FRAMELESS.Value, 
+IIF(Parameters!HGroupby1.Value= "FINISH_GROUP", Fields!FINISH_GROUP.Value, Fields!HGroupby1.Value) &amp; IIF(Parameters!VGroupby1.Value= "FRAMED_FRAMELESS", Fields!FRAMED_FRAMELESS.Value, 
+IIF(Parameters!VGroupby1.Value= "FINISH_GROUP", Fields!FINISH_GROUP.Value, Fields!VGroupby1.Value))))</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox31">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=CountDistinct(Fields!ORDRNO.Value &amp; Fields!ITEM.Value &amp; IIF(Parameters!HGroupby1.Value= "FRAMED_FRAMELESS", Fields!FRAMED_FRAMELESS.Value, 
+IIF(Parameters!HGroupby1.Value= "FINISH_GROUP", Fields!FINISH_GROUP.Value, Fields!HGroupby1.Value) &amp; IIF(Parameters!VGroupby1.Value= "FRAMED_FRAMELESS", Fields!FRAMED_FRAMELESS.Value, 
+IIF(Parameters!VGroupby1.Value= "FINISH_GROUP", Fields!FINISH_GROUP.Value, Fields!VGroupby1.Value))))</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <TablixHeader>
+                <Size>0.25in</Size>
+                <CellContents>
+                  <Textbox Name="textbox4">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Total</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontWeight>Bold</FontWeight>
+                              <Format>d</Format>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <ZIndex>3</ZIndex>
+                    <Style>
+                      <BackgroundColor>Silver</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <HideIfNoRows>true</HideIfNoRows>
+              <DataElementOutput>NoOutput</DataElementOutput>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="matrix1_ColumnGroup1">
+                <GroupExpressions>
+                  <GroupExpression>=IIF(Parameters!HGroupby1.Value= "FRAMED_FRAMELESS", Fields!FRAMED_FRAMELESS.Value, 
+IIF(Parameters!HGroupby1.Value= "FINISH_GROUP", Fields!FINISH_GROUP.Value, Fields!HGroupby1.Value))</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields(iif(Parameters!HGroupby1.Value="HOUR_GROUP", "SCANTIME", 
+iif(Parameters!HGroupby1.Value="DSNGRP", "DG_LABEL", 
+iif(Parameters!HGroupby1.Value="FINISH_GROUP", "FINISH_GROUP_CUSTOM_SORT", 
+Parameters!HGroupby1.Value)))).Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>0.25in</Size>
+                <CellContents>
+                  <Textbox Name="textbox29">
+                    <CanGrow>true</CanGrow>
+                    <CanShrink>true</CanShrink>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=IIF(Parameters!HGroupby1.Value= "FRAMED_FRAMELESS", Fields!FRAMED_FRAMELESS.Value, 
+IIF(Parameters!HGroupby1.Value= "FINISH_GROUP", Fields!FINISH_GROUP.Value, 
+IIF(Parameters!HGroupby1.Value="DSNGRP", Fields!DG_LABEL.Value, 
+IIF(Parameters!HGroupby1.Value="USERID", Fields!HGroupby1.Value + " - " + Fields!USER_TRACKING_DESC.Value, 
+IIF(Parameters!HGroupby1.Value="TRACKING", Fields!HGroupby1.Value + " - " + Fields!TRACKING_ACTUAL_DESCRIPTION.Value, Fields!HGroupby1.Value)))))</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontWeight>Bold</FontWeight>
+                              <Format>d</Format>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <ZIndex>4</ZIndex>
+                    <Style>
+                      <BackgroundColor>Silver</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <DataElementOutput>Output</DataElementOutput>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <TablixHeader>
+                <Size>1in</Size>
+                <CellContents>
+                  <Textbox Name="textbox3">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Total</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontWeight>Bold</FontWeight>
+                              <Format>d</Format>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>textbox3</rd:DefaultName>
+                    <Style>
+                      <BackgroundColor>Silver</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <HideIfNoRows>true</HideIfNoRows>
+              <DataElementOutput>NoOutput</DataElementOutput>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="matrix1_RowGroup1">
+                <GroupExpressions>
+                  <GroupExpression>=IIF(Parameters!VGroupby1.Value= "FRAMED_FRAMELESS", Fields!FRAMED_FRAMELESS.Value, 
+IIF(Parameters!VGroupby1.Value= "FINISH_GROUP", Fields!FINISH_GROUP.Value, Fields!VGroupby1.Value))</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields(iif(Parameters!VGroupby1.Value="HOUR_GROUP", "SCANTIME", 
+iif(Parameters!VGroupby1.Value="DSNGRP", "DG_LABEL", 
+iif(Parameters!VGroupby1.Value="FINISH_GROUP", "FINISH_GROUP_CUSTOM_SORT", 
+Parameters!VGroupby1.Value)))).Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>1in</Size>
+                <CellContents>
+                  <Textbox Name="textbox30">
+                    <CanGrow>true</CanGrow>
+                    <CanShrink>true</CanShrink>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=IIF(Parameters!VGroupby1.Value= "FRAMED_FRAMELESS", Fields!FRAMED_FRAMELESS.Value, 
+IIF(Parameters!VGroupby1.Value= "FINISH_GROUP", Fields!FINISH_GROUP.Value, 
+IIF(Parameters!VGroupby1.Value="DSNGRP", Fields!DG_LABEL.Value, 
+IIF(Parameters!VGroupby1.Value="USERID", Fields!VGroupby1.Value + " - " + Fields!USER_TRACKING_DESC.Value, 
+IIF(Parameters!VGroupby1.Value="TRACKING", Fields!VGroupby1.Value + " - " + Fields!TRACKING_ACTUAL_DESCRIPTION.Value, Fields!VGroupby1.Value)))))</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontWeight>Bold</FontWeight>
+                              <Format>d</Format>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <ZIndex>2</ZIndex>
+                    <Style>
+                      <BackgroundColor>Silver</BackgroundColor>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <DataElementOutput>Output</DataElementOutput>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <RepeatColumnHeaders>true</RepeatColumnHeaders>
+        <RepeatRowHeaders>true</RepeatRowHeaders>
+        <DataSetName>allExpeditorOrders</DataSetName>
+        <Filters>
+          <Filter>
+            <FilterExpression>=Trim(Fields!SIDEFN.Value)</FilterExpression>
+            <Operator>In</Operator>
+            <FilterValues>
+              <FilterValue>=Parameters!finish.Value</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
+        <Left>0.17643in</Left>
+        <Height>0.75in</Height>
+        <Width>3in</Width>
+        <Style />
+      </Tablix>
+    </ReportItems>
+    <Height>0.75in</Height>
+    <Style />
+  </Body>
+  <Width>8.22786in</Width>
+  <Page>
+    <PageHeader>
+      <Height>0.76266in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="textbox2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=WeekdayName(Weekday(Globals!ExecutionTime)) &amp; ", " &amp; MonthName(Month(Globals!ExecutionTime))  &amp; " " &amp; Day(Globals!ExecutionTime) &amp; ", " &amp; Year(Globals!ExecutionTime) &amp; ",   " &amp; TimeValue(Globals!ExecutionTime)</Value>
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.02865in</Top>
+          <Left>0.15233in</Left>
+          <Height>0.22135in</Height>
+          <Width>3.09375in</Width>
+          <Style>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="textbox1">
+          <CanGrow>true</CanGrow>
+          <CanShrink>true</CanShrink>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Globals!ReportName</Value>
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>18pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.32849in</Top>
+          <Left>0.54101in</Left>
+          <Height>0.37167in</Height>
+          <Width>7.14584in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox8">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>R05-0059</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox8</rd:DefaultName>
+          <Left>7.22786in</Left>
+          <Height>0.25in</Height>
+          <Width>1in</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style />
+    </PageHeader>
+    <PageFooter>
+      <Height>0.23958in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="textbox74">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>textbox74</rd:DefaultName>
+          <Top>0.03385in</Top>
+          <Left>5.97786in</Left>
+          <Height>0.19792in</Height>
+          <Width>2.25in</Width>
+          <Style>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="txtPageNumber">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=WeekdayName(Weekday(Globals!ExecutionTime)) &amp; ", " &amp; MonthName(Month(Globals!ExecutionTime))  &amp; " " &amp; Day(Globals!ExecutionTime) &amp; ", " &amp; Year(Globals!ExecutionTime) &amp; ",   " &amp; TimeValue(Globals!ExecutionTime)</Value>
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.01823in</Top>
+          <Left>0.15233in</Left>
+          <Height>0.22135in</Height>
+          <Width>3.09375in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style />
+    </PageFooter>
+    <LeftMargin>0.1in</LeftMargin>
+    <RightMargin>0.1in</RightMargin>
+    <TopMargin>0.1in</TopMargin>
+    <BottomMargin>0.1in</BottomMargin>
+    <Style />
+  </Page>
+  <Description>R05-0059 MasterQueueCrosstabReport</Description>
+  <Author>BJ Kaledas</Author>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="WOOD03_Expeditor">
+      <DataSourceReference>WOOD03_Expeditor</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>d871cf78-3a08-4555-b187-fd39d2bab10b</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="WOOD03_Finishing">
+      <DataSourceReference>WOOD03_Finishing</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>5b512b75-2d2c-4d42-9ce8-aebde43c6650</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="PKI">
+      <DataSourceReference>PKI</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>e591fe1f-3879-4acd-a17f-6d8b21a2fb11</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="areaLeaderParameter">
+      <Query>
+        <DataSourceName>WOOD03_Finishing</DataSourceName>
+        <CommandText>SELECT DISTINCT 'None' AS AREALEADER
+FROM         PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS AS CSSI_LOCATIONS_1
+UNION ALL
+SELECT DISTINCT AREALEADER
+FROM         PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS AS CSSI_LOCATIONS_2
+WHERE     (AREALEADER IS NOT NULL)
+UNION ALL
+SELECT DISTINCT AREALEADER
+FROM         PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS_MULTIPLE AS CSSI_LOCATIONS_MULTIPLE
+WHERE     (AREALEADER IS NOT NULL) AND (AREALEADER NOT IN
+                          (SELECT DISTINCT AREALEADER
+                            FROM          PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS AS CSSI_LOCATIONS_2
+                            WHERE      (AREALEADER IS NOT NULL)))</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="AREALEADER">
+          <DataField>AREALEADER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="groupLeaderParameter">
+      <Query>
+        <DataSourceName>WOOD03_Finishing</DataSourceName>
+        <CommandText>SELECT DISTINCT 'None' AS GROUPLEADER
+FROM            PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS AS CSSI_LOCATIONS_1
+UNION ALL
+SELECT DISTINCT GROUPLEADER
+FROM            PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS AS CSSI_LOCATIONS_3
+WHERE        (GROUPLEADER IS NOT NULL)
+UNION ALL
+SELECT DISTINCT GROUPLEADER
+FROM            PROFITKEYDB.PK1.dbo.CSSI_LOCATIONSBUILDING AS CSSI_LOCATIONSBUILDING
+WHERE        (GROUPLEADER IS NOT NULL) AND (GROUPLEADER NOT IN
+                             (SELECT DISTINCT GROUPLEADER
+                               FROM            PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS AS CSSI_LOCATIONS_3
+                               WHERE        (GROUPLEADER IS NOT NULL)))</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="GROUPLEADER">
+          <DataField>GROUPLEADER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="departmentParameter">
+      <Query>
+        <DataSourceName>WOOD03_Finishing</DataSourceName>
+        <CommandText>SELECT DISTINCT 'None' AS DEPARTMENT
+FROM         PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS AS CSSI_LOCATIONS_1
+UNION ALL
+SELECT DISTINCT DEPARTMENT
+FROM         PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS AS CSSI_LOCATIONS_2
+WHERE     (DEPARTMENT IS NOT NULL)
+UNION ALL
+SELECT DISTINCT DEPARTMENT
+FROM         PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS_MULTIPLE AS CSSI_LOCATIONS_MULTIPLE
+WHERE     (DEPARTMENT IS NOT NULL) AND (DEPARTMENT NOT IN
+                          (SELECT DISTINCT DEPARTMENT
+                            FROM          PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS AS CSSI_LOCATIONS_3
+                            WHERE      (DEPARTMENT IS NOT NULL)))</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="DEPARTMENT">
+          <DataField>DEPARTMENT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="allExpeditorOrders">
+      <Query>
+        <DataSourceName>WOOD03_Expeditor</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@areaLeader">
+            <Value>=Parameters!areaLeader.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@groupLeader">
+            <Value>=Parameters!groupLeader.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@department">
+            <Value>=Parameters!department.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@plantManager">
+            <Value>=Parameters!plantManager.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@cabinetMisc">
+            <Value>=Parameters!cabinetMisc.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@latestShipWeek">
+            <Value>=Parameters!latestShipWeek.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@sortDuration">
+            <Value>=Parameters!sortDuration.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@locations">
+            <Value>=Parameters!locations.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@extraLocations">
+            <Value>=Parameters!extraLocations.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>procGetQueueCrosstab</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEM">
+          <DataField>ITEM</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AREALEADER">
+          <DataField>AREALEADER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GROUPLEADER">
+          <DataField>GROUPLEADER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PLANTMANAGER">
+          <DataField>PLANTMANAGER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PKGROUPLEADER">
+          <DataField>PKGROUPLEADER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DEPARTMENT">
+          <DataField>DEPARTMENT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="USERID2">
+          <DataField>USERID2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MONUMBER">
+          <DataField>MONUMBER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING_MOD">
+          <DataField>TRACKING_MOD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING">
+          <DataField>TRACKING</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING_ACTUAL_DESCRIPTION">
+          <DataField>TRACKING_ACTUAL_DESCRIPTION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BCMOTRACKING">
+          <DataField>BCMOTRACKING</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BCSUBTRACKING">
+          <DataField>BCSUBTRACKING</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LX_WCKEY">
+          <DataField>LX_WCKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WC_DESCR">
+          <DataField>WC_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OP_WCKEY">
+          <DataField>OP_WCKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OP_WC_DESCR">
+          <DataField>OP_WC_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING_MOD_OP">
+          <DataField>TRACKING_MOD_OP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING_MOD_OP_DESCRIPTION">
+          <DataField>TRACKING_MOD_OP_DESCRIPTION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING_DESCRIPTION">
+          <DataField>TRACKING_DESCRIPTION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOCATION">
+          <DataField>LOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BCREWORKDESC">
+          <DataField>BCREWORKDESC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESC1">
+          <DataField>DESC1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESC2">
+          <DataField>DESC2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESC3">
+          <DataField>DESC3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESC4">
+          <DataField>DESC4</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOPARTNO">
+          <DataField>MOPARTNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DUEDATE">
+          <DataField>DUEDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BCORDERDATE">
+          <DataField>BCORDERDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="RELEASEDATE">
+          <DataField>RELEASEDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DATEASGNDEPT">
+          <DataField>DATEASGNDEPT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DLVRTOLOC">
+          <DataField>DLVRTOLOC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BLUECARD">
+          <DataField>BLUECARD</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="ORDDATE">
+          <DataField>ORDDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DELVRNAME">
+          <DataField>DELVRNAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DSNGRP">
+          <DataField>DSNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FUTHLD">
+          <DataField>FUTHLD</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CRDFLG">
+          <DataField>CRDFLG</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MACDTE">
+          <DataField>MACDTE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="SHIPDT">
+          <DataField>SHIPDT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="WRHSDU">
+          <DataField>WRHSDU</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="CABTYP">
+          <DataField>CABTYP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HEIGHT">
+          <DataField>HEIGHT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DEPTH">
+          <DataField>DEPTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="STYLCD">
+          <DataField>STYLCD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DOORFN">
+          <DataField>DOORFN</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SIDEFN">
+          <DataField>SIDEFN</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DOORWD">
+          <DataField>DOORWD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SIDEWD">
+          <DataField>SIDEWD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMCOUNT">
+          <DataField>ITEMCOUNT</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PRIORITY">
+          <DataField>PRIORITY</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="JBCMPL">
+          <DataField>JBCMPL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PARTTYPE">
+          <DataField>PARTTYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRMPLY">
+          <DataField>PRMPLY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_DATE_REL">
+          <DataField>MOS_DATE_REL</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TRUCK">
+          <DataField>TRUCK</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SAMPLE">
+          <DataField>SAMPLE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="DEPARTUREDATE">
+          <DataField>DEPARTUREDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="LOCATIONDESCRIPTION">
+          <DataField>LOCATIONDESCRIPTION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DURATION">
+          <DataField>DURATION</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LASTUNIBOLSCAN">
+          <DataField>LASTUNIBOLSCAN</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ORDERTYPE">
+          <DataField>ORDERTYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PERSAMPLE">
+          <DataField>PERSAMPLE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="OPAQUE">
+          <DataField>OPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="NATURAL">
+          <DataField>NATURAL</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="VINTAGE">
+          <DataField>VINTAGE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMOPAQUE">
+          <DataField>HEIRLOOMOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMNONOPAQUE">
+          <DataField>HEIRLOOMNONOPAQUE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="COTTAGE">
+          <DataField>COTTAGE</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="PLASTIC">
+          <DataField>PLASTIC</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="TWOSTEP">
+          <DataField>TWOSTEP</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="STAIN">
+          <DataField>STAIN</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SPRAYSTAIN">
+          <DataField>SPRAYSTAIN</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="PERSAMPLEEQV">
+          <DataField>PERSAMPLEEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="OPAQUEEQV">
+          <DataField>OPAQUEEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="NATURALEQV">
+          <DataField>NATURALEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="VINTAGEEQV">
+          <DataField>VINTAGEEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMOPAQUEEQV">
+          <DataField>HEIRLOOMOPAQUEEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HEIRLOOMNONOPAQUEEQV">
+          <DataField>HEIRLOOMNONOPAQUEEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="COTTAGEEQV">
+          <DataField>COTTAGEEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="PLASTICEQV">
+          <DataField>PLASTICEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="TWOSTEPEQV">
+          <DataField>TWOSTEPEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="STAINEQV">
+          <DataField>STAINEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SPRAYSTAINEQV">
+          <DataField>SPRAYSTAINEQV</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="USER_TRACKING_DESC">
+          <DataField>USER_TRACKING_DESC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BLUECARD_LABEL">
+          <Value>=IIF(Fields!BLUECARD.Value = True, "Bluecard", "MO")</Value>
+        </Field>
+        <Field Name="DURATION_HOURS">
+          <Value>=Fields!DURATION.Value/60</Value>
+        </Field>
+        <Field Name="DURATION_DAYS">
+          <Value>=Int(Fields!DURATION_HOURS.Value/24)</Value>
+        </Field>
+        <Field Name="TOTAL42LINE">
+          <Value>=IIF(Fields!DSNGRP.Value = " ", Fields!ORDRNO.Value &amp; Fields!ITEM.Value, Nothing)</Value>
+        </Field>
+        <Field Name="TOTAL84LINE">
+          <Value>=IIF(Fields!DSNGRP.Value = "X", Fields!ORDRNO.Value &amp; Fields!ITEM.Value, Nothing)</Value>
+        </Field>
+        <Field Name="TOTALBH1LINE">
+          <Value>=IIF(Fields!DSNGRP.Value = "Z", Fields!ORDRNO.Value &amp; Fields!ITEM.Value, Nothing)</Value>
+        </Field>
+        <Field Name="TOTALBH2LINE">
+          <Value>=IIF(Fields!DSNGRP.Value = "Y", Fields!ORDRNO.Value &amp; Fields!ITEM.Value, Nothing)</Value>
+        </Field>
+        <Field Name="DG_LABEL">
+          <Value>=IIF(Fields!DSNGRP.Value = " ", "42 Line",
+IIF(Fields!DSNGRP.Value = "X", "84 Line",
+IIF(Fields!DSNGRP.Value = "Z", "BH1 Line",
+IIF(Fields!DSNGRP.Value = "Y", "BH2 Line", Nothing))))</Value>
+        </Field>
+        <Field Name="FRAMED_FRAMELESS">
+          <Value>=IIF(Fields!DSNGRP.Value = " ", "Framed",
+IIF(Fields!DSNGRP.Value = "Y", "Framed",
+IIF(Fields!DSNGRP.Value = "X", "Frameless",
+IIF(Fields!DSNGRP.Value = "Z", "Frameless", ""))))</Value>
+        </Field>
+        <Field Name="HGroubyname1">
+          <Value>=Parameters!HGroupby1.Label</Value>
+        </Field>
+        <Field Name="VGroupbyname1">
+          <Value>=Parameters!VGroupby1.Label</Value>
+        </Field>
+        <Field Name="FINISH_GROUP">
+          <Value>=IIF(Fields!OPAQUE.Value = True and Fields!COTTAGE.Value = False and Fields!HEIRLOOMOPAQUE.Value = False And Fields!PERSAMPLE.Value = False and Fields!VINTAGE.Value = False, "Opaque",
+IIF(Fields!NATURAL.Value = True and Fields!HEIRLOOMNONOPAQUE.Value = False, "Natural",
+IIF(Fields!NATURAL.Value = True and Fields!HEIRLOOMNONOPAQUE.Value = True, "Natural/Glaze",
+IIF(Fields!VINTAGE.Value = True, "Vintage",
+IIF(Fields!COTTAGE.Value = True and Fields!VINTAGE.Value = False, "Cottage",
+IIF(Fields!HEIRLOOMOPAQUE.Value = True, "Opaque Heirloom",
+IIF(Fields!HEIRLOOMNONOPAQUE.Value = True and Fields!NATURAL.Value = False and Fields!SPRAYSTAIN.Value = False and Fields!TWOSTEP.Value = False, "Heirloom",
+IIF(Fields!TWOSTEP.Value = True and Fields!HEIRLOOMNONOPAQUE.Value = False, "Two Step",
+IIF(Fields!TWOSTEP.Value = True and Fields!HEIRLOOMNONOPAQUE.Value = True, "Two Step/Glaze",
+IIF(Fields!SPRAYSTAIN.Value = True and Fields!HEIRLOOMNONOPAQUE.Value = True, "Sandstone II",
+IIF(Fields!SPRAYSTAIN.Value = True and Fields!HEIRLOOMNONOPAQUE.Value = False, "Spray Stain",
+IIF(Fields!STAIN.Value = True and Fields!COTTAGE.Value = False and Fields!HEIRLOOMNONOPAQUE.Value = False and Fields!PERSAMPLE.Value = False and Fields!TWOSTEP.Value = False, "Stain",
+IIF (Fields!PERSAMPLE.Value = True and Fields!PERSAMPLEEQV.Value Is Nothing, "Special",
+IIF(Fields!PLASTIC.Value = True, "Plastic", 
+IIF(Not Fields!FINISH_GROUP_EQV.Value is nothing , Fields!FINISH_GROUP_EQV.Value, "Other")))))))))))))))</Value>
+        </Field>
+        <Field Name="FINISH_GROUP_EQV">
+          <Value>=IIF(Fields!OPAQUEEQV.Value = True and Fields!COTTAGEEQV.Value = False and Fields!HEIRLOOMOPAQUEEQV.Value = False and Fields!VINTAGEEQV.Value = False, "Opaque",
+IIF(Fields!NATURALEQV.Value = True and Fields!HEIRLOOMNONOPAQUEEQV.Value = False, "Natural",
+IIF(Fields!NATURALEQV.Value = True and Fields!HEIRLOOMNONOPAQUEEQV.Value = True, "Natural/Glaze",
+IIF(Fields!VINTAGEEQV.Value = True, "Vintage",
+IIF(Fields!COTTAGEEQV.Value = True and Fields!VINTAGEEQV.Value = False, "Cottage",
+IIF(Fields!HEIRLOOMOPAQUEEQV.Value = True, "Opaque Heirloom",
+IIF(Fields!HEIRLOOMNONOPAQUEEQV.Value = True and Fields!NATURALEQV.Value = False and Fields!SPRAYSTAINEQV.Value = False and Fields!TWOSTEPEQV.Value = False, "Heirloom",
+IIF(Fields!TWOSTEPEQV.Value = True and Fields!HEIRLOOMNONOPAQUEEQV.Value = False, "Two Step",
+IIF(Fields!TWOSTEPEQV.Value = True and Fields!HEIRLOOMNONOPAQUEEQV.Value = True, "Two Step/Glaze",
+IIF(Fields!SPRAYSTAINEQV.Value = True and Fields!HEIRLOOMNONOPAQUEEQV.Value = True, "Sandstone II",
+IIF(Fields!SPRAYSTAINEQV.Value = True and Fields!HEIRLOOMNONOPAQUEEQV.Value = False, "Spray Stain",
+IIF(Fields!STAINEQV.Value = True and Fields!COTTAGEEQV.Value = False and Fields!HEIRLOOMNONOPAQUEEQV.Value = False and Fields!PERSAMPLEEQV.Value = False and Fields!TWOSTEPEQV.Value = False, "Stain",
+IIF(Fields!PLASTICEQV.Value = True, "Plastic", nothing)))))))))))))</Value>
+        </Field>
+        <Field Name="FINISH_GROUP_CUSTOM_SORT">
+          <Value>=IIF(Fields!FINISH_GROUP.Value = "Opaque", 1,
+IIF(Fields!FINISH_GROUP.Value = "Opaque Heirloom", 2,
+IIF(Fields!FINISH_GROUP.Value = "Vintage", 3,
+IIF(Fields!FINISH_GROUP.Value = "Stain", 4,
+IIF(Fields!FINISH_GROUP.Value = "Two Step", 5,
+IIF(Fields!FINISH_GROUP.Value = "Two Step/Glaze", 6,
+IIF(Fields!FINISH_GROUP.Value = "Heirloom", 7,
+IIF(Fields!FINISH_GROUP.Value = "Cottage", 8,
+IIF(Fields!FINISH_GROUP.Value = "Natural", 9,
+IIF(Fields!FINISH_GROUP.Value = "Natural/Glaze", 10,
+IIF(Fields!FINISH_GROUP.Value = "Spray Stain", 11,
+IIF(Fields!FINISH_GROUP.Value = "Sandstone II", 12, 13))))))))))))</Value>
+        </Field>
+        <Field Name="FINISH_SYSTEM">
+          <Value>=iif(Fields!FINISH_GROUP.Value = "Opaque" Or Fields!FINISH_GROUP.Value = "Opaque Heirloom" Or Fields!FINISH_GROUP.Value = "Vintage", "Opaque System",
+iif(Fields!FINISH_GROUP.Value = "Stain" Or Fields!FINISH_GROUP.Value = "Two Step" Or Fields!FINISH_GROUP.Value = "Two Step/Glaze" Or Fields!FINISH_GROUP.Value = "Heirloom" Or Fields!FINISH_GROUP.Value = "Cottage", "Stain System",
+iif(Fields!FINISH_GROUP.Value = "Spray Stain" Or Fields!FINISH_GROUP.Value = "Sandstone II", "Spray Stain System",
+iif(Fields!FINISH_GROUP.Value = "Natural" Or Fields!FINISH_GROUP.Value = "Natural/Glaze", "Natural System", Nothing))))</Value>
+        </Field>
+        <Field Name="HEIRLOOM_SYSTEM">
+          <Value>=iif(Fields!FINISH_GROUP.Value = "Opaque Heirloom" Or Fields!FINISH_GROUP.Value = "Heirloom", "Heirloom System", Nothing)</Value>
+        </Field>
+        <Field Name="HGroupby1">
+          <Value>=Fields(Parameters!HGroupby1.Value).Value</Value>
+        </Field>
+        <Field Name="VGroupby1">
+          <Value>=Fields(Parameters!VGroupby1.Value).Value</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="latestShipWeek">
+      <Query>
+        <DataSourceName>WOOD03_Expeditor</DataSourceName>
+        <CommandText>SELECT    DATEADD(ww, 11, SHIPDATE) AS SHIPDATE
+FROM         CURRENTSHIPDATE</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="SHIPDATE">
+          <DataField>SHIPDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="plantManager">
+      <Query>
+        <DataSourceName>WOOD03_Expeditor</DataSourceName>
+        <CommandText>SELECT DISTINCT 'None' AS PLANTMANAGER
+FROM         PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS AS CSSI_LOCATIONS_1
+UNION ALL
+SELECT DISTINCT PLANTMANAGER
+FROM         PROFITKEYDB.PK1.dbo.CSSI_LOCATIONS AS CSSI_LOCATIONS_2
+WHERE     (PLANTMANAGER IS NOT NULL)</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="PLANTMANAGER">
+          <DataField>PLANTMANAGER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="locations">
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     LOCATIONCODE
+FROM         CSSI_LOCATIONS AS CSSI_LOCATIONS_1
+WHERE     (BLUECARDLOCATION = 0)</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="LOCATIONCODE">
+          <DataField>LOCATIONCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="finishes">
+      <Query>
+        <DataSourceName>WOOD03_Expeditor</DataSourceName>
+        <CommandText>SELECT DISTINCT FINISHCODE
+FROM            Finishing.dbo.FINISHES</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="FINISHCODE">
+          <DataField>FINISHCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="extralocations">
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     top 1   'None' as LOCATIONCODE
+FROM            CSSI_LOCATIONS 
+UNION ALL
+SELECT        LOCATIONCODE
+FROM            CSSI_LOCATIONS AS CSSI_LOCATIONS_1
+WHERE        (BLUECARDLOCATION = 0)</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="LOCATIONCODE">
+          <DataField>LOCATIONCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="HGroupby1">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>First Horizontal Group:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>="TRACKING"</Value>
+            <Label>="Location"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="MACDTE"</Value>
+            <Label>="Ship Date"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="PARTTYPE"</Value>
+            <Label>="Type"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="SIDEFN"</Value>
+            <Label>="Finish"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="FINISH_GROUP"</Value>
+            <Label>="Finish Family"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="FRAMED_FRAMELESS"</Value>
+            <Label>="Framed/Frameless"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="USERID"</Value>
+            <Label>="User"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="DSNGRP"</Value>
+            <Label>="Design Group"</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="VGroupby1">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>First Vertical Group:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>="TRACKING"</Value>
+            <Label>="Location"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="MACDTE"</Value>
+            <Label>="Ship Date"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="PARTTYPE"</Value>
+            <Label>="Type"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="SIDEFN"</Value>
+            <Label>="Finish"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="FINISH_GROUP"</Value>
+            <Label>="Finish Family"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="FRAMED_FRAMELESS"</Value>
+            <Label>="Framed/Frameless"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="USERID"</Value>
+            <Label>="User"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="DSNGRP"</Value>
+            <Label>="Design Group"</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="areaLeader">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="None"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Area Leader:</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>areaLeaderParameter</DataSetName>
+          <ValueField>AREALEADER</ValueField>
+          <LabelField>AREALEADER</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="groupLeader">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="None"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Group Leader:</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>groupLeaderParameter</DataSetName>
+          <ValueField>GROUPLEADER</ValueField>
+          <LabelField>GROUPLEADER</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="department">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="None"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Department:</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>departmentParameter</DataSetName>
+          <ValueField>DEPARTMENT</ValueField>
+          <LabelField>DEPARTMENT</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="plantManager">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="None"</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Plant Manager:</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>plantManager</DataSetName>
+          <ValueField>PLANTMANAGER</ValueField>
+          <LabelField>PLANTMANAGER</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="lineupTail">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="T*"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Lineup/Tail</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>="T*"</Value>
+            <Label>="Both"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="TRUCK"</Value>
+            <Label>="On Lineup"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="TAIL"</Value>
+            <Label>="Tail"</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="latestShipWeek">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>latestShipWeek</DataSetName>
+          <ValueField>SHIPDATE</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Please Enter the Latest Ship Week:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="cabinetMisc">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="CABINET"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Cabinet/Miscellaneous/Promptly/Sample:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>="BOTH"</Value>
+            <Label>Both Cab and Misc</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="CABINET"</Value>
+            <Label>Cabinet</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="MISCELLANEOUS"</Value>
+            <Label>Miscellaneous</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="PROMPTLY"</Value>
+            <Label>Promptly</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="SAMPLE"</Value>
+            <Label>Sample</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="locations">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>locations</DataSetName>
+          <ValueField>LOCATIONCODE</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Special Logic Wand Locations:</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>locations</DataSetName>
+          <ValueField>LOCATIONCODE</ValueField>
+          <LabelField>LOCATIONCODE</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="extraLocations">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="None"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Extra Wand Locations:</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>extralocations</DataSetName>
+          <ValueField>LOCATIONCODE</ValueField>
+          <LabelField>LOCATIONCODE</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="finish">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>finishes</DataSetName>
+          <ValueField>FINISHCODE</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Please Select Finishes:</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>finishes</DataSetName>
+          <ValueField>FINISHCODE</ValueField>
+          <LabelField>FINISHCODE</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="sortDuration">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="None"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Sort Duration:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>="None"</Value>
+            <Label>Do Not Sort</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>="Longest to Shortest"</Value>
+            <Label>Longest to Shortest</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>= "Shortest to Longest"</Value>
+            <Label>Shortest to Longest</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="expandAll">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=False</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Expand All Details:</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>7fd2a26b-e911-4d4a-a698-055b97d318e8</rd:ReportID>
+</Report>

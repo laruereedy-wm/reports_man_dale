@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="MarketForecast1">
+      <DataSourceReference>MarketForecast1</DataSourceReference>
+      <rd:DataSourceID>22b8f3b3-7b04-404e-8bda-5f44403ba10c</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>0.2in</BottomMargin>
+  <RightMargin>0.1in</RightMargin>
+  <ReportParameters>
+    <ReportParameter Name="PMDealerAccount">
+      <DataType>String</DataType>
+      <Prompt>PMDealerAccount</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="PMForecastYear">
+      <DataType>Integer</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>PMForecastYear</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <DataSetName>MainData</DataSetName>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox1">
+                      <rd:DefaultName>textbox1</rd:DefaultName>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BackgroundColor>Gainsboro</BackgroundColor>
+                        <PaddingTop>2.2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>="Showroom Type: " &amp; Fields!ShowroomTypeAll.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.15625in</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Style>
+          <BackgroundColor>Gainsboro</BackgroundColor>
+        </Style>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.8in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.15625in</Height>
+  </Body>
+  <rd:ReportID>f33df083-1e56-497d-9f7c-3ed6360e1916</rd:ReportID>
+  <DataSets>
+    <DataSet Name="MainData">
+      <Query>
+        <CommandText>SELECT     FORECASTYEAR, DEALER, DISPLAY, FACTORYREP, MDF, OTHER, TRAINING, ACCOUNT, SUMMARY, EXCLUSIVE, FLAGSHIP, GALLERY, BOUTIQUE, 
+                      CONVENTIONAL, BUILDERSELECTION, NONDISPLAYING, OTHERSTYLE, ACCOUNTNEW, ACCOUNTGROWTH, ACCOUNTSTRATEGICGROWTH, 
+                      ACCOUNTMATURE, ACCOUNTTRANSITION, ACCOUNTCLOSE, ACCOUNTBUILDER, ACCOUNTPROJECT
+FROM         FORECASTDETAILS
+WHERE     (FORECASTYEAR = @PMForecastYear) AND (ACCOUNT = @PMDealerAccount)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@PMForecastYear">
+            <Value>=Parameters!PMForecastYear.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@PMDealerAccount">
+            <Value>=Parameters!PMDealerAccount.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="FORECASTYEAR">
+          <rd:TypeName>System.Int16</rd:TypeName>
+          <DataField>FORECASTYEAR</DataField>
+        </Field>
+        <Field Name="DEALER">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>DEALER</DataField>
+        </Field>
+        <Field Name="DISPLAY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>DISPLAY</DataField>
+        </Field>
+        <Field Name="FACTORYREP">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>FACTORYREP</DataField>
+        </Field>
+        <Field Name="MDF">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>MDF</DataField>
+        </Field>
+        <Field Name="OTHER">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>OTHER</DataField>
+        </Field>
+        <Field Name="TRAINING">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TRAINING</DataField>
+        </Field>
+        <Field Name="ACCOUNT">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ACCOUNT</DataField>
+        </Field>
+        <Field Name="SUMMARY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>SUMMARY</DataField>
+        </Field>
+        <Field Name="EXCLUSIVE">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>EXCLUSIVE</DataField>
+        </Field>
+        <Field Name="FLAGSHIP">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>FLAGSHIP</DataField>
+        </Field>
+        <Field Name="GALLERY">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>GALLERY</DataField>
+        </Field>
+        <Field Name="BOUTIQUE">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>BOUTIQUE</DataField>
+        </Field>
+        <Field Name="CONVENTIONAL">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>CONVENTIONAL</DataField>
+        </Field>
+        <Field Name="BUILDERSELECTION">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>BUILDERSELECTION</DataField>
+        </Field>
+        <Field Name="NONDISPLAYING">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>NONDISPLAYING</DataField>
+        </Field>
+        <Field Name="OTHERSTYLE">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>OTHERSTYLE</DataField>
+        </Field>
+        <Field Name="ACCOUNTNEW">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ACCOUNTNEW</DataField>
+        </Field>
+        <Field Name="ACCOUNTGROWTH">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ACCOUNTGROWTH</DataField>
+        </Field>
+        <Field Name="ACCOUNTSTRATEGICGROWTH">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ACCOUNTSTRATEGICGROWTH</DataField>
+        </Field>
+        <Field Name="ACCOUNTMATURE">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ACCOUNTMATURE</DataField>
+        </Field>
+        <Field Name="ACCOUNTTRANSITION">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ACCOUNTTRANSITION</DataField>
+        </Field>
+        <Field Name="ACCOUNTCLOSE">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ACCOUNTCLOSE</DataField>
+        </Field>
+        <Field Name="ACCOUNTBUILDER">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ACCOUNTBUILDER</DataField>
+        </Field>
+        <Field Name="ACCOUNTPROJECT">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ACCOUNTPROJECT</DataField>
+        </Field>
+        <Field Name="ShowRoomType">
+          <Value>=IIf(Fields!FLAGSHIP.Value="True",
+    "Flagship",
+IIf(Fields!GALLERY.Value="True",
+    "Gallery",
+IIf(Fields!OTHERSTYLE.Value="True",
+    "Other",    
+IIf(Fields!BOUTIQUE.Value="True",
+    "Boutique",      
+IIf(Fields!CONVENTIONAL.Value="True",
+    "Conventional",
+IIf(Fields!BUILDERSELECTION.Value="True",
+    "Builder Select",   
+IIf(Fields!NONDISPLAYING.Value="True",
+    "Non Displaying", "Undefined")))))))</Value>
+        </Field>
+        <Field Name="ShowroomTypeAll">
+          <Value>=IIf(Fields!FLAGSHIP.Value=True,"Flagship","") &amp; 
+
+IIf(Fields!FLAGSHIP.Value=True AND Fields!GALLERY.Value=True, ", Gallery", IIf(Fields!GALLERY.Value=True,"Gallery","")) &amp;
+
+IIf((Fields!FLAGSHIP.Value=True OR Fields!GALLERY.Value=True) AND Fields!BOUTIQUE.Value=True, ", Boutique", IIf(Fields!BOUTIQUE.Value="True","Boutique", "")) &amp;
+
+IIf((Fields!FLAGSHIP.Value=True OR Fields!GALLERY.Value=True OR Fields!BOUTIQUE.Value=True) AND Fields!CONVENTIONAL.Value=True, ", Conventional", IIf(Fields!CONVENTIONAL.Value=True, "Conventional", "")) &amp;
+
+IIf((Fields!FLAGSHIP.Value=True OR Fields!GALLERY.Value=True OR Fields!BOUTIQUE.Value=True OR Fields!CONVENTIONAL.Value=True) AND Fields!BUILDERSELECTION.Value=True, ", Builder Select", IIf(Fields!BUILDERSELECTION.Value=True, "Builder Select", "")) &amp;
+
+IIf((Fields!FLAGSHIP.Value=True OR Fields!GALLERY.Value=True OR Fields!BOUTIQUE.Value=True OR Fields!CONVENTIONAL.Value=True OR Fields!BUILDERSELECTION.Value=True) AND Fields!NONDISPLAYING.Value=True, ", Non-Displaying", IIf(Fields!NONDISPLAYING.Value=True, "Non-Displaying", "")) &amp;
+
+IIf((Fields!FLAGSHIP.Value=False OR Fields!FLAGSHIP.Value=Nothing) AND (Fields!GALLERY.Value=False OR Fields!GALLERY.Value=Nothing) AND (Fields!BOUTIQUE.Value=False OR Fields!BOUTIQUE.Value=Nothing) AND (Fields!CONVENTIONAL.Value=False OR Fields!CONVENTIONAL.Value=Nothing) AND (Fields!BUILDERSELECTION.Value=False OR Fields!BUILDERSELECTION.Value=Nothing) AND (Fields!NONDISPLAYING.Value=False OR Fields!NONDISPLAYING.Value=Nothing) AND (Fields!OTHERSTYLE.Value=False OR Fields!OTHERSTYLE.Value=Nothing), "Undefined", "")</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="NoRows">
+      <Query>
+        <CommandText>SELECT     1 AS NoRowsCheck</CommandText>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="NoRowsCheck">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>NoRowsCheck</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Code />
+  <Width>1.8in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+</Report>

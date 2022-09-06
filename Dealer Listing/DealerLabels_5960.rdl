@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="table1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>2.5935in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.125in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="DealerNo1">
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!DealerNo.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>DealerNo1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                    </Textbox>
+                    <rd:Selected>true</rd:Selected>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.875in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="DealerNo">
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Name.Value &amp; vbCrLf
+ &amp; IIF(Trim(Fields!ADDRESS1.Value) = "","",Trim(Fields!ADDRESS1.Value) &amp; vbCrLf)
+ &amp; IIF(Trim(Fields!ADDRESS2.Value) = "","",Trim(Fields!ADDRESS2.Value) &amp; vbCrLf)
+ &amp; IIF(Trim(Fields!ADDRESS3.Value) = "","",Trim(Fields!ADDRESS3.Value) &amp; vbCrLf)
+ &amp; Trim(Fields!CITY.Value) &amp; ", " &amp; Trim(Fields!STATE.Value) &amp; " " &amp; Fields!ZIP.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>DealerNo</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>1pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <rd:Selected>true</rd:Selected>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="table1_Territory">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!Territory.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!Territory.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="table1_Details_Group">
+                    <DataElementName>Detail</DataElementName>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!DealerNo.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember />
+                    <TablixMember />
+                  </TablixMembers>
+                  <DataElementName>Detail_Collection</DataElementName>
+                  <DataElementOutput>Output</DataElementOutput>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DealerInfo</DataSetName>
+        <Height>1in</Height>
+        <Width>2.5935in</Width>
+        <Style />
+      </Tablix>
+    </ReportItems>
+    <Height>1in</Height>
+    <Style />
+  </Body>
+  <Width>2.5935in</Width>
+  <Page>
+    <LeftMargin>0.21975in</LeftMargin>
+    <RightMargin>0.21975in</RightMargin>
+    <TopMargin>0.5in</TopMargin>
+    <BottomMargin>0.5in</BottomMargin>
+    <Columns>3</Columns>
+    <ColumnSpacing>0.14in</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VM250_WIPS_StagedData">
+      <DataSourceReference>VM250_WIPS_StagedData</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>e5404a7a-035d-4420-aa58-b176a9bb8f18</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DealerInfo">
+      <Query>
+        <DataSourceName>VM250_WIPS_StagedData</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@docID">
+            <Value>=Parameters!Documents.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Territory">
+            <Value>=Parameters!Territory.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@AccountType">
+            <Value>=Parameters!AccountType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Address">
+            <Value>=Parameters!Address.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Active">
+            <Value>=Parameters!Active.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>DECLARE @distID INT = 13 --13 -&gt; Paper/Mail
+DECLARE @zero BIT = 0;
+DECLARE @one BIT = 1;
+
+SELECT
+	CAST(RM00101.[SALSTERR] AS VARCHAR(2)) AS Territory
+	, RTRIM(RM00101.CUSTNMBR) AS DealerNo
+	, Docs.DocID AS Document
+	, RTRIM(RM00101.CUSTNAME) AS Name
+	, RM00102.ADRSCODE
+	, RTRIM(RM00101.ADDRESS1) AS ADDRESS1
+	, RTRIM(RM00101.ADDRESS2) AS ADDRESS2
+	, RTRIM(RM00101.ADDRESS3) AS ADDRESS3
+	, RTRIM(RM00101.CITY) AS CITY
+	, LEFT(RTRIM(RM00101.STATE),3) AS STATE
+	, RTRIM(RM00101.ZIP) AS ZIP
+	, RTRIM(RM00101.PHONE1) AS PHONE1
+	,'(' + SUBSTRING(RM00101.PHONE1,1, 3) + ') ' + SUBSTRING(RM00101.PHONE1,4, 3) + '-' + SUBSTRING(RM00101.PHONE1,7, 4) AS CleanPhone
+	, RTRIM(RM00101.FAX) AS FAX
+	,'(' + SUBSTRING(RM00101.FAX,1, 3) + ') ' + SUBSTRING(RM00101.FAX,4, 3) + '-' + SUBSTRING(RM00101.FAX,7, 4) AS CleanFax
+	, RTRIM(RM00101.CUSTCLAS) AS CUSTCLAS
+	, CASE RTRIM(RM00101.CUSTCLAS)
+		WHEN 'NON-DISPLAY DLR' THEN 'D'
+		WHEN 'DEALER' THEN 'D'
+		WHEN 'BUILDER' THEN 'B'
+		WHEN 'LIMITED DIRECT' THEN 'B'
+		WHEN 'PROMO BUILDER' THEN 'B'
+		WHEN 'SALES REP' THEN 'S'
+		ELSE 'O'
+		END AS myCustClass
+	, CASE WHEN RM00101.CUSTCLAS IN ('NON-DISPLAY DLR', 'DEALER') 
+		THEN @one ELSE @zero END AS IsDealer
+	, CASE WHEN RM00101.CUSTCLAS IN ('BUILDER', 'LIMITED DIRECT', 'PROMO BUILDER') 
+		THEN @one ELSE @zero END AS IsBuilder
+	, CASE WHEN RM00101.CUSTCLAS = 'SALES REP' 
+		THEN @one ELSE @zero END AS IsSalesRep
+	, CASE WHEN ISNULL(RM00101.INACTIVE, 0) = 1 
+		THEN @zero ELSE @one END AS InUse
+	, LEFT(RTRIM(RM00101.USERDEF1),15) AS ControlDealerNo
+FROM WIPS_StagedData.dbo.GP_RM00101 AS RM00101
+LEFT JOIN WIPS_StagedData.dbo.GP_RM00102 AS RM00102
+	ON RM00101.CUSTNMBR = RM00102.CUSTNMBR
+LEFT JOIN WIPS_StagedData.dbo.GP_RM00103 AS RM00103
+	ON RM00101.CUSTNMBR = RM00103.CUSTNMBR
+LEFT JOIN (
+	SELECT Account, DocID, DistID, Quantity
+	FROM [WIPS_StagedData].[dbo].[WMDoc_SelectedDocumentDistributionOptions]
+	WHERE DocID = @docID AND DistID = @distID
+	) Docs
+	ON RM00101.CUSTNMBR = Docs.Account
+WHERE
+	RM00102.ADRSCODE IN (@Address)
+	AND CASE RTRIM(RM00101.CUSTCLAS)
+		WHEN 'NON-DISPLAY DLR' THEN 'D'
+		WHEN 'DEALER' THEN 'D'
+		WHEN 'BUILDER' THEN 'B'
+		WHEN 'LIMITED DIRECT' THEN 'B'
+		WHEN 'PROMO BUILDER' THEN 'B'
+		WHEN 'SALES REP' THEN 'S'
+		ELSE 'O'
+		END IN (@AccountType)
+	AND ((ISNULL(RM00101.INACTIVE, 0) = 0 AND @Active = 1) OR (@Active = 0))
+	AND CAST(RM00101.[SALSTERR] AS VARCHAR(2)) IN (@Territory)
+	AND ISNULL(Docs.DocID,0) = @docID</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="Territory">
+          <DataField>Territory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DealerNo">
+          <DataField>DealerNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Document">
+          <DataField>Document</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ADRSCODE">
+          <DataField>ADRSCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ADDRESS1">
+          <DataField>ADDRESS1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ADDRESS2">
+          <DataField>ADDRESS2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ADDRESS3">
+          <DataField>ADDRESS3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CITY">
+          <DataField>CITY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="STATE">
+          <DataField>STATE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ZIP">
+          <DataField>ZIP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PHONE1">
+          <DataField>PHONE1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CleanPhone">
+          <DataField>CleanPhone</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FAX">
+          <DataField>FAX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CleanFax">
+          <DataField>CleanFax</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CUSTCLAS">
+          <DataField>CUSTCLAS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="myCustClass">
+          <DataField>myCustClass</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IsDealer">
+          <DataField>IsDealer</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="IsBuilder">
+          <DataField>IsBuilder</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="IsSalesRep">
+          <DataField>IsSalesRep</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="InUse">
+          <DataField>InUse</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="ControlDealerNo">
+          <DataField>ControlDealerNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Territory">
+      <Query>
+        <DataSourceName>VM250_WIPS_StagedData</DataSourceName>
+        <CommandText>SELECT DISTINCT CAST(RM00101.[SALSTERR] AS VARCHAR(2)) AS Territory FROM WIPS_StagedData.dbo.GP_RM00101 AS RM00101
+ORDER BY CAST(RM00101.[SALSTERR] AS VARCHAR(2))</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Territory">
+          <DataField>Territory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="Territory">
+      <DataType>String</DataType>
+      <Prompt>Territory</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Territory</DataSetName>
+          <ValueField>Territory</ValueField>
+          <LabelField>Territory</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="AccountType">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>D</Value>
+          <Value>B</Value>
+          <Value>S</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>AccountType</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>D</Value>
+            <Label>Dealer</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>B</Value>
+            <Label>Builder</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>S</Value>
+            <Label>SalesRep</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Active">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Active</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>Active</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>All</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Address">
+      <DataType>String</DataType>
+      <Prompt>Address</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>PRIMARY</Value>
+            <Label>Primary</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>SHIPTOADDR</Value>
+            <Label>ShipTo</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>BILLING</Value>
+            <Label>BillTo</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>ONLINE</Value>
+            <Label>OnLine</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Documents">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>0</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Documents</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>0</Value>
+            <Label>Any</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>15</Value>
+            <Label>Price Book</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>16</Value>
+            <Label>Bulletin</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>5b6de298-14cb-48c5-ad88-c866e6f27511</rd:ReportID>
+</Report>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="PKI">
+      <DataSourceReference>PKI</DataSourceReference>
+      <rd:DataSourceID>4d7b9d29-b55d-4aca-8d7c-bff760c0115c</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>1in</BottomMargin>
+  <RightMargin>1in</RightMargin>
+  <ReportParameters>
+    <ReportParameter Name="OP_MOSJOB">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>OP_MOSJOB</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Table Name="mainTable">
+        <DataSetName>mainData</DataSetName>
+        <TableGroups>
+          <TableGroup>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="WOOD_SPECIE">
+                          <rd:DefaultName>WOOD_SPECIE</rd:DefaultName>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!WOOD_SPECIE.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+            <Grouping Name="table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!OP_SEQNUM.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+          </TableGroup>
+        </TableGroups>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.625in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.25in</Height>
+  </Body>
+  <rd:ReportID>3459718c-8de9-4a4f-a1a4-a7b10ccad258</rd:ReportID>
+  <LeftMargin>1in</LeftMargin>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Query>
+        <CommandText>SELECT     OP.OP_SEQNUM, RNO.RNO_OPSEQNUM, RNO.RNO_LINE_NO, RNO.RNO_DESCR, OP.OP_MOSJOB
+FROM         OP LEFT OUTER JOIN
+                      RNO ON OP.OP_SEQNUM = RNO.RNO_OPSEQNUM
+WHERE     (RNO.RNO_LINE_NO = 26) AND (OP.OP_MOSJOB = @OP_MOSJOB)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@OP_MOSJOB">
+            <Value>=Parameters!OP_MOSJOB.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>PKI</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="OP_SEQNUM">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>OP_SEQNUM</DataField>
+        </Field>
+        <Field Name="RNO_OPSEQNUM">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>RNO_OPSEQNUM</DataField>
+        </Field>
+        <Field Name="RNO_LINE_NO">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>RNO_LINE_NO</DataField>
+        </Field>
+        <Field Name="RNO_DESCR">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>RNO_DESCR</DataField>
+        </Field>
+        <Field Name="OP_MOSJOB">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>OP_MOSJOB</DataField>
+        </Field>
+        <Field Name="WOOD_SPECIE">
+          <Value>=Mid(Fields!RNO_DESCR.Value, 12, 5)</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Width>0.625in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+</Report>

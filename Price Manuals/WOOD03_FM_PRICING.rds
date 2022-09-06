@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="WOOD03_FM_PRICING">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=WOOD03;Initial Catalog=FM_PRICING</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>97365cbb-b2e9-4922-b991-49b4bbd2db4b</DataSourceID>
+</RptDataSource>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="WOOD03_SIS">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=WOOD03;Initial Catalog=SIS</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>ac57c776-ee78-46e5-a123-db0ada72025d</DataSourceID>
+</RptDataSource>

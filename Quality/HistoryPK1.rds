@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="HistoryPK1">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=VM236;Initial Catalog=HISTORY</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>9b113b35-0f65-4818-a72b-d49adb40a635</DataSourceID>
+</RptDataSource>

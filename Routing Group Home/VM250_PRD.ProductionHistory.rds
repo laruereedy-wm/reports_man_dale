@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="VM250_PRD.ProductionHistory">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=VM250;Initial Catalog=PRD.ProductionHistory</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>4d1df47d-3306-4b46-8953-e119e75eca42</DataSourceID>
+</RptDataSource>

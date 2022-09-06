@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="VM250_MABoilerRoomForm">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=VM250;Initial Catalog=MA.BoilerRoomForm</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>9f192e1a-9acf-48ff-8f56-9f9f5cfe1bb7</DataSourceID>
+</RptDataSource>

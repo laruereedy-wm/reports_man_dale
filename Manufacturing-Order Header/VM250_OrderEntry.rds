@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="VM250_OrderEntry">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=VM250;Initial Catalog=OrderEntry.OrderInfo</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>42261c09-0fb4-4dbc-ad84-c3932e7497d1</DataSourceID>
+</RptDataSource>

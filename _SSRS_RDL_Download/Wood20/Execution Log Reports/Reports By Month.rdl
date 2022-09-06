@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="RSExecutionLog">
+      <rd:DataSourceID>8fe34c54-9d0e-4405-a0b2-c8d1c715d27b</rd:DataSourceID>
+      <DataSourceReference>RSExecutionLog</DataSourceReference>
+    </DataSource>
+    <DataSource Name="RSExecutionLog1">
+      <rd:DataSourceID>4b4aa700-55b0-4778-8651-461490f3c7b5</rd:DataSourceID>
+      <DataSourceReference>RSExecutionLog</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="Month">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=DatePart(DateInterval.Month,Now())</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Month</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>1</Value>
+            <Label>January</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>2</Value>
+            <Label>February</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>3</Value>
+            <Label>March</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>4</Value>
+            <Label>April</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>5</Value>
+            <Label>May</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>6</Value>
+            <Label>June</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>7</Value>
+            <Label>July</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>8</Value>
+            <Label>August</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>9</Value>
+            <Label>September</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>10</Value>
+            <Label>October</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>11</Value>
+            <Label>November</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>12</Value>
+            <Label>December</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Year">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=DatePart(DateInterval.Year,Now())</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Year</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>1in</RightMargin>
+  <LeftMargin>1in</LeftMargin>
+  <BottomMargin>1in</BottomMargin>
+  <rd:ReportID>dafbd2a8-035e-4f0a-a197-f6a5eec90dfd</rd:ReportID>
+  <DataSets>
+    <DataSet Name="RSExecutionLog">
+      <Fields>
+        <Field Name="ReportKey">
+          <DataField>ReportKey</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="theMonth">
+          <DataField>theMonth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>RSExecutionLog1</DataSourceName>
+        <CommandText>SELECT        EL.ReportKey, RPTS.Name, DATENAME(mm, EL.TimeStart) AS theMonth
+FROM            ExecutionLogs EL INNER JOIN
+                         Reports RPTS ON EL.ReportKey = RPTS.ReportKey
+WHERE        (DATEPART(yy, EL.TimeStart) = @Year) AND (DATEPART(mm, EL.TimeStart) = @Month)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Year">
+            <Value>=Parameters!Year.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Month">
+            <Value>=Parameters!Month.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <Timeout>30</Timeout>
+      </Query>
+    </DataSet>
+    <DataSet Name="pYear">
+      <Fields>
+        <Field Name="TheYear">
+          <DataField>TheYear</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>RSExecutionLog</DataSourceName>
+        <CommandText>SELECT DISTINCT DATEPART(yyyy, TimeStart) AS TheYear
+FROM            ExecutionLogs</CommandText>
+        <Timeout>30</Timeout>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Width>6.125in</Width>
+  <Body>
+    <ReportItems>
+      <Textbox Name="textbox1">
+        <Width>5.875in</Width>
+        <Style>
+          <Color>#081bcb</Color>
+          <FontSize>18pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.125in</Left>
+        <Height>0.375in</Height>
+        <Value>Monthly Report Summary</Value>
+      </Textbox>
+      <Table Name="Table1">
+        <ZIndex>1</ZIndex>
+        <DataSetName>RSExecutionLog</DataSetName>
+        <Top>1in</Top>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="Table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!ReportKey.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Sorting>
+              <SortBy>
+                <SortExpression>=COUNT( Fields!ReportKey.Value)</SortExpression>
+                <Direction>Descending</Direction>
+              </SortBy>
+            </Sorting>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Name">
+                          <rd:DefaultName>Name</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <FontFamily>Verdana</FontFamily>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <Value>=Fields!Name.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox7">
+                          <rd:DefaultName>textbox7</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <FontFamily>Verdana</FontFamily>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <Value>=COUNT(Fields!ReportKey.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <Width>5.875in</Width>
+        <Style>
+          <Color>#081bcb</Color>
+          <BorderColor>
+            <Default>#081bcb</Default>
+            <Top>#081bcb</Top>
+          </BorderColor>
+          <BorderStyle>
+            <Top>Solid</Top>
+          </BorderStyle>
+          <BorderWidth>
+            <Top>2pt</Top>
+          </BorderWidth>
+        </Style>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <CanShrink>true</CanShrink>
+                      <Style>
+                        <Color>#081bcb</Color>
+                        <BorderColor>
+                          <Bottom>#081bcb</Bottom>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Top>1pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontFamily>Verdana</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <UserSort>
+                        <SortExpression>=Fields!Name.Value</SortExpression>
+                        <SortExpressionScope>Table1_Group1</SortExpressionScope>
+                      </UserSort>
+                      <Value>Report Name</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox4">
+                      <Style>
+                        <Color>#081bcb</Color>
+                        <BorderColor>
+                          <Bottom>#081bcb</Bottom>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Top>1pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontFamily>Verdana</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <UserSort>
+                        <SortExpression>=COUNT(Fields!ReportKey.Value)</SortExpression>
+                        <SortExpressionScope>Table1_Group1</SortExpressionScope>
+                      </UserSort>
+                      <Value>Run Count</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>4.40625in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.46875in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.5in</Height>
+        <Left>0.125in</Left>
+      </Table>
+      <Textbox Name="textbox3">
+        <Top>0.375in</Top>
+        <Width>5.875in</Width>
+        <Style>
+          <Color>#081bcb</Color>
+          <FontSize>18pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>0.125in</Left>
+        <Height>0.375in</Height>
+        <Value>=Parameters!Month.Label &amp; " " &amp; Parameters!Year.Value</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>2in</Height>
+  </Body>
+  <TopMargin>1in</TopMargin>
+</Report>

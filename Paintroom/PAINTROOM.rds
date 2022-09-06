@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="PAINTROOM">
+  <ConnectionProperties>
+    <Extension>OLEDB</Extension>
+    <ConnectString>Provider=ADsDSOObject;Data Source=pr_main-9-11-19;Location=\\wood11\CustomApps\PaintRoomDB\Data</ConnectString>
+    <IntegratedSecurity>true</IntegratedSecurity>
+  </ConnectionProperties>
+  <DataSourceID>b1f4d93b-a12f-4356-b83e-f086d65e4b6e</DataSourceID>
+</RptDataSource>

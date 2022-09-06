@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="WOOD03_OpenOrders">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=WOOD03;Initial Catalog=openorders</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>80fe925e-1b67-44ac-83f4-69139d3e7c6b</DataSourceID>
+</RptDataSource>

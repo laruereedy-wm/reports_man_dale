@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1.441in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.2in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="STOP">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!STOP.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>STOP</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <LeftBorder>
+                          <Style>None</Style>
+                        </LeftBorder>
+                        <RightBorder>
+                          <Style>None</Style>
+                        </RightBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <rd:Selected>true</rd:Selected>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="ColumnGroup">
+                <GroupExpressions>
+                  <GroupExpression>=ceiling(rownumber(nothing) mod 3)</GroupExpression>
+                </GroupExpressions>
+              </Group>
+            </TablixMember>
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="RowGroup">
+                <GroupExpressions>
+                  <GroupExpression>=ceiling(rownumber(nothing) / 3)</GroupExpression>
+                </GroupExpressions>
+              </Group>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DataSet1</DataSetName>
+        <Height>0.2in</Height>
+        <Width>1.441in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>0.2in</Height>
+    <Style />
+  </Body>
+  <Width>1.441in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="vm250">
+      <DataSourceReference>vm250</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>cfbbf096-b2b2-4083-8704-49c22ce1f238</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>vm250</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@TruckloadNo">
+            <Value>=Parameters!TruckloadNo.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>-- Get Stop Listings
+DECLARE @TBL1 AS TABLE(WTLO_StopSeqNo INT, [STOP] VARCHAR(100), ROWNO INT);
+DECLARE @TBL2 AS TABLE(SeqNo VARCHAR(100), [STOP] VARCHAR(100));
+DECLARE @COUNT AS INT
+DECLARE @INDEX AS INT
+DECLARE @ROWNO INT
+DECLARE @STOP VARCHAR(100)
+DECLARE @SeqNo VARCHAR(100)
+
+SET @INDEX = 1;
+
+WITH StopListings AS (
+SELECT		DISTINCT
+			WTLO_StopSeqNo,
+			upper(OST_ShipToCity) + ', ' + OST_ShipToState AS [Stop]
+FROM		WIPS_OrderShipTos_OST OST 
+			INNER JOIN WIPS_ShipTruckloadOrders_WTLO WTLO ON OST.OST_OrderNum = WTLO.WTLO_SoNum
+			INNER JOIN WIPS_ShipTruckloadHeader_WTLH WTLH ON WTLH_TruckloadNo = WTLO_TruckloadNo
+			INNER JOIN WIPS_ShipWMDriverRef_RWMD ON WTLH_DriverID = RWMD_ID
+WHERE		WTLO_TruckloadNo = @TruckloadNo
+)
+
+INSERT INTO @TBL1
+SELECT		*,
+			ROW_NUMBER() OVER(ORDER BY WTLO_StopSeqNo) AS [RowNo]
+FROM		StopListings
+ORDER BY	WTLO_StopSeqNo
+
+SET @COUNT = (SELECT COUNT(*) FROM @TBL1);
+
+WHILE @INDEX &lt;= @COUNT
+BEGIN
+	SELECT  @ROWNO = ROWNO,
+			@STOP = [STOP]
+	FROM	@TBL1
+	WHERE	ROWNO = @INDEX
+	
+	IF NOT EXISTS (SELECT TOP 1 1 FROM @TBL2 WHERE [STOP] = @STOP)
+	BEGIN
+		INSERT INTO @TBL2
+		VALUES (@ROWNO, @STOP);
+	END
+	ELSE
+	BEGIN
+		SET @SeqNo = (SELECT SeqNo FROM @TBL2 WHERE [STOP] = @STOP);
+		SET @SeqNo = @SeqNo + ' &amp; ' + CONVERT(VARCHAR(10), @ROWNO);
+		
+		UPDATE	@TBL2
+		SET		SeqNo = @SeqNo
+		WHERE	[STOP] = @STOP
+	END
+
+	SET @INDEX = @INDEX + 1;
+END
+
+SELECT	SeqNo + ' - ' + [STOP] AS [Stop] 
+FROM	@TBL2</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="STOP">
+          <DataField>Stop</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="TruckloadNo">
+      <DataType>String</DataType>
+      <Prompt>Truckload No</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>af6dac0b-dfd5-4be1-827f-899c2b645e89</rd:ReportID>
+</Report>

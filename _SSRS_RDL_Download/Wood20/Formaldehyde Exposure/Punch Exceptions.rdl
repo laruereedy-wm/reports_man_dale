@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="PK1">
+      <rd:DataSourceID>71801a78-fdd8-41a9-ba12-b1fc3a42970b</rd:DataSourceID>
+      <DataSourceReference>PK1</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="dateChecking">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Today</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Please Select a Date:</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <RightMargin>0.1in</RightMargin>
+  <LeftMargin>0.1in</LeftMargin>
+  <PageHeader>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="textbox8">
+        <Top>0.46354in</Top>
+        <Width>4.98958in</Width>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>12pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.15235in</Left>
+        <Value>= "For " &amp; Parameters!dateChecking.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox1">
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Top>0.0625in</Top>
+        <Width>5in</Width>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>18pt</FontSize>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>0.14583in</Left>
+        <Height>0.33in</Height>
+        <Value>Formaldehyde Punch Exceptions</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.79354in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageHeader>
+  <BottomMargin>0.1in</BottomMargin>
+  <rd:ReportID>7fd2a26b-e911-4d4a-a698-055b97d318e8</rd:ReportID>
+  <DataSets>
+    <DataSet Name="oldmain">
+      <Fields>
+        <Field Name="EMPLOYEENUMBER">
+          <DataField>EMPLOYEENUMBER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOCATION">
+          <DataField>LOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SCANNED_IN">
+          <DataField>SCANNED_IN</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SCANDATE">
+          <DataField>SCANDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="SCANNED_IN_LABEL">
+          <Value>=IIF(Fields!SCANNED_IN.Value = True, "In", "Out")</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PK1</DataSourceName>
+        <CommandText>SELECT     CSSI_FORMALDEHYDE_MOD.EMPLOYEENUMBER, CSSI_FORMALDEHYDE_MOD.LOCATION, CSSI_FORMALDEHYDE_MOD.SCANNED_IN, 
+                      CSSI_FORMALDEHYDE_MOD.SCANDATE
+FROM         vCSSI_FormaldehydeExceptions INNER JOIN
+                      CSSI_FORMALDEHYDE_MOD ON vCSSI_FormaldehydeExceptions.EMPLOYEENUMBER = CSSI_FORMALDEHYDE_MOD.EMPLOYEENUMBER AND 
+                      vCSSI_FormaldehydeExceptions.SCANDATE = CONVERT(NVARCHAR, CSSI_FORMALDEHYDE_MOD.SCANDATE, 101) LEFT OUTER JOIN
+                      CSSI_FORMALDEHYDE_DEFAULT ON 
+                      CSSI_FORMALDEHYDE_MOD.EMPLOYEENUMBER = CSSI_FORMALDEHYDE_DEFAULT.EMPLOYEENUMBER LEFT OUTER JOIN
+                      CSSI_FORMALDEHYDE_LEVELS AS CSSI_FORMALDEHYDE_LEVELS_1 ON CSSI_FORMALDEHYDE_MOD.LOCATION = CONVERT(nvarchar, 
+                      CSSI_FORMALDEHYDE_LEVELS_1.LOCATION)
+WHERE     (CSSI_FORMALDEHYDE_MOD.SCANDATE &gt;= @dateChecking) AND (CSSI_FORMALDEHYDE_MOD.SCANDATE &lt;= @dateChecking + '11:59:59 PM') OR
+                      (CSSI_FORMALDEHYDE_MOD.SCANDATE &gt;= @dateChecking) AND (CSSI_FORMALDEHYDE_MOD.SCANDATE &lt;= @dateChecking + '11:59:59 PM') AND 
+                      (CSSI_FORMALDEHYDE_LEVELS_1.LOCATION IS NULL) OR
+                      (CSSI_FORMALDEHYDE_MOD.SCANDATE &gt;= @dateChecking) AND (CSSI_FORMALDEHYDE_MOD.SCANDATE &lt;= @dateChecking + '11:59:59 PM') AND 
+                      (CSSI_FORMALDEHYDE_DEFAULT.EMPLOYEENUMBER IS NULL)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@dateChecking">
+            <Value>=Parameters!dateChecking.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="mainData">
+      <Fields>
+        <Field Name="EMPLOYEENUMBER">
+          <DataField>EMPLOYEENUMBER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOCATION">
+          <DataField>LOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SCANDATE">
+          <DataField>SCANDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="SCANNED_IN">
+          <DataField>SCANNED_IN</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SCANNED_IN_LABEL">
+          <Value>=IIF(Fields!SCANNED_IN.Value = True, "In", "Out")</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PK1</DataSourceName>
+        <CommandText>; WITH CTE AS (SELECT     *, ROW_NUMBER() OVER (PARTITION BY EMPLOYEENUMBER, LOCATION, CONVERT(varchar(10), SCANDATE, 101)
+                                  ORDER BY SCANDATE, EMPLOYEENUMBER) AS RN
+FROM         CSSI_FORMALDEHYDE_MOD
+WHERE     SCANDATE &gt;  @dateChecking AND SCANDATE &lt; @dateChecking + ' 11:59:59 PM')
+    SELECT     C1.EMPLOYEENUMBER, C1.LOCATION, C1.SCANDATE, C1.SCANNED_IN
+     FROM         CTE C INNER JOIN
+                            CTE C1 ON C.RN + 1 = C1.RN AND C.EMPLOYEENUMBER = C1.EMPLOYEENUMBER AND C.LOCATION = C1.LOCATION
+     WHERE     c.scanned_in = c1.scanned_in
+     GROUP BY C1.EMPLOYEENUMBER, C1.LOCATION, C1.SCANDATE, C1.SCANNED_IN
+UNION ALL
+SELECT     CSSI_FORMALDEHYDE_MOD.EMPLOYEENUMBER, CSSI_FORMALDEHYDE_MOD.LOCATION,  
+                      CSSI_FORMALDEHYDE_MOD.SCANDATE, CSSI_FORMALDEHYDE_MOD.SCANNED_IN
+FROM         vCSSI_FormaldehydeExceptions INNER JOIN
+                      CSSI_FORMALDEHYDE_MOD ON vCSSI_FormaldehydeExceptions.EMPLOYEENUMBER = CSSI_FORMALDEHYDE_MOD.EMPLOYEENUMBER AND 
+                      vCSSI_FormaldehydeExceptions.SCANDATE = CONVERT(NVARCHAR, CSSI_FORMALDEHYDE_MOD.SCANDATE, 101) LEFT OUTER JOIN
+                      CSSI_FORMALDEHYDE_DEFAULT ON 
+                      CSSI_FORMALDEHYDE_MOD.EMPLOYEENUMBER = CSSI_FORMALDEHYDE_DEFAULT.EMPLOYEENUMBER LEFT OUTER JOIN
+                      CSSI_FORMALDEHYDE_LEVELS AS CSSI_FORMALDEHYDE_LEVELS_1 ON 
+                      CSSI_FORMALDEHYDE_MOD.LOCATION = CONVERT(nvarchar, CSSI_FORMALDEHYDE_LEVELS_1.LOCATION) WHERE     (CSSI_FORMALDEHYDE_MOD.SCANDATE &gt;= @dateChecking) AND (CSSI_FORMALDEHYDE_MOD.SCANDATE &lt;= @dateChecking + ' 11:59:59 PM') OR
+                      (CSSI_FORMALDEHYDE_MOD.SCANDATE &gt;= @dateChecking) AND (CSSI_FORMALDEHYDE_MOD.SCANDATE &lt;= @dateChecking + ' 11:59:59 PM') AND 
+                      (CSSI_FORMALDEHYDE_LEVELS_1.LOCATION IS NULL) OR
+                      (CSSI_FORMALDEHYDE_MOD.SCANDATE &gt;= @dateChecking) AND (CSSI_FORMALDEHYDE_MOD.SCANDATE &lt;= @dateChecking + ' 11:59:59 PM') AND 
+                      (CSSI_FORMALDEHYDE_DEFAULT.EMPLOYEENUMBER IS NULL)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@dateChecking">
+            <Value>=Parameters!dateChecking.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Code />
+  <Width>7.77344in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <DataSetName>mainData</DataSetName>
+        <Top>0.14583in</Top>
+        <Width>6.7578in</Width>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox17">
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!EMPLOYEENUMBER.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Subreport Name="subreport2">
+                      <Parameters>
+                        <Parameter Name="employeeNumber">
+                          <Value>=Fields!EMPLOYEENUMBER.Value</Value>
+                        </Parameter>
+                      </Parameters>
+                      <ReportName>SRemployeeName</ReportName>
+                      <ZIndex>3</ZIndex>
+                    </Subreport>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox18">
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!LOCATION.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox19">
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!SCANDATE.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox20">
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!SCANNED_IN_LABEL.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.17708in</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox11">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>9</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Employee Number</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox9">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Employee Name</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox13">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Location</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox14">
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Scan Time</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>#c7d9f9</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>In/Out</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.21in</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.33333in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09113in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.51042in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.82292in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Left>0.28125in</Left>
+      </Table>
+    </ReportItems>
+    <Height>0.53291in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <PageFooter>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="txtPageNumber">
+        <Top>0.01823in</Top>
+        <Width>3.09375in</Width>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>9pt</FontSize>
+          <TextAlign>Left</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Height>0.21875in</Height>
+        <Value>=WeekdayName(Weekday(Globals!ExecutionTime)) &amp; ", " &amp; MonthName(Month(Globals!ExecutionTime))  &amp; " " &amp; Day(Globals!ExecutionTime) &amp; ", " &amp; Year(Globals!ExecutionTime) &amp; ",   " &amp; TimeValue(Globals!ExecutionTime)</Value>
+      </Textbox>
+      <Textbox Name="textbox16">
+        <Top>0.01302in</Top>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>9pt</FontSize>
+          <TextAlign>Right</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>5.52344in</Left>
+        <Height>0.19792in</Height>
+        <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.25in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageFooter>
+  <TopMargin>0.1in</TopMargin>
+</Report>

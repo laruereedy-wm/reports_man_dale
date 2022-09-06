@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1758
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "B Building-Production Clearing", "B Building-Production Clearing.rptproj", "{1D9FBB4B-6482-45E0-9127-FAA24AE4FA0C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D9FBB4B-6482-45E0-9127-FAA24AE4FA0C}.Debug|Default.ActiveCfg = Debug
+		{1D9FBB4B-6482-45E0-9127-FAA24AE4FA0C}.Debug|Default.Build.0 = DebugLocal
+		{1D9FBB4B-6482-45E0-9127-FAA24AE4FA0C}.Debug|Default.Deploy.0 = DebugLocal
+		{1D9FBB4B-6482-45E0-9127-FAA24AE4FA0C}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{1D9FBB4B-6482-45E0-9127-FAA24AE4FA0C}.DebugLocal|Default.Build.0 = DebugLocal
+		{1D9FBB4B-6482-45E0-9127-FAA24AE4FA0C}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{1D9FBB4B-6482-45E0-9127-FAA24AE4FA0C}.Release|Default.ActiveCfg = Release
+		{1D9FBB4B-6482-45E0-9127-FAA24AE4FA0C}.Release|Default.Build.0 = Release
+		{1D9FBB4B-6482-45E0-9127-FAA24AE4FA0C}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57E781FE-25AF-4483-A5B4-FA33F737D2F1}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="PKI">
+      <DataSourceReference>PKI</DataSourceReference>
+      <rd:DataSourceID>fb2e3f1c-efb5-4000-855c-fc1a680a1e47</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>1in</BottomMargin>
+  <RightMargin>1in</RightMargin>
+  <ReportParameters>
+    <ReportParameter Name="Pm_OP_MOSJOB">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Pm-OP.OP_MOSJOB</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Textbox Name="textbox1">
+        <Left>0.75in</Left>
+        <ZIndex>5</ZIndex>
+        <Width>0.5in</Width>
+        <Style>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontFamily>Times New Roman</FontFamily>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.125in</Height>
+        <Value>Date</Value>
+      </Textbox>
+      <List Name="list2">
+        <ReportItems>
+          <Textbox Name="textbox2">
+            <Left>0.5in</Left>
+            <ZIndex>3</ZIndex>
+            <Width>1in</Width>
+            <Style>
+              <TextAlign>Center</TextAlign>
+              <PaddingBottom>2pt</PaddingBottom>
+              <FontFamily>Times New Roman</FontFamily>
+              <Format>d</Format>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Value>=Fields!OP_DATE.Value</Value>
+          </Textbox>
+          <Textbox Name="textbox46">
+            <Left>2.625in</Left>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <TextAlign>Center</TextAlign>
+              <PaddingBottom>2pt</PaddingBottom>
+              <FontFamily>Times New Roman</FontFamily>
+              <Format>#,##0</Format>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Value>=Fields!OP_AVAIL.Value</Value>
+          </Textbox>
+          <Textbox Name="textbox45">
+            <Left>1.5in</Left>
+            <ZIndex>1</ZIndex>
+            <Width>0.875in</Width>
+            <Style>
+              <TextAlign>Center</TextAlign>
+              <PaddingBottom>2pt</PaddingBottom>
+              <FontFamily>Times New Roman</FontFamily>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Value>=Fields!OP_WCKEY.Value</Value>
+          </Textbox>
+          <Textbox Name="textbox44">
+            <Width>0.5in</Width>
+            <Style>
+              <TextAlign>Center</TextAlign>
+              <PaddingBottom>2pt</PaddingBottom>
+              <FontFamily>Times New Roman</FontFamily>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Value>=Fields!OP_OP_NUM.Value</Value>
+          </Textbox>
+        </ReportItems>
+        <DataSetName>MainData</DataSetName>
+        <Top>0.125in</Top>
+        <ZIndex>4</ZIndex>
+      </List>
+      <Textbox Name="textbox15">
+        <ZIndex>3</ZIndex>
+        <Width>0.5in</Width>
+        <Style>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontFamily>Times New Roman</FontFamily>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.125in</Height>
+        <Value>OP #</Value>
+      </Textbox>
+      <Textbox Name="textbox26">
+        <Left>1.5in</Left>
+        <ZIndex>2</ZIndex>
+        <Width>0.875in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontFamily>Times New Roman</FontFamily>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.125in</Height>
+        <Value>Workcenter</Value>
+      </Textbox>
+      <Textbox Name="textbox43">
+        <Left>2.625in</Left>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontFamily>Times New Roman</FontFamily>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.125in</Height>
+        <Value>Qty Avail.</Value>
+      </Textbox>
+      <Line Name="line1">
+        <Left>3.5in</Left>
+        <Top>0.125in</Top>
+        <Width>-3.5in</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+        </Style>
+        <Height>0in</Height>
+      </Line>
+    </ReportItems>
+    <Height>0.25in</Height>
+  </Body>
+  <rd:ReportID>042bd672-c384-4fd7-bc21-2bb2f764fae2</rd:ReportID>
+  <LeftMargin>1in</LeftMargin>
+  <DataSets>
+    <DataSet Name="MainData">
+      <Query>
+        <CommandText>SELECT     OP_WC_STATUS, OP_WCKEY, OP_DATE, OP_MOSTYPE, OP_MOSJOB, OP_OP_NUM, OP_AVAIL
+FROM         dbo.OP
+WHERE     (OP_MOSJOB = @Pm_OP_MOSJOB) AND (OP_WC_STATUS = 'O') AND (OP_MOSTYPE = 'S') AND (OP_OP_NUM &lt;&gt; 1) AND (OP_OP_NUM &lt;&gt; 2)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Pm_OP_MOSJOB">
+            <Value>=Parameters!Pm_OP_MOSJOB.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>PKI</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="OP_WC_STATUS">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>OP_WC_STATUS</DataField>
+        </Field>
+        <Field Name="OP_WCKEY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>OP_WCKEY</DataField>
+        </Field>
+        <Field Name="OP_DATE">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>OP_DATE</DataField>
+        </Field>
+        <Field Name="OP_MOSTYPE">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>OP_MOSTYPE</DataField>
+        </Field>
+        <Field Name="OP_MOSJOB">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>OP_MOSJOB</DataField>
+        </Field>
+        <Field Name="OP_OP_NUM">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>OP_OP_NUM</DataField>
+        </Field>
+        <Field Name="OP_AVAIL">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>OP_AVAIL</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Width>3.5in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Description>Do Not Run</Description>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+</Report>

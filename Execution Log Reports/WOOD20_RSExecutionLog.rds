@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="WOOD20_RSExecutionLog">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=WOOD20;Initial Catalog=RSExecutionLog</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>be39ba9f-85d7-407b-aa71-f11eeb8afbfe</DataSourceID>
+</RptDataSource>

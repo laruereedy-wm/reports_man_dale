@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "A2 Miscellaneous and Special Assembly Area", "A2 Miscellaneous and Special Assembly Area.rptproj", "{290019CE-29CD-40F3-88B2-A47BB2D02B86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{290019CE-29CD-40F3-88B2-A47BB2D02B86}.Debug|Default.ActiveCfg = Debug
+		{290019CE-29CD-40F3-88B2-A47BB2D02B86}.Debug|Default.Build.0 = DebugLocal
+		{290019CE-29CD-40F3-88B2-A47BB2D02B86}.Debug|Default.Deploy.0 = DebugLocal
+		{290019CE-29CD-40F3-88B2-A47BB2D02B86}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{290019CE-29CD-40F3-88B2-A47BB2D02B86}.DebugLocal|Default.Build.0 = DebugLocal
+		{290019CE-29CD-40F3-88B2-A47BB2D02B86}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{290019CE-29CD-40F3-88B2-A47BB2D02B86}.Release|Default.ActiveCfg = Release
+		{290019CE-29CD-40F3-88B2-A47BB2D02B86}.Release|Default.Build.0 = Release
+		{290019CE-29CD-40F3-88B2-A47BB2D02B86}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

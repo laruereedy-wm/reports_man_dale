@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSourceDefinition xmlns="http://schemas.microsoft.com/sqlserver/reporting/2006/03/reportdatasource">
+  <Extension>SQL</Extension>
+  <ConnectString>Data Source=WOOD03;Initial Catalog=Infinite</ConnectString>
+  <CredentialRetrieval>Prompt</CredentialRetrieval>
+  <WindowsCredentials>True</WindowsCredentials>
+  <Prompt>Type or enter a user name and password to access the data source:</Prompt>
+  <Enabled>True</Enabled>
+</DataSourceDefinition>

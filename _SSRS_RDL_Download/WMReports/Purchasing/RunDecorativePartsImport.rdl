@@ -1,0 +1,689 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="PK1LIVE">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=VM236;Initial Catalog=PK1</ConnectString>
+        <Prompt>Enter a user name and password to access the data source:</Prompt>
+      </ConnectionProperties>
+      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:DataSourceID>79338339-56f1-4c03-9816-b74985dcf2db</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="ExecSP_WM_IMPORT_DECO_RQ_RECORDS">
+      <Query>
+        <DataSourceName>PK1LIVE</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@SetRunImport">
+            <Value>=Parameters!SetRunImport.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rq_imkey">
+            <Value>=Parameters!rq_imkey.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rq_mosjob">
+            <Value>=Parameters!rq_mosjob.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rq_moslot">
+            <Value>=Parameters!rq_moslot.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rq_qty_req">
+            <Value>=Parameters!rq_qty_req.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>IF @SetRunImport='True'
+EXECUTE AS user = 'dalel'
+EXEC WM_IMPORT_DECO_RQ_RECORDS
+@rq_imkey,@rq_mosjob,@rq_moslot,@rq_qty_req
+REVERT</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="RQ_DATA">
+      <Query>
+        <DataSourceName>PK1LIVE</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@rq_mosjob">
+            <Value>=Parameters!rq_mosjob.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rq_moslot">
+            <Value>=Parameters!rq_moslot.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rq_imkey">
+            <Value>=Parameters!rq_imkey.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     MOS.MOS_JOB, MOS.MOS_LOT, RQ.RQ_IMKEY, RQ.RQ_IM_STATUS, IM.IM_KEY
+FROM         MOS LEFT OUTER JOIN
+                      RQ ON MOS.MOS_JOB = RQ.RQ_MOSJOB AND MOS.MOS_LOT = RQ.RQ_MOSLOT AND MOS.MOS_TYPE = RQ.RQ_MOSTYPE AND 
+                      MOS.MOS_SEQNUM1 = RQ.RQ_MOSSEQNUM CROSS JOIN
+                      IM
+WHERE     (MOS.MOS_JOB = @rq_mosjob) AND (MOS.MOS_LOT = @rq_moslot) AND (IM.IM_KEY = CAST(@rq_imkey AS VARCHAR))</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="MOS_JOB">
+          <DataField>MOS_JOB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_LOT">
+          <DataField>MOS_LOT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RQ_IMKEY">
+          <DataField>RQ_IMKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RQ_IM_STATUS">
+          <DataField>RQ_IM_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RUN_SPROC">
+          <Value>=IIF(Parameters!SetRunImport.Value = TRUE,1,0)</Value>
+        </Field>
+        <Field Name="SUCCESSFUL_IMPORT">
+          <Value>=IIF(Fields!RQ_IMKEY.Value = Parameters!rq_imkey.Value,1,0)</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Textbox Name="ReportTitle">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>You have succesfully added a requirment to a PK Order</Value>
+                    <Style>
+                      <FontFamily>Agency FB</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:WatermarkTextbox>Title</rd:WatermarkTextbox>
+            <rd:DefaultName>ReportTitle</rd:DefaultName>
+            <Height>0.26458in</Height>
+            <Width>3.25694in</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <TopBorder>
+                <Width>3pt</Width>
+              </TopBorder>
+              <LeftBorder>
+                <Width>3pt</Width>
+              </LeftBorder>
+              <RightBorder>
+                <Width>3pt</Width>
+              </RightBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="rq_imkey">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!rq_imkey.Value</Value>
+                    <Style>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>rq_imkey</rd:DefaultName>
+            <Top>0.29236in</Top>
+            <Left>2.08333in</Left>
+            <Height>0.25in</Height>
+            <Width>1.15973in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Width>3pt</Width>
+              </Border>
+              <TopBorder>
+                <Width>1pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Width>1pt</Width>
+              </BottomBorder>
+              <LeftBorder>
+                <Width>1pt</Width>
+              </LeftBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="rq_mosjob">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!rq_mosjob.Value</Value>
+                    <Style>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>rq_mosjob</rd:DefaultName>
+            <Top>0.57014in</Top>
+            <Left>2.08333in</Left>
+            <Height>0.25in</Height>
+            <Width>1.15973in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Width>3pt</Width>
+              </Border>
+              <TopBorder>
+                <Width>1pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Width>1pt</Width>
+              </BottomBorder>
+              <LeftBorder>
+                <Width>1pt</Width>
+              </LeftBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="rq_moslot">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!rq_moslot.Value</Value>
+                    <Style>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>rq_moslot</rd:DefaultName>
+            <Top>0.85833in</Top>
+            <Left>2.08333in</Left>
+            <Height>0.25in</Height>
+            <Width>1.15973in</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Width>3pt</Width>
+              </Border>
+              <TopBorder>
+                <Width>1pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Width>1pt</Width>
+              </BottomBorder>
+              <LeftBorder>
+                <Width>1pt</Width>
+              </LeftBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="rq_qty_req">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!rq_qty_req.Value</Value>
+                    <Style>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>rq_qty_req</rd:DefaultName>
+            <Top>1.12222in</Top>
+            <Left>2.07639in</Left>
+            <Height>0.5in</Height>
+            <Width>1.16667in</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Width>3pt</Width>
+              </Border>
+              <TopBorder>
+                <Width>1pt</Width>
+              </TopBorder>
+              <LeftBorder>
+                <Width>1pt</Width>
+              </LeftBorder>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox5">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Profit Key Code</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox5</rd:DefaultName>
+            <Top>0.27847in</Top>
+            <Height>0.25in</Height>
+            <Width>2.04167in</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Width>3pt</Width>
+              </Border>
+              <TopBorder>
+                <Width>1pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Width>1pt</Width>
+              </BottomBorder>
+              <RightBorder>
+                <Width>1pt</Width>
+              </RightBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox6">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Order Number</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox5</rd:DefaultName>
+            <Top>0.55625in</Top>
+            <Left>0.01389in</Left>
+            <Height>0.25in</Height>
+            <Width>2.02778in</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Width>3pt</Width>
+              </Border>
+              <TopBorder>
+                <Width>1pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Width>1pt</Width>
+              </BottomBorder>
+              <RightBorder>
+                <Width>1pt</Width>
+              </RightBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox7">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Item Number</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox5</rd:DefaultName>
+            <Top>0.84444in</Top>
+            <Height>0.25in</Height>
+            <Width>2.04167in</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Width>3pt</Width>
+              </Border>
+              <TopBorder>
+                <Width>1pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Width>1pt</Width>
+              </BottomBorder>
+              <RightBorder>
+                <Width>1pt</Width>
+              </RightBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox8">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value EvaluationMode="Constant">Quantity Required. Update in header if incorrect.</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox5</rd:DefaultName>
+            <Top>1.10833in</Top>
+            <Left>0.02083in</Left>
+            <Height>0.5in</Height>
+            <Width>2.02083in</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <BottomBorder>
+                <Width>3pt</Width>
+              </BottomBorder>
+              <LeftBorder>
+                <Width>3pt</Width>
+              </LeftBorder>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ExecutionTime">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Globals!ExecutionTime</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ExecutionTime</rd:DefaultName>
+            <Top>1.60833in</Top>
+            <Left>1.07639in</Left>
+            <Height>0.25in</Height>
+            <Width>2in</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox10">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Take me back to main report</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox9</rd:DefaultName>
+            <ActionInfo>
+              <Actions>
+                <Action>
+                  <Drillthrough>
+                    <ReportName>/WIPS_Reports/Purchasing/DecorativePurchasedPartsRequirements</ReportName>
+                  </Drillthrough>
+                </Action>
+              </Actions>
+            </ActionInfo>
+            <Top>0.87569in</Top>
+            <Left>3.3125in</Left>
+            <Height>0.73264in</Height>
+            <Width>1.65278in</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox11">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>THE LISTED PART HAS BEEN IMPORTED TO PROFIT KEY</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox11</rd:DefaultName>
+            <Left>3.3125in</Left>
+            <Height>0.80625in</Height>
+            <Width>1.65278in</Width>
+            <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>RPT-0096</Value>
+                    <Style>
+                      <FontSize>13pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.7175in</Top>
+            <Left>3.26958in</Left>
+            <Height>0.30208in</Height>
+            <Width>1.42708in</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>2.25in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>5.36334in</Width>
+      <Page>
+        <PageFooter>
+          <Height>0.45in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="rq_imkey">
+      <DataType>String</DataType>
+      <Prompt>Profit Key Item Code</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="rq_mosjob">
+      <DataType>String</DataType>
+      <Prompt>Order Number </Prompt>
+    </ReportParameter>
+    <ReportParameter Name="rq_moslot">
+      <DataType>String</DataType>
+      <Prompt>Item Number</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="rq_qty_req">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>1</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Change Quantity</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SetRunImport">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>false</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Choose Yes to Import Part</Prompt>
+      <UsedInQuery>True</UsedInQuery>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://172.16.100.249/ReportServer</rd:ReportServerUrl>
+  <rd:ReportID>68f04130-0790-4162-8469-377cbadb2290</rd:ReportID>
+</Report>

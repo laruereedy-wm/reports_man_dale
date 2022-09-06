@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="PKI">
+      <rd:DataSourceID>a82e6ee4-9295-4e81-adc6-5f698a9d5ff8</rd:DataSourceID>
+      <DataSourceReference>PKI</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="year">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Please Enter a Year:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="startDate">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=CDate(STR(1) + "/" + STR(1) + "/" + STR(Parameters!year.Value) + " " + STR(12) + ":" + STR(00) + ":" + STR(00) + " AM")</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Please Enter a Start Date:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="endDate">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=CDate(STR(6) + "/" + STR(30) + "/" + STR(Parameters!year.Value) + " " + STR(11) + ":" + STR(59) + ":" + STR(59) + " PM")</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Please Enter an End Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="prodCode">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>prodCode</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="commodityCode">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>commodityCode</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>1in</RightMargin>
+  <LeftMargin>1in</LeftMargin>
+  <BottomMargin>1in</BottomMargin>
+  <rd:ReportID>e4c94da5-51d1-4044-8963-a43ef00aae54</rd:ReportID>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_AVG_MAT">
+          <DataField>IM_AVG_MAT</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_QTY">
+          <DataField>TX_QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_TYPE">
+          <DataField>TX_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_ORIGIN_STATUS">
+          <DataField>TX_ORIGIN_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DEST_STATUS">
+          <DataField>TX_DEST_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DATE">
+          <DataField>TX_DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="IM_COMMODITY">
+          <DataField>IM_COMMODITY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_PROD_CODE">
+          <DataField>IM_PROD_CODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CONSUMPTION">
+          <Value>=Fields!IM_AVG_MAT.Value * Fields!TX_QTY.Value</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     IM.IM_KEY, IM.IM_AVG_MAT, TX.TX_QTY, TX.TX_TYPE, TX.TX_ORIGIN_STATUS, TX.TX_DEST_STATUS, TX.TX_DATE, IM.IM_COMMODITY, 
+                      IM.IM_PROD_CODE
+FROM         TX INNER JOIN
+                      IM ON TX.TX_IMKEY = IM.IM_KEY
+WHERE     (TX.TX_TYPE = 'A' OR
+                      TX.TX_TYPE = 'I') AND (TX.TX_ORIGIN_STATUS = 'A') AND (TX.TX_DEST_STATUS &lt;&gt; 'A') AND (TX.TX_DATE &gt;= @startDate) AND 
+                      (TX.TX_DATE &lt;= @endDate) AND (IM.IM_COMMODITY = @commodityCode) AND (IM.IM_PROD_CODE = @prodCode) AND (TX.TX_DEST_STATUS &lt;&gt; 'J') 
+                      AND (NOT (TX.TX_COMMENT LIKE '0000%'))</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@startDate">
+            <Value>=Parameters!startDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@endDate">
+            <Value>=Parameters!endDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@commodityCode">
+            <Value>=Parameters!commodityCode.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@prodCode">
+            <Value>=Parameters!prodCode.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Width>3in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <DataSetName>mainData</DataSetName>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!IM_COMMODITY.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Sorting>
+              <SortBy>
+                <SortExpression>=Fields!IM_COMMODITY.Value</SortExpression>
+                <Direction>Ascending</Direction>
+              </SortBy>
+            </Sorting>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="txtSumTX_QTY">
+                          <Style>
+                            <BackgroundColor>Gainsboro</BackgroundColor>
+                            <FontWeight>700</FontWeight>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!TX_QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="CONSUMPTION">
+                          <rd:DefaultName>CONSUMPTION</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>Gainsboro</BackgroundColor>
+                            <FontWeight>700</FontWeight>
+                            <Format>c2</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!CONSUMPTION.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.5in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.5in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.25in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+</Report>

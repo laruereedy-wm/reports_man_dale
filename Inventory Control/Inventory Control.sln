@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Inventory Control", "Inventory Control.rptproj", "{E1EBF594-268A-46A3-B302-C339539A3BC4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1EBF594-268A-46A3-B302-C339539A3BC4}.Debug|Default.ActiveCfg = Debug
+		{E1EBF594-268A-46A3-B302-C339539A3BC4}.Debug|Default.Build.0 = Debug
+		{E1EBF594-268A-46A3-B302-C339539A3BC4}.Debug|Default.Deploy.0 = Debug
+		{E1EBF594-268A-46A3-B302-C339539A3BC4}.Release|Default.ActiveCfg = Release
+		{E1EBF594-268A-46A3-B302-C339539A3BC4}.Release|Default.Build.0 = Release
+		{E1EBF594-268A-46A3-B302-C339539A3BC4}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8886C98C-15B9-4E5F-B8F4-A8B860B8391A}
+	EndGlobalSection
+EndGlobal

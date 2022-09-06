@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="RSExecutionLog">
+      <rd:DataSourceID>8bf98867-4db1-4457-9036-341ab59283ba</rd:DataSourceID>
+      <DataSourceReference>RSExecutionLog</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Description>This is a listing of reports executed less than 10 times within the last month.</Description>
+  <ReportParameters>
+    <ReportParameter Name="pMinDate">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>dsDates</DataSetName>
+          <ValueField>MinDate</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Start Date:</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="pMaxDate">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>dsDates</DataSetName>
+          <ValueField>MaxDate</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>End Date:  </Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>0.1in</RightMargin>
+  <LeftMargin>0.1in</LeftMargin>
+  <BottomMargin>0.1in</BottomMargin>
+  <rd:ReportID>c832cfaa-3f76-492e-8ebc-c50d7c734faa</rd:ReportID>
+  <DataSets>
+    <DataSet Name="RSExecutionLog">
+      <Fields>
+        <Field Name="ReportKey">
+          <DataField>ReportKey</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TimeDataRetrieval">
+          <DataField>TimeDataRetrieval</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TimeProcessing">
+          <DataField>TimeProcessing</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TimeRendering">
+          <DataField>TimeRendering</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TotalTime">
+          <DataField>TotalTime</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>RSExecutionLog</DataSourceName>
+        <CommandText>SELECT     ExecutionLogs.ReportKey, Reports.Name, ExecutionLogs.TimeDataRetrieval, ExecutionLogs.TimeProcessing, ExecutionLogs.TimeRendering, 
+                      ExecutionLogs.TimeDataRetrieval + ExecutionLogs.TimeProcessing + ExecutionLogs.TimeRendering AS TotalTime
+FROM         ExecutionLogs INNER JOIN
+                      Reports ON ExecutionLogs.ReportKey = Reports.ReportKey
+WHERE     (ExecutionLogs.TimeStart BETWEEN @pMinDate AND @pMaxDate) AND (ExecutionLogs.StatusCode = 1)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@pMinDate">
+            <Value>=Parameters!pMinDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@pMaxDate">
+            <Value>=Parameters!pMaxDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <Timeout>30</Timeout>
+      </Query>
+    </DataSet>
+    <DataSet Name="dsDates">
+      <Fields>
+        <Field Name="MaxDate">
+          <DataField>MaxDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="MinDate">
+          <DataField>MinDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>RSExecutionLog</DataSourceName>
+        <CommandText>SELECT     MAX(TimeStart) AS MaxDate, DATEADD(d, - 30, MAX(TimeStart)) AS MinDate
+FROM         ExecutionLogs</CommandText>
+        <Timeout>30</Timeout>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Width>8.25in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <ZIndex>1</ZIndex>
+        <DataSetName>RSExecutionLog</DataSetName>
+        <Top>0.875in</Top>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!ReportKey.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Sorting>
+              <SortBy>
+                <SortExpression>=SUM(Fields!TotalTime.Value)/COUNT( Fields!ReportKey.Value)</SortExpression>
+                <Direction>Descending</Direction>
+              </SortBy>
+            </Sorting>
+            <Visibility>
+              <Hidden>=IIf(COUNT(Fields!ReportKey.Value) &lt; 10, False, True)</Hidden>
+            </Visibility>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Name">
+                          <rd:DefaultName>Name</rd:DefaultName>
+                          <CanShrink>true</CanShrink>
+                          <Style>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <FontFamily>Verdana</FontFamily>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Name.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="ReportKey">
+                          <rd:DefaultName>ReportKey</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <FontFamily>Verdana</FontFamily>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <Value>=COUNT(Fields!ReportKey.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <Width>7.5in</Width>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <Style>
+                        <Color>White</Color>
+                        <BackgroundColor>DarkCyan</BackgroundColor>
+                        <BorderColor>
+                          <Default>#081bcb</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontFamily>Verdana</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <UserSort>
+                        <SortExpression>=Fields!Name.Value</SortExpression>
+                        <SortExpressionScope>table1_Group1</SortExpressionScope>
+                      </UserSort>
+                      <Value>Report Name</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <Style>
+                        <Color>White</Color>
+                        <BackgroundColor>DarkCyan</BackgroundColor>
+                        <BorderColor>
+                          <Default>#081bcb</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontFamily>Verdana</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <UserSort>
+                        <SortExpression>=COUNT(Fields!ReportKey.Value)</SortExpression>
+                        <SortExpressionScope>table1_Group1</SortExpressionScope>
+                      </UserSort>
+                      <Value>Execution Count</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>4.75in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.75in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.5in</Height>
+        <Left>0.375in</Left>
+      </Table>
+      <Textbox Name="textbox1">
+        <Style>
+          <Color>DarkCyan</Color>
+          <FontSize>26pt</FontSize>
+          <FontWeight>900</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>0.125in</Left>
+        <Height>0.5in</Height>
+        <Value>Reports With Low Activity</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>1.5in</Height>
+  </Body>
+  <TopMargin>0.11in</TopMargin>
+</Report>

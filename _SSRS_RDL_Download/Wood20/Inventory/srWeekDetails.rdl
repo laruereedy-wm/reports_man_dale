@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="PKI">
+      <rd:DataSourceID>3d6cbf21-5069-48b6-b082-3b26fdb67fec</rd:DataSourceID>
+      <DataSourceReference>PKI</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="startDate">
+      <DataType>DateTime</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>startDate</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="endDate">
+      <DataType>DateTime</DataType>
+      <Prompt>endDate</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="plannerNumber">
+      <DataType>String</DataType>
+      <Prompt>plannerNumber</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="imKey">
+      <DataType>String</DataType>
+      <Prompt>imKey</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="allOpenedPlanned">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>allOpenedPlanned</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>1in</RightMargin>
+  <LeftMargin>1in</LeftMargin>
+  <BottomMargin>1in</BottomMargin>
+  <rd:ReportID>2989ba6d-12da-4675-afe3-d024791bc38b</rd:ReportID>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Fields>
+        <Field Name="IM_PLANNER">
+          <DataField>IM_PLANNER</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOS_WANTDATE">
+          <DataField>MOS_WANTDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="MOS_QTY">
+          <DataField>MOS_QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IM_STOCK_SW">
+          <DataField>IM_STOCK_SW</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IM_DESCR">
+          <DataField>IM_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_ON_HAND">
+          <DataField>IM_ON_HAND</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IM_SAFETY">
+          <DataField>IM_SAFETY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IM_BUD_BUR">
+          <DataField>IM_BUD_BUR</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MOS_STATUS">
+          <DataField>MOS_STATUS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MOS_QTY_REC">
+          <DataField>MOS_QTY_REC</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="STARTDATE">
+          <DataField>STARTDATE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WEEK1">
+          <DataField>WEEK1</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="WEEK2">
+          <DataField>WEEK2</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="WEEK3">
+          <DataField>WEEK3</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="WEEK4">
+          <DataField>WEEK4</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="WEEK5">
+          <DataField>WEEK5</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="WEEK1QTY">
+          <DataField>WEEK1QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="WEEK2QTY">
+          <DataField>WEEK2QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="WEEK3QTY">
+          <DataField>WEEK3QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="WEEK4QTY">
+          <DataField>WEEK4QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="WEEK5QTY">
+          <DataField>WEEK5QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="WEEK6QTY">
+          <DataField>WEEK6QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="STATUS">
+          <DataField>STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ALL">
+          <DataField>ALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     IM.IM_PLANNER, IM.IM_KEY, MOS.MOS_WANTDATE, MOS.MOS_QTY, IM.IM_STOCK_SW, IM.IM_DESCR, IM.IM_ON_HAND, IM.IM_SAFETY, 
+                      IM.IM_BUD_BUR, MOS.MOS_STATUS, MOS.MOS_QTY_REC, @startDate AS STARTDATE, DATEADD(ww, 1, @startDate) AS WEEK1, DATEADD(ww, 2, 
+                      @startDate) AS WEEK2, DATEADD(ww, 3, @startDate) AS WEEK3, DATEADD(ww, 4, @startDate) AS WEEK4, DATEADD(ww, 5, @startDate) AS WEEK5, 
+                      CASE WHEN MOS_WANTDATE &gt; @startDate AND MOS_WANTDATE &lt;= DATEADD(ww, 1, @startDate) 
+                      THEN CASE WHEN @allOpenedPlanned = 'OPEN' THEN MOS.MOS_QTY - MOS.MOS_QTY_REC ELSE MOS_QTY END ELSE 0 END AS WEEK1QTY, 
+                      CASE WHEN MOS_WANTDATE &gt; DATEADD(ww, 1, @startDate) AND MOS_WANTDATE &lt;= DATEADD(ww, 2, @startDate) 
+                      THEN CASE WHEN @allOpenedPlanned = 'OPEN' THEN MOS.MOS_QTY - MOS.MOS_QTY_REC ELSE MOS_QTY END ELSE 0 END AS WEEK2QTY, 
+                      CASE WHEN MOS_WANTDATE &gt; DATEADD(ww, 2, @startDate) AND MOS_WANTDATE &lt;= DATEADD(ww, 3, @startDate) 
+                      THEN CASE WHEN @allOpenedPlanned = 'OPEN' THEN MOS.MOS_QTY - MOS.MOS_QTY_REC ELSE MOS_QTY END ELSE 0 END AS WEEK3QTY, 
+                      CASE WHEN MOS_WANTDATE &gt; DATEADD(ww, 3, @startDate) AND MOS_WANTDATE &lt;= DATEADD(ww, 4, @startDate) 
+                      THEN CASE WHEN @allOpenedPlanned = 'OPEN' THEN MOS.MOS_QTY - MOS.MOS_QTY_REC ELSE MOS_QTY END ELSE 0 END AS WEEK4QTY, 
+                      CASE WHEN MOS_WANTDATE &gt; DATEADD(ww, 4, @startDate) AND MOS_WANTDATE &lt;= DATEADD(ww, 5, @startDate) 
+                      THEN CASE WHEN @allOpenedPlanned = 'OPEN' THEN MOS.MOS_QTY - MOS.MOS_QTY_REC ELSE MOS_QTY END ELSE 0 END AS WEEK5QTY, 
+                      CASE WHEN MOS_WANTDATE &gt; DATEADD(ww, 5, @startDate) AND MOS_WANTDATE &lt;= DATEADD(ww, 6, @startDate) 
+                      THEN CASE WHEN @allOpenedPlanned = 'OPEN' THEN MOS.MOS_QTY - MOS.MOS_QTY_REC ELSE MOS_QTY END ELSE 0 END AS WEEK6QTY, 
+                      CASE WHEN MOS_STATUS &lt; 3 THEN 'OPEN' ELSE 'PLANNED' END AS STATUS, 
+                      CASE WHEN @allOpenedPlanned = 'OPEN' THEN MOS.MOS_QTY - MOS.MOS_QTY_REC ELSE MOS_QTY END AS QTY, 'ALL' AS [ALL]
+FROM         IM LEFT OUTER JOIN
+                      MOS ON IM.IM_KEY = MOS.MOS_IMKEY
+WHERE     (IM.IM_PLANNER = @plannerNumber) AND (MOS.MOS_WANTDATE &gt;= @startDate) AND (MOS.MOS_WANTDATE &lt;= @endDate) AND 
+                      (IM.IM_KEY = @imKey)
+ORDER BY IM.IM_PLANNER, IM.IM_KEY, MOS.MOS_WANTDATE</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@allOpenedPlanned">
+            <Value>=Parameters!allOpenedPlanned.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@startDate">
+            <Value>=Parameters!startDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@plannerNumber">
+            <Value>=Parameters!plannerNumber.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@endDate">
+            <Value>=Parameters!endDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@imKey">
+            <Value>=Parameters!imKey.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="noRows">
+      <Fields>
+        <Field Name="Expr1">
+          <DataField>Expr1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     1 AS Expr1</CommandText>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Code>Private keyName As String
+Private currentStatus As Boolean
+Function SetKey(ByVal keyValue As String) As Boolean
+    If(keyName = keyValue) Then
+        currentStatus=True
+        Return True
+    Else
+        keyName=keyValue
+        currentStatus=False
+        Return False
+    End If
+End Function
+
+Function GetStatus() As Boolean
+	return currentStatus
+End Function
+
+Private keyName2 As String
+Private currentStatus2 As Boolean
+Function SetKey2(ByVal keyValue As String) As Boolean
+    If(keyName2 = keyValue) Then
+        currentStatus2=True
+        Return True
+    Else
+        keyName2=keyValue
+        currentStatus2=False
+        Return False
+    End If
+End Function
+
+Function GetStatus2() As Boolean
+	return currentStatus2
+End Function</Code>
+  <Width>5.97066in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <NoRows>No Orders</NoRows>
+        <ZIndex>1</ZIndex>
+        <DataSetName>mainData</DataSetName>
+        <Filters>
+          <Filter>
+            <FilterExpression>=IIf(Parameters!allOpenedPlanned.Value = "OPEN", Fields!STATUS.Value, Fields!ALL.Value)</FilterExpression>
+            <Operator>Equal</Operator>
+            <FilterValues>
+              <FilterValue>=Parameters!allOpenedPlanned.Value</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!IM_PLANNER.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Sorting>
+              <SortBy>
+                <SortExpression>=Fields!IM_PLANNER.Value</SortExpression>
+                <Direction>Ascending</Direction>
+              </SortBy>
+            </Sorting>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox38">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>5</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=IIf(Sum(Fields!WEEK1QTY.Value) Is Nothing or Sum(Fields!WEEK1QTY.Value) = 0, 0, Sum(Fields!WEEK1QTY.Value))</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox39">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>4</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!WEEK2QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox40">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>3</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!WEEK3QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox41">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>2</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!WEEK4QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox42">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!WEEK5QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox43">
+                          <Style>
+                            <BackgroundColor>White</BackgroundColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!WEEK6QTY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+        </Style>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.99511in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.99511in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.99511in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.99511in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.99511in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.99511in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+      <Table Name="table2">
+        <DataSetName>noRows</DataSetName>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="table2_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!Expr1.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox1">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>5</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>0</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox2">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>4</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>0</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox3">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>3</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>0</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox4">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>2</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>0</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox5">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>0</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox6">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <Format>#,##0</Format>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>0</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+        </Style>
+        <TableColumns>
+          <TableColumn>
+            <Width>0.99511in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.99511in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.99511in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.99511in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.99511in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.99511in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.25in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+</Report>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="WOOD20_INSPECTION">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=WOOD20;Initial Catalog=INSPECTION</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>ef600f67-ac7e-417b-a76a-e0fec2f94425</DataSourceID>
+</RptDataSource>

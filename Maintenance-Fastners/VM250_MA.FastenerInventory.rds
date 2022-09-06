@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="VM250_MA.FastenerInventory">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=VM250;Initial Catalog=MA.FastenerInventory</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>6134b13e-1403-41fb-827b-2c0a9445d12c</DataSourceID>
+</RptDataSource>

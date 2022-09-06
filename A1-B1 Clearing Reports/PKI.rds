@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="PKI">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=PROFITKEYDB;Initial Catalog=PK1</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>3c0b2155-c353-47d4-8e76-b8efdd55fb91</DataSourceID>
+</RptDataSource>

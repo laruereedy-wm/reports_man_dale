@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Manufacturing-SIS", "Manufacturing-SIS.rptproj", "{DA157C09-973C-43E2-9A8D-2AC2B0743332}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA157C09-973C-43E2-9A8D-2AC2B0743332}.Debug|Default.ActiveCfg = Debug
+		{DA157C09-973C-43E2-9A8D-2AC2B0743332}.Debug|Default.Build.0 = DebugLocal
+		{DA157C09-973C-43E2-9A8D-2AC2B0743332}.Debug|Default.Deploy.0 = DebugLocal
+		{DA157C09-973C-43E2-9A8D-2AC2B0743332}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{DA157C09-973C-43E2-9A8D-2AC2B0743332}.DebugLocal|Default.Build.0 = DebugLocal
+		{DA157C09-973C-43E2-9A8D-2AC2B0743332}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{DA157C09-973C-43E2-9A8D-2AC2B0743332}.Release|Default.ActiveCfg = Release
+		{DA157C09-973C-43E2-9A8D-2AC2B0743332}.Release|Default.Build.0 = Release
+		{DA157C09-973C-43E2-9A8D-2AC2B0743332}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

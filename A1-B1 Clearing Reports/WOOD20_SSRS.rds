@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="WOOD20_SSRS">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=WOOD20;Initial Catalog=SSRS</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>45ebecef-7211-4938-81d0-6653a6a12b21</DataSourceID>
+</RptDataSource>

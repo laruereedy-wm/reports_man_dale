@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Detail">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>7.375in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.1875in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Rectangle Name="Detail_Contents">
+                      <ReportItems>
+                        <Textbox Name="LocationName">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!LocationName.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <LineHeight>14pt</LineHeight>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Left>0.25in</Left>
+                          <Height>0.1875in</Height>
+                          <Width>0.7in</Width>
+                          <Style>
+                            <Border>
+                              <Color>#000000</Color>
+                            </Border>
+                            <BackgroundColor>=iif((Fields!LocationID.Value.ToString &lt;&gt; Previous(Fields!LocationID.Value.ToString)) , "Gainsboro", "White")</BackgroundColor>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="ItemNumber">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ItemNumber.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <LineHeight>14pt</LineHeight>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Left>1.875in</Left>
+                          <Height>0.1875in</Height>
+                          <Width>1in</Width>
+                          <ZIndex>1</ZIndex>
+                          <Style>
+                            <Border>
+                              <Color>#000000</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="PalletNumber">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!PalletNumber.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <LineHeight>14pt</LineHeight>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Left>3in</Left>
+                          <Height>0.1875in</Height>
+                          <Width>0.9375in</Width>
+                          <ZIndex>2</ZIndex>
+                          <Style>
+                            <Border>
+                              <Color>#000000</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="IsAvailable">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=iif(Fields!IsAvailable.Value = 1,"","x")</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <LineHeight>14pt</LineHeight>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Left>1in</Left>
+                          <Height>0.1875in</Height>
+                          <Width>0.125in</Width>
+                          <ZIndex>3</ZIndex>
+                          <Style>
+                            <Border>
+                              <Color>#000000</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Quantity">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Quantity.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>N0</Format>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                                <LineHeight>14pt</LineHeight>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Left>4.125in</Left>
+                          <Height>0.1875in</Height>
+                          <Width>0.625in</Width>
+                          <ZIndex>4</ZIndex>
+                          <Style>
+                            <Border>
+                              <Color>#000000</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="ReceivedDate">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ReceivedDate.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>=formatdatetime(Fields!ReceivedDate.Value,vbShortDate)</Format>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                                <LineHeight>14pt</LineHeight>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Left>5.5in</Left>
+                          <Height>0.1875in</Height>
+                          <Width>0.6562in</Width>
+                          <ZIndex>5</ZIndex>
+                          <Style>
+                            <Border>
+                              <Color>#000000</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="LastActivityDate">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=FormatDateTime(Fields!LastActivityDate.Value,vbShortDate)</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>LastActivityDate</rd:DefaultName>
+                          <Left>6.5in</Left>
+                          <Height>0.1875in</Height>
+                          <Width>0.875in</Width>
+                          <ZIndex>6</ZIndex>
+                          <Style />
+                        </Textbox>
+                        <Line Name="line1">
+                          <Top>0.125in</Top>
+                          <Left>4.875in</Left>
+                          <Height>0in</Height>
+                          <Width>0.425in</Width>
+                          <ZIndex>7</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                          </Style>
+                        </Line>
+                      </ReportItems>
+                      <KeepTogether>true</KeepTogether>
+                      <Style />
+                    </Rectangle>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="Detail_Details_Group">
+                <DataElementName>Item</DataElementName>
+              </Group>
+              <DataElementName>Item_Collection</DataElementName>
+              <DataElementOutput>Output</DataElementOutput>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DataSet1</DataSetName>
+        <Filters>
+          <Filter>
+            <FilterExpression>=Fields!LocationName.Value</FilterExpression>
+            <Operator>Between</Operator>
+            <FilterValues>
+              <FilterValue>=Parameters!StartLocation.Value</FilterValue>
+              <FilterValue>=Parameters!EndLocation.Value</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
+        <SortExpressions>
+          <SortExpression>
+            <Value>=Fields!LocationName.Value</Value>
+          </SortExpression>
+          <SortExpression>
+            <Value>=Fields!ItemNumber.Value</Value>
+          </SortExpression>
+          <SortExpression>
+            <Value>=Fields!PalletNumber.Value</Value>
+          </SortExpression>
+        </SortExpressions>
+        <Height>0.1875in</Height>
+        <Width>7.375in</Width>
+        <Style />
+      </Tablix>
+    </ReportItems>
+    <Height>0.1875in</Height>
+    <Style />
+  </Body>
+  <Width>7.3854in</Width>
+  <Page>
+    <PageHeader>
+      <Height>1.125in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Rectangle Name="ReportHeader">
+          <ReportItems>
+            <Textbox Name="textbox12">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Location Range:  " &amp; Parameters!StartLocation.Value &amp; "  to  " &amp; Parameters!EndLocation.Value</Value>
+                      <Style>
+                        <FontFamily>Times New Roman</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <FontWeight>SemiBold</FontWeight>
+                        <Color>#000080</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.5in</Top>
+              <Height>0.25in</Height>
+              <Width>7.375in</Width>
+              <Style>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="textbox1">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Rack Status Report</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Times New Roman</FontFamily>
+                        <FontSize>20pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                        <Color>#000080</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                    <LineHeight>26pt</LineHeight>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.125in</Top>
+              <Height>0.3541in</Height>
+              <Width>7.375in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Color>#000000</Color>
+                </Border>
+                <BackgroundColor>#ffffff</BackgroundColor>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox52">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>R05-0223</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox52</rd:DefaultName>
+              <Height>0.25in</Height>
+              <Width>1in</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <DataElementOutput>ContentsOnly</DataElementOutput>
+          <Height>0.75in</Height>
+          <Width>7.375in</Width>
+          <Style>
+            <BackgroundColor>#ffffff</BackgroundColor>
+          </Style>
+        </Rectangle>
+        <Textbox Name="LocationName_Label">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Location</Value>
+                  <Style>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>11pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+                <LineHeight>16pt</LineHeight>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.875in</Top>
+          <Left>0.25in</Left>
+          <Height>0.2083in</Height>
+          <Width>0.75in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Color>#000000</Color>
+            </Border>
+          </Style>
+        </Textbox>
+        <Textbox Name="ItemNumber_Label">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Part Number</Value>
+                  <Style>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>11pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+                <LineHeight>16pt</LineHeight>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.875in</Top>
+          <Left>1.875in</Left>
+          <Height>0.2083in</Height>
+          <Width>1in</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Color>#000000</Color>
+            </Border>
+          </Style>
+        </Textbox>
+        <Textbox Name="PalletNumber_Label">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Pallet Number</Value>
+                  <Style>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>11pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+                <LineHeight>16pt</LineHeight>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.875in</Top>
+          <Left>3in</Left>
+          <Height>0.2083in</Height>
+          <Width>1.125in</Width>
+          <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Color>#000000</Color>
+            </Border>
+          </Style>
+        </Textbox>
+        <Textbox Name="IsAvailable_Label">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Not Usable</Value>
+                  <Style>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>11pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+                <LineHeight>16pt</LineHeight>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.875in</Top>
+          <Left>1in</Left>
+          <Height>0.2083in</Height>
+          <Width>0.875in</Width>
+          <ZIndex>4</ZIndex>
+          <Style>
+            <Border>
+              <Color>#000000</Color>
+            </Border>
+          </Style>
+        </Textbox>
+        <Textbox Name="Quantity_Label">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Quantity</Value>
+                  <Style>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>11pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+                <LineHeight>16pt</LineHeight>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.875in</Top>
+          <Left>4.125in</Left>
+          <Height>0.2083in</Height>
+          <Width>0.7916in</Width>
+          <ZIndex>5</ZIndex>
+          <Style>
+            <Border>
+              <Color>#000000</Color>
+            </Border>
+          </Style>
+        </Textbox>
+        <Textbox Name="ReceivedDate_Label">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Mfg. Date</Value>
+                  <Style>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>11pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+                <LineHeight>16pt</LineHeight>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.875in</Top>
+          <Left>5.25in</Left>
+          <Height>0.2083in</Height>
+          <Width>0.9583in</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Color>#000000</Color>
+            </Border>
+          </Style>
+        </Textbox>
+        <Textbox Name="LastActivityDate_Label">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Last Activity</Value>
+                  <Style>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>11pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+                <LineHeight>16pt</LineHeight>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.875in</Top>
+          <Left>6.25in</Left>
+          <Height>0.2083in</Height>
+          <Width>1.1354in</Width>
+          <ZIndex>7</ZIndex>
+          <Style>
+            <Border>
+              <Color>#000000</Color>
+            </Border>
+          </Style>
+        </Textbox>
+        <Textbox Name="DatePrinted">
+          <CanGrow>true</CanGrow>
+          <CanShrink>true</CanShrink>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=DateTime.Now.ToString()</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Left>5.75in</Left>
+          <Height>0.125in</Height>
+          <Width>1.625in</Width>
+          <ZIndex>8</ZIndex>
+          <Style>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <BackgroundColor>#ffffff</BackgroundColor>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>0.5in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Text18">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="Page " &amp; Globals.PageNumber &amp; " of " &amp; Globals.TotalPages</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+                <LineHeight>14pt</LineHeight>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.25in</Top>
+          <Left>3.875in</Left>
+          <Height>0.2083in</Height>
+          <Width>3.375in</Width>
+          <Style>
+            <Border>
+              <Color>#000000</Color>
+            </Border>
+          </Style>
+        </Textbox>
+        <Line Name="Line20">
+          <Top>0.125in</Top>
+          <Left>0.125in</Left>
+          <Height>0in</Height>
+          <Width>7.15in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Color>#c0c0c0</Color>
+              <Style>Solid</Style>
+              <Width>3pt</Width>
+            </Border>
+          </Style>
+        </Line>
+        <Textbox Name="ExecutionTime">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="Execution Time: " +
+IIf(System.DateTime.Now.Subtract(Globals!ExecutionTime).TotalSeconds &lt; 1, "0 seconds", 
+   (
+IIf(System.DateTime.Now.Subtract(Globals!ExecutionTime).Hours &gt; 0, System.DateTime.Now.Subtract(Globals!ExecutionTime).Hours &amp; " hour(s), ", "") +
+IIf(System.DateTime.Now.Subtract(Globals!ExecutionTime).Minutes &gt; 0, System.DateTime.Now.Subtract(Globals!ExecutionTime).Minutes &amp; " minute(s), ", "") +
+IIf(System.DateTime.Now.Subtract(Globals!ExecutionTime).Seconds &gt; 0, System.DateTime.Now.Subtract(Globals!ExecutionTime).Seconds &amp; " second(s)", ""))
+)</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>#000080</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.25in</Top>
+          <Left>0.125in</Left>
+          <Height>0.25in</Height>
+          <Width>2.5in</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <BackgroundColor>#ffffff</BackgroundColor>
+      </Style>
+    </PageFooter>
+    <PageHeight>11.5in</PageHeight>
+    <LeftMargin>0.5in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <Description>R05-0223 Rack Status Report</Description>
+  <Author>SSRS Conversion</Author>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="RIL">
+      <DataSourceReference>RIL</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>74fd060f-f08e-44ae-af3d-084a3c3f1e7b</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>RIL</DataSourceName>
+        <CommandText>SELECT     dbo.Inventory.LocationID, dbo.Locations.LocationName, dbo.Locations.IsAvailable, dbo.Inventory.ItemNumber, dbo.Inventory.PalletNumber, 
+                      dbo.Inventory.Quantity, dbo.Inventory.ReceivedDate, dbo.Inventory.LastActivityDate
+FROM         dbo.Inventory LEFT OUTER JOIN
+                      dbo.Locations ON dbo.Inventory.LocationID = dbo.Locations.LocationID
+WHERE     (dbo.Inventory.LocationID &lt;&gt; '2680')</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="LocationID">
+          <DataField>LocationID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LocationName">
+          <DataField>LocationName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IsAvailable">
+          <DataField>IsAvailable</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="ItemNumber">
+          <DataField>ItemNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PalletNumber">
+          <DataField>PalletNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="ReceivedDate">
+          <DataField>ReceivedDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="LastActivityDate">
+          <DataField>LastActivityDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="StartLocation">
+      <DataType>String</DataType>
+      <Prompt>Start Location:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndLocation">
+      <DataType>String</DataType>
+      <Prompt>End Location:</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>5999c085-4020-413b-ac8d-ca4dfa17a91a</rd:ReportID>
+</Report>

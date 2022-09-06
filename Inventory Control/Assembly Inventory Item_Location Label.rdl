@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="PK1">
+      <DataSourceReference>PKI</DataSourceReference>
+      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:DataSourceID>155b6de8-8179-4c58-bfef-087de884554b</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>PK1</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@imkey">
+            <Value>=Parameters!imkey.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     IM.IM_PLANNER, IM.IM_PROD_CODE, IM.IM_KEY, '*' + IM.IM_KEY + '*' AS BARCODEIMKEY, IM.IM_DESCR AS IMDESCR, ID.ID_LINE AS IDLINE1, LEFT(ID_1.ID_LINE,
+                       14) AS IDLINE2, SUBSTRING(ID_1.ID_LINE, 15, 15) AS IDLINE2B, ID_2.ID_LINE AS IDLINE4, CASE WHEN ID_3.ID_LINE &lt;&gt; '' THEN LEFT(ID_3.ID_LINE, 2) 
+                      + ' ' + RIGHT(ID_3.ID_LINE, 1) ELSE ID_6.ID_LINE END AS IDLINE3, IM.IM_CATALOG, ISNULL(ID_4.ID_LINE, ID_6.ID_LINE) AS IDLINE7, ID_6.ID_LINE, 
+                      ML.ML_LOCATION, ML.ML_SECONDARY, KBL.KBL_LOCATION, KBL.KBL_TRIG_QTY, KBL.KBL_REP_QTY, 
+                      CASE KBL.KBL_METHOD WHEN 2 THEN 'S &amp; V' WHEN 1 THEN 'MOVE' ELSE 'ERROR' END AS METHOD
+FROM         KBL INNER JOIN
+                      ML ON KBL.KBL_IMKEY = ML.ML_IMKEY AND KBL.KBL_LOCATION = ML.ML_LOCATION RIGHT OUTER JOIN
+                      IM INNER JOIN
+                      ID ON IM.IM_KEY = ID.ID_IMKEY INNER JOIN
+                      ID AS ID_1 ON ID.ID_IMKEY = ID_1.ID_IMKEY ON ML.ML_IMKEY = IM.IM_KEY LEFT OUTER JOIN
+                      ID AS ID_3 ON IM.IM_KEY = ID_3.ID_IMKEY AND ID_3.ID_CLASS = 'A/P' AND ID_3.ID_LINE_NO = 1 LEFT OUTER JOIN
+                      ID AS ID_6 ON IM.IM_KEY = ID_6.ID_IMKEY AND ID_6.ID_CLASS = 'GEN' AND ID_6.ID_LINE_NO = 5 LEFT OUTER JOIN
+                      ID AS ID_4 ON IM.IM_KEY = ID_4.ID_IMKEY AND ID_4.ID_CLASS = 'GEN' AND ID_4.ID_LINE_NO = 4 LEFT OUTER JOIN
+                      ID AS ID_2 ON ID_1.ID_IMKEY = ID_2.ID_IMKEY
+WHERE     (ID_1.ID_CLASS = 'GEN') AND (ID_2.ID_CLASS = 'GEN') AND (ID.ID_CLASS = 'GEN') AND (ID.ID_LINE_NO = 1) AND (ID_1.ID_LINE_NO = 2) AND (ID_2.ID_LINE_NO = 3) 
+                      AND (IM.IM_KEY IN (@imkey)) AND (ML.ML_SECONDARY = 1) AND (ML.ML_LOCATION &lt;&gt; 'TRANSPORT')</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="IM_PLANNER">
+          <DataField>IM_PLANNER</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IM_PROD_CODE">
+          <DataField>IM_PROD_CODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BARCODEIMKEY">
+          <DataField>BARCODEIMKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IMDESCR">
+          <DataField>IMDESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDLINE1">
+          <DataField>IDLINE1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDLINE2">
+          <DataField>IDLINE2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDLINE2B">
+          <DataField>IDLINE2B</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDLINE4">
+          <DataField>IDLINE4</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDLINE3">
+          <DataField>IDLINE3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_CATALOG">
+          <DataField>IM_CATALOG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDLINE7">
+          <DataField>IDLINE7</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID_LINE">
+          <DataField>ID_LINE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ML_LOCATION">
+          <DataField>ML_LOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ML_SECONDARY">
+          <DataField>ML_SECONDARY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="KBL_LOCATION">
+          <DataField>KBL_LOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="KBL_TRIG_QTY">
+          <DataField>KBL_TRIG_QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="KBL_REP_QTY">
+          <DataField>KBL_REP_QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="METHOD">
+          <DataField>METHOD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="IMKEYS">
+      <Query>
+        <DataSourceName>PK1</DataSourceName>
+        <CommandText>SELECT KBL_IMKEY, KBL_IMKEY + '-' + KBL_LOCATION AS VEIWKEY
+FROM         KBL INNER JOIN
+                      ML ON KBL.KBL_IMKEY = ML.ML_IMKEY AND KBL.KBL_LOCATION = ML.ML_LOCATION RIGHT OUTER JOIN
+                      IM INNER JOIN
+                      ID ON IM.IM_KEY = ID.ID_IMKEY INNER JOIN
+                      ID AS ID_1 ON ID.ID_IMKEY = ID_1.ID_IMKEY ON ML.ML_IMKEY = IM.IM_KEY LEFT OUTER JOIN
+                      ID AS ID_3 ON IM.IM_KEY = ID_3.ID_IMKEY AND ID_3.ID_CLASS = 'A/P' AND ID_3.ID_LINE_NO = 1 LEFT OUTER JOIN
+                      ID AS ID_6 ON IM.IM_KEY = ID_6.ID_IMKEY AND ID_6.ID_CLASS = 'GEN' AND ID_6.ID_LINE_NO = 5 LEFT OUTER JOIN
+                      ID AS ID_4 ON IM.IM_KEY = ID_4.ID_IMKEY AND ID_4.ID_CLASS = 'GEN' AND ID_4.ID_LINE_NO = 4 LEFT OUTER JOIN
+                      ID AS ID_2 ON ID_1.ID_IMKEY = ID_2.ID_IMKEY
+WHERE     (ID_1.ID_CLASS = 'GEN') AND (ID_2.ID_CLASS = 'GEN') AND (ID.ID_CLASS = 'GEN') AND (ID.ID_LINE_NO = 1) AND (ID_1.ID_LINE_NO = 2) AND (ID_2.ID_LINE_NO = 3) 
+                       AND (ML.ML_SECONDARY = 1) AND (ML.ML_LOCATION &lt;&gt; 'TRANSPORT')
+ORDER BY KBL_LOCATION</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="KBL_IMKEY">
+          <DataField>KBL_IMKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="VEIWKEY">
+          <DataField>VEIWKEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>5.15278in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>5.65278in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>1.00278in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="BARCODEIMKEY">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!BARCODEIMKEY.Value</Value>
+                                  <Style>
+                                    <FontFamily>Free 3 of 9</FontFamily>
+                                    <FontSize>75pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>BARCODEIMKEY</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Bottom</VerticalAlign>
+                            <PaddingLeft>1pt</PaddingLeft>
+                            <PaddingRight>1pt</PaddingRight>
+                            <PaddingTop>1pt</PaddingTop>
+                            <PaddingBottom>1pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="KBL_LOCATION">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>="Trigger Qty= " &amp; Format(Fields!KBL_TRIG_QTY.Value, "####") &amp; "  Order Qty= " &amp; Format(Fields!KBL_REP_QTY.Value, "####")</Value>
+                                  <Style>
+                                    <FontSize>26pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>0;(0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>KBL_LOCATION</rd:DefaultName>
+                          <Style>
+                            <Border />
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.51042in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox12">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>="P" &amp; Fields!IM_PLANNER.Value &amp; "        " &amp; Fields!IM_KEY.Value &amp; "          " &amp; Fields!IM_PROD_CODE.Value</Value>
+                                  <Style>
+                                    <FontSize>26pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox12</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox13">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!KBL_LOCATION.Value</Value>
+                                  <Style>
+                                    <FontSize>30pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox13</rd:DefaultName>
+                          <Style>
+                            <Border />
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>1.1868in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox9">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF(Fields!IDLINE2B.Value = "","&lt;font size = '6'&gt;" + Fields!IDLINE2.Value &amp; " " &amp; Fields!IDLINE2B.Value,"&lt;font size = '5'&gt;" + Fields!IDLINE2.Value &amp; " " &amp; Fields!IDLINE2B.Value) 
+&amp; "&lt;br&gt;" &amp; "&lt;font size = '6'&gt;" + Fields!IDLINE1.Value &amp; Chr(10) &amp; "&lt;br&gt;" 
+
+ &amp; iif(Fields!IDLINE7.Value = "", "&lt;font size = '6'&gt;" + Fields!IDLINE4.Value &amp; " " &amp; Fields!IDLINE7.Value &amp; " " &amp; Fields!ID_LINE.Value, iif(Fields!ID_LINE.Value = "", "&lt;font size = '4'&gt;" + Fields!IDLINE4.Value &amp; " " &amp; Fields!IDLINE7.Value &amp; " " &amp; Fields!ID_LINE.Value, "&lt;font size = '3'&gt;" + Fields!IDLINE4.Value &amp; " " &amp; Fields!IDLINE7.Value &amp; " " &amp; Fields!ID_LINE.Value))</Value>
+                                  <MarkupType>HTML</MarkupType>
+                                  <Style>
+                                    <FontSize>24pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox11">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>="*" &amp; Fields!KBL_LOCATION.Value &amp; "*"</Value>
+                                  <Style>
+                                    <FontFamily>Free 3 of 9</FontFamily>
+                                    <FontSize>75pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox11</rd:DefaultName>
+                          <Style>
+                            <Border />
+                            <VerticalAlign>Top</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Details" />
+                  <TablixMembers>
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <KeepTogether>true</KeepTogether>
+            <DataSetName>DataSet1</DataSetName>
+            <Left>0.10417in</Left>
+            <Height>2.7in</Height>
+            <Width>10.80556in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>2.7in</Height>
+        <Style />
+      </Body>
+      <Width>10.90973in</Width>
+      <Page>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
+        <InteractiveHeight>8.4in</InteractiveHeight>
+        <InteractiveWidth>10.8in</InteractiveWidth>
+        <LeftMargin>0.01in</LeftMargin>
+        <RightMargin>0.01in</RightMargin>
+        <TopMargin>0.01in</TopMargin>
+        <BottomMargin>0.01in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="imkey">
+      <DataType>String</DataType>
+      <Prompt>imkey</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>IMKEYS</DataSetName>
+          <ValueField>KBL_IMKEY</ValueField>
+          <LabelField>VEIWKEY</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://172.16.100.249/ReportServer</rd:ReportServerUrl>
+  <rd:ReportID>98e7acdd-6335-4bfb-aa4c-f6af242730f1</rd:ReportID>
+</Report>

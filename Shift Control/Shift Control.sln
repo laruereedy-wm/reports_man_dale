@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1758
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Shift Control", "Shift Control.rptproj", "{65E843C6-5D1F-4A20-ABB2-DAC54B97083B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65E843C6-5D1F-4A20-ABB2-DAC54B97083B}.Debug|Default.ActiveCfg = Debug
+		{65E843C6-5D1F-4A20-ABB2-DAC54B97083B}.Debug|Default.Build.0 = Debug
+		{65E843C6-5D1F-4A20-ABB2-DAC54B97083B}.Debug|Default.Deploy.0 = Debug
+		{65E843C6-5D1F-4A20-ABB2-DAC54B97083B}.Release|Default.ActiveCfg = Release
+		{65E843C6-5D1F-4A20-ABB2-DAC54B97083B}.Release|Default.Build.0 = Release
+		{65E843C6-5D1F-4A20-ABB2-DAC54B97083B}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C1D1281-9813-49D3-A42F-D9F62055AA75}
+	EndGlobalSection
+EndGlobal

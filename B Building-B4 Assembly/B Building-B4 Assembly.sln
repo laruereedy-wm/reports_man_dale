@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "B Building-B4 Assembly", "B Building-B4 Assembly.rptproj", "{40160709-3BE3-46F6-9BFD-C149F5736DDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40160709-3BE3-46F6-9BFD-C149F5736DDC}.Debug|Default.ActiveCfg = Debug
+		{40160709-3BE3-46F6-9BFD-C149F5736DDC}.Debug|Default.Build.0 = DebugLocal
+		{40160709-3BE3-46F6-9BFD-C149F5736DDC}.Debug|Default.Deploy.0 = DebugLocal
+		{40160709-3BE3-46F6-9BFD-C149F5736DDC}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{40160709-3BE3-46F6-9BFD-C149F5736DDC}.DebugLocal|Default.Build.0 = DebugLocal
+		{40160709-3BE3-46F6-9BFD-C149F5736DDC}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{40160709-3BE3-46F6-9BFD-C149F5736DDC}.Release|Default.ActiveCfg = Release
+		{40160709-3BE3-46F6-9BFD-C149F5736DDC}.Release|Default.Build.0 = Release
+		{40160709-3BE3-46F6-9BFD-C149F5736DDC}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

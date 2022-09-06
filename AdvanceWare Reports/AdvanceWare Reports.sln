@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1758
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "AdvanceWare Reports", "AdvanceWare Reports.rptproj", "{FF90C27A-3918-470A-9012-43644925734C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF90C27A-3918-470A-9012-43644925734C}.Debug|Default.ActiveCfg = Debug
+		{FF90C27A-3918-470A-9012-43644925734C}.Debug|Default.Build.0 = DebugLocal
+		{FF90C27A-3918-470A-9012-43644925734C}.Debug|Default.Deploy.0 = DebugLocal
+		{FF90C27A-3918-470A-9012-43644925734C}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{FF90C27A-3918-470A-9012-43644925734C}.DebugLocal|Default.Build.0 = DebugLocal
+		{FF90C27A-3918-470A-9012-43644925734C}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{FF90C27A-3918-470A-9012-43644925734C}.Release|Default.ActiveCfg = Release
+		{FF90C27A-3918-470A-9012-43644925734C}.Release|Default.Build.0 = Release
+		{FF90C27A-3918-470A-9012-43644925734C}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C203151-D6B9-4E96-BA5A-9A2ABDE9F829}
+	EndGlobalSection
+EndGlobal

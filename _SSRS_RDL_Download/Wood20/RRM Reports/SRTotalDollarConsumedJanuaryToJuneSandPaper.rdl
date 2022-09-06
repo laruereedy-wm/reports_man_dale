@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="PKI">
+      <rd:DataSourceID>9837a824-4ccc-4e19-915c-180de6d0296c</rd:DataSourceID>
+      <DataSourceReference>PKI</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="year">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Please Enter the Year Checking:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="startDate">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=CDate(STR(1) + "/" + STR(1) + "/" + STR(Parameters!year.Value) + " " + STR(12) + ":" + STR(00) + ":" + STR(00) + " AM")</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_1</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="endDate">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=CDate(STR(6) + "/" + STR(30) + "/" + STR(Parameters!year.Value) + " " + STR(11) + ":" + STR(59) + ":" + STR(59) + " PM")</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_2</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>0.1in</RightMargin>
+  <LeftMargin>0.1in</LeftMargin>
+  <BottomMargin>0.1in</BottomMargin>
+  <rd:ReportID>9bda3b3a-7c7f-4804-8d19-79baaafe5a9e</rd:ReportID>
+  <DataSets>
+    <DataSet Name="mainData">
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_AVG_MAT">
+          <DataField>IM_AVG_MAT</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_QTY">
+          <DataField>TX_QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TX_TYPE">
+          <DataField>TX_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_ORIGIN_STATUS">
+          <DataField>TX_ORIGIN_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DEST_STATUS">
+          <DataField>TX_DEST_STATUS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TX_DATE">
+          <DataField>TX_DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="IM_PROD_CODE">
+          <DataField>IM_PROD_CODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_TYPE">
+          <DataField>IM_TYPE</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IM_COMMODITY">
+          <DataField>IM_COMMODITY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_DESCR">
+          <DataField>IM_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PARTDESCRIPTION">
+          <Value>=IIF(Fields!IM_PROD_CODE.Value = "AER", "TOUCHUP - AEROSOL - NO KITS",
+IIF(Fields!IM_PROD_CODE.Value = "BES", "DRY SAND PAPER",
+IIF(Fields!IM_PROD_CODE.Value = "BIS", "TOUCHUP - BURN-IN STOCK - NO KITS",
+IIF(Fields!IM_PROD_CODE.Value = "CAN", "PAINT CANS", 
+IIF(Fields!IM_PROD_CODE.Value = "DIS", "DRY SAND PAPER",
+IIF(Fields!IM_PROD_CODE.Value = "FSK", "TOUCHUP - FILLSTICK - NO KITS",
+IIF(Fields!IM_PROD_CODE.Value = "GLU", "ALL OTHER GLUES", 
+IIF(Fields!IM_PROD_CODE.Value = "HMT", "HOT MELT GLUES",
+IIF(Fields!IM_PROD_CODE.Value = "LAM", "LAMBS WOOL &amp; WASHING",
+IIF(Fields!IM_PROD_CODE.Value = "MTU", "TOUCHUP - MARKER - NO KITS", 
+IIF(Fields!IM_PROD_CODE.Value = "PUT", "PUTTY &amp; WOOD DOUGH",
+IIF(Fields!IM_PROD_CODE.Value = "RAG", "RAGS &amp; PAPER WIPES",
+IIF(Fields!IM_PROD_CODE.Value = "REM", "PAINT REMOVER", 
+IIF(Fields!IM_PROD_CODE.Value = "REW", "RAGS, REWASH",
+IIF(Fields!IM_PROD_CODE.Value = "SCO", "DRY SAND PAPER",
+IIF(Fields!IM_PROD_CODE.Value = "SEA", "SEALERS", 
+IIF(Fields!IM_PROD_CODE.Value = "SHE", "DRY SAND PAPER",
+IIF(Fields!IM_PROD_CODE.Value = "SMI", "DRY SAND PAPER",
+IIF(Fields!IM_PROD_CODE.Value = "STA", "STAINS", 
+IIF(Fields!IM_PROD_CODE.Value = "STW", "STEEL WOOL",
+IIF(Fields!IM_PROD_CODE.Value = "TAC", "TACK CLOTH",
+IIF(Fields!IM_PROD_CODE.Value = "THI", "THINNERS", 
+IIF(Fields!IM_PROD_CODE.Value = "VAR", "VARNISH",
+IIF(Fields!IM_PROD_CODE.Value = "WAX", "WAXES",
+IIF(Fields!IM_PROD_CODE.Value = "HIC", "CONC. HINGES",
+IIF(Fields!IM_PROD_CODE.Value = "HIN", "HINGES",
+IIF(Fields!IM_PROD_CODE.Value = "KNO", "ALL KNOBS",
+IIF(Fields!IM_PROD_CODE.Value = "PUL", "ALL PULLS", Nothing))))))))))))))))))))))))))))</Value>
+        </Field>
+        <Field Name="PRODUCT_CODE_HEADER">
+          <Value>=Fields!IM_COMMODITY.Value &amp; " " &amp; Fields!IM_PROD_CODE.Value &amp; " - " &amp; Fields!PARTDESCRIPTION.Value</Value>
+        </Field>
+        <Field Name="CODE">
+          <Value>=IIF(Fields!IM_PROD_CODE.Value = "AER", "F",
+IIF(Fields!IM_PROD_CODE.Value = "BES", "S",
+IIF(Fields!IM_PROD_CODE.Value = "BIS", "F",
+IIF(Fields!IM_PROD_CODE.Value = "CAN", "F", 
+IIF(Fields!IM_PROD_CODE.Value = "DIS", "S",
+IIF(Fields!IM_PROD_CODE.Value = "FSK", "F",
+IIF(Fields!IM_PROD_CODE.Value = "GLU", "OG", 
+IIF(Fields!IM_PROD_CODE.Value = "HMT", "HG",
+IIF(Fields!IM_PROD_CODE.Value = "LAM", "F",
+IIF(Fields!IM_PROD_CODE.Value = "MTU", "F", 
+IIF(Fields!IM_PROD_CODE.Value = "PUT", "F",
+IIF(Fields!IM_PROD_CODE.Value = "RAG", "F",
+IIF(Fields!IM_PROD_CODE.Value = "REM", "F", 
+IIF(Fields!IM_PROD_CODE.Value = "REW", "F",
+IIF(Fields!IM_PROD_CODE.Value = "SCO", "S",
+IIF(Fields!IM_PROD_CODE.Value = "SEA", "F", 
+IIF(Fields!IM_PROD_CODE.Value = "SHE", "S",
+IIF(Fields!IM_PROD_CODE.Value = "SMI", "S",
+IIF(Fields!IM_PROD_CODE.Value = "STA", "F", 
+IIF(Fields!IM_PROD_CODE.Value = "STW", "F",
+IIF(Fields!IM_PROD_CODE.Value = "TAC", "F",
+IIF(Fields!IM_PROD_CODE.Value = "THI", "F", 
+IIF(Fields!IM_PROD_CODE.Value = "VAR", "F",
+IIF(Fields!IM_PROD_CODE.Value = "WAX", "F",
+IIF(Fields!IM_PROD_CODE.Value = "HIC", "HKP",
+IIF(Fields!IM_PROD_CODE.Value = "HIN", "HKP",
+IIF(Fields!IM_PROD_CODE.Value = "KNO", "HKP",
+IIF(Fields!IM_PROD_CODE.Value = "PUL", "HKP", Nothing))))))))))))))))))))))))))))</Value>
+        </Field>
+        <Field Name="DISPLAY">
+          <Value>=IIF(Fields!IM_PROD_CODE.Value = "BES", "ALL MONTHS LESS STEEL WOOL",
+IIF(Fields!IM_PROD_CODE.Value = "DIS", "ALL MONTHS LESS STEEL WOOL",
+IIF(Fields!IM_PROD_CODE.Value = "SCO", "ALL MONTHS LESS STEEL WOOL",
+IIF(Fields!IM_PROD_CODE.Value = "SHE", "ALL MONTHS LESS STEEL WOOL",
+IIF(Fields!IM_PROD_CODE.Value = "SMI", "ALL MONTHS LESS STEEL WOOL", Fields!IM_PROD_CODE.Value)))))</Value>
+        </Field>
+        <Field Name="CONSUMPTION">
+          <Value>=Fields!TX_QTY.Value * Fields!IM_AVG_MAT.Value</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <CommandText>SELECT     IM.IM_KEY, IM.IM_AVG_MAT, TX.TX_QTY, TX.TX_TYPE, TX.TX_ORIGIN_STATUS, TX.TX_DEST_STATUS, TX.TX_DATE, IM.IM_PROD_CODE, 
+                      IM.IM_TYPE, IM.IM_COMMODITY, IM.IM_DESCR
+FROM         TX INNER JOIN
+                      IM ON TX.TX_IMKEY = IM.IM_KEY
+WHERE     (IM.IM_TYPE = 2) AND (TX.TX_TYPE = 'A' OR
+                      TX.TX_TYPE = 'I') AND (TX.TX_ORIGIN_STATUS = 'A') AND (TX.TX_DEST_STATUS = 'I') AND (TX.TX_DATE &gt;= @startDate) AND 
+                      (TX.TX_DATE &lt;= @endDate) AND (IM.IM_PROD_CODE = 'BES' OR
+                      IM.IM_PROD_CODE = 'DIS' OR
+                      IM.IM_PROD_CODE = 'SCO' OR
+                      IM.IM_PROD_CODE = 'SHE' OR
+                      IM.IM_PROD_CODE = 'SMI') AND (IM.IM_COMMODITY = 'R01') AND (NOT (TX.TX_COMMENT LIKE '0000%'))
+ORDER BY IM.IM_KEY</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@startDate">
+            <Value>=Parameters!startDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@endDate">
+            <Value>=Parameters!endDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Width>7.75in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="table1">
+        <DataSetName>mainData</DataSetName>
+        <Filters>
+          <Filter>
+            <FilterExpression>=IIf(Fields!IM_PROD_CODE.Value = "WAX", Fields!IM_COMMODITY.Value, Nothing)</FilterExpression>
+            <Operator>NotEqual</Operator>
+            <FilterValues>
+              <FilterValue>="R21"</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="table1_Group1">
+              <GroupExpressions>
+                <GroupExpression>=Fields!DISPLAY.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Sorting>
+              <SortBy>
+                <SortExpression>=Fields!CODE.Value</SortExpression>
+                <Direction>Descending</Direction>
+              </SortBy>
+              <SortBy>
+                <SortExpression>=Fields!IM_COMMODITY.Value</SortExpression>
+                <Direction>Descending</Direction>
+              </SortBy>
+              <SortBy>
+                <SortExpression>=Fields!IM_PROD_CODE.Value</SortExpression>
+                <Direction>Descending</Direction>
+              </SortBy>
+            </Sorting>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox11">
+                          <Style>
+                            <BorderStyle>
+                              <Right>Solid</Right>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>4</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!CODE.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox12">
+                          <Style>
+                            <BorderStyle>
+                              <Right>Solid</Right>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>3</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=First(Fields!IM_COMMODITY.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox15">
+                          <Style>
+                            <BorderStyle>
+                              <Right>Solid</Right>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>2</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!DISPLAY.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox16">
+                          <Style>
+                            <BorderStyle>
+                              <Right>Solid</Right>
+                            </BorderStyle>
+                            <TextAlign>Center</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!PARTDESCRIPTION.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="CONSUMPTION">
+                          <rd:DefaultName>CONSUMPTION</rd:DefaultName>
+                          <Style>
+                            <Format>c2</Format>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!CONSUMPTION.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.25in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+          <TableGroup>
+            <Grouping Name="table1_Group2">
+              <GroupExpressions>
+                <GroupExpression>=Fields!IM_KEY.Value</GroupExpression>
+                <GroupExpression>=Fields!IM_DESCR.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+            <Sorting>
+              <SortBy>
+                <SortExpression>=Fields!IM_KEY.Value</SortExpression>
+                <Direction>Ascending</Direction>
+              </SortBy>
+              <SortBy>
+                <SortExpression>=Fields!IM_DESCR.Value</SortExpression>
+                <Direction>Ascending</Direction>
+              </SortBy>
+            </Sorting>
+          </TableGroup>
+        </TableGroups>
+        <TableColumns>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.75in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.5in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.5in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>0.25in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <TopMargin>0.1in</TopMargin>
+</Report>

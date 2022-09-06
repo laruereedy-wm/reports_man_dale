@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Information Services", "Information Services.rptproj", "{4AD0A62C-FB24-4CCC-9B34-EE746FD8E3C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AD0A62C-FB24-4CCC-9B34-EE746FD8E3C8}.Debug|Default.ActiveCfg = Debug
+		{4AD0A62C-FB24-4CCC-9B34-EE746FD8E3C8}.Debug|Default.Build.0 = DebugLocal
+		{4AD0A62C-FB24-4CCC-9B34-EE746FD8E3C8}.Debug|Default.Deploy.0 = DebugLocal
+		{4AD0A62C-FB24-4CCC-9B34-EE746FD8E3C8}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{4AD0A62C-FB24-4CCC-9B34-EE746FD8E3C8}.DebugLocal|Default.Build.0 = DebugLocal
+		{4AD0A62C-FB24-4CCC-9B34-EE746FD8E3C8}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{4AD0A62C-FB24-4CCC-9B34-EE746FD8E3C8}.Release|Default.ActiveCfg = Release
+		{4AD0A62C-FB24-4CCC-9B34-EE746FD8E3C8}.Release|Default.Build.0 = Release
+		{4AD0A62C-FB24-4CCC-9B34-EE746FD8E3C8}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

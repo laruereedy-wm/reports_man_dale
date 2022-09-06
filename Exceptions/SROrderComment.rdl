@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix7">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1.01042in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>8.42877in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.03125in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.18055in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="SEEPRINT">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!SEEPRINT.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>SEEPRINT</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>=IIF(Fields!SEEPRINT.Value = "SEE PRINT","DarkViolet","Pink")</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="COM1">
+                      <CanGrow>true</CanGrow>
+                      <CanShrink>true</CanShrink>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=TRIM(Fields!COM1.Value) &amp; "   " &amp; TRIM(Fields!COM2.Value)&amp; "   " &amp; TRIM(Fields!COM3.Value)&amp; "   " &amp; TRIM(Fields!COM4.Value)&amp; "   " &amp; TRIM(Fields!COM5.Value)&amp; "   " &amp; TRIM(Fields!COM6.Value)&amp; "   " &amp; TRIM(Fields!COM7.Value)&amp; "   " &amp; TRIM(Fields!COM8.Value)&amp; "   " &amp; TRIM(Fields!COM9.Value)&amp; "   " &amp; TRIM(Fields!COM10.Value)&amp; "   " &amp; TRIM(Fields!COM11.Value)&amp; "   " &amp; TRIM(Fields!COM12.Value)&amp; "   " &amp; TRIM(Fields!COM13.Value)&amp; "   " &amp; TRIM(Fields!COM14.Value)&amp; "   " &amp; TRIM(Fields!COM15.Value)&amp; "   " &amp; TRIM(Fields!COM16.Value)&amp; "   " &amp; TRIM(Fields!COM17.Value)&amp; "   " &amp; TRIM(Fields!COM18.Value)&amp; "   " &amp; TRIM(Fields!COM19.Value)</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>COM1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>Pink</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>Plum</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="Details" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>OrderComment</DataSetName>
+        <Height>0.18055in</Height>
+        <Width>9.47044in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <FontSize>6pt</FontSize>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>0.18055in</Height>
+    <Style>
+      <Border>
+        <Style>None</Style>
+      </Border>
+    </Style>
+  </Body>
+  <Width>9.47044in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <Description>R08 SROrderComment</Description>
+  <Author>SSRS Conversion</Author>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="PKI">
+      <DataSourceReference>PKI</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>0ab54a4c-47ea-4c11-9e4e-6ebd020e15e6</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="VM250_OrderEntry">
+      <DataSourceReference>VM250_OrderEntry</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>867c8364-cdcf-4c84-b901-8cac06ab3a7f</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="OrderComment">
+      <Query>
+        <DataSourceName>VM250_OrderEntry</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@OrderNum">
+            <Value>=Parameters!OrderNum.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ItemNum">
+            <Value>=Parameters!ItemNum.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT DISTINCT OrderNum, ItemNum,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) LIKE '%1')) AS COM1,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) LIKE '%2')) AS COM2,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) LIKE '%3')) AS COM3,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) LIKE '%4')) AS COM4,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) LIKE '%5')) AS COM5,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) LIKE '%6')) AS COM6,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) LIKE '%7')) AS COM7,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) LIKE '%8')) AS COM8,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) LIKE '%9')) AS COM9,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) LIKE '%0')) AS COM10,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) = '11')) AS COM11,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) = '12')) AS COM12,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) = '13')) AS COM13,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) = '14')) AS COM14,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) = '15')) AS COM15,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) = '16')) AS COM16,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) = '17')) AS COM17,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) = '18')) AS COM18,
+                          (SELECT     Comment
+                            FROM          OrderItemComments AS OrderItemComments_1
+                            WHERE      (OrderNum = @OrderNum) AND (ItemNum = @ItemNum) AND (RIGHT(RelativeRecordNum, 2) = '19')) AS COM19
+FROM         OrderItemComments AS OrderItemComments_1
+WHERE     (OrderNum = @OrderNum) AND (ItemNum = @ItemNum)</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrderNum">
+          <DataField>OrderNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ItemNum">
+          <DataField>ItemNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="COM1">
+          <DataField>COM1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM2">
+          <DataField>COM2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM3">
+          <DataField>COM3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM4">
+          <DataField>COM4</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM5">
+          <DataField>COM5</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM6">
+          <DataField>COM6</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM7">
+          <DataField>COM7</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM8">
+          <DataField>COM8</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM9">
+          <DataField>COM9</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM10">
+          <DataField>COM10</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM11">
+          <DataField>COM11</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM12">
+          <DataField>COM12</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM13">
+          <DataField>COM13</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM14">
+          <DataField>COM14</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM15">
+          <DataField>COM15</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM16">
+          <DataField>COM16</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM17">
+          <DataField>COM17</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM18">
+          <DataField>COM18</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COM19">
+          <DataField>COM19</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SEEPRINT">
+          <Value>=IIF(Fields!COM1.Value Like "*PRINT*" OR Fields!COM2.Value Like "*PRINT*" OR Fields!COM3.Value Like "*PRINT*" OR Fields!COM4.Value Like "*PRINT*" OR Fields!COM5.Value Like "*PRINT*" OR Fields!COM6.Value Like "*PRINT*" OR Fields!COM7.Value Like "*PRINT*" OR Fields!COM8.Value Like "*PRINT*" OR Fields!COM9.Value Like "*PRINT*" OR Fields!COM10.Value Like "*PRINT*","SEE PRINT","")</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="OrderNum">
+      <DataType>String</DataType>
+      <Prompt>Order Num</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ItemNum">
+      <DataType>String</DataType>
+      <Prompt>Item Num</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>a8b0c4c2-8182-4bc3-9388-d1b55cf73384</rd:ReportID>
+</Report>

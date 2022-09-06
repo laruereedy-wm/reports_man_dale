@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="PKI">
+      <DataSourceReference>PKI</DataSourceReference>
+      <rd:DataSourceID>97a03b76-e68d-44ac-837f-cf4070fec78e</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>1in</BottomMargin>
+  <RightMargin>1in</RightMargin>
+  <ReportParameters>
+    <ReportParameter Name="PM_MOS_JOB">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>PM_MOS_JOB</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Textbox Name="textbox1">
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Style>
+          <TextAlign>Right</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Value>=Fields!OP_WCKEY.Value</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.25in</Height>
+  </Body>
+  <rd:ReportID>52c74249-f974-4d10-9955-96f08368ecf6</rd:ReportID>
+  <LeftMargin>1in</LeftMargin>
+  <DataSets>
+    <DataSet Name="Maindata">
+      <Query>
+        <CommandText>SELECT     OP_WC_STATUS, OP_WCKEY, OP_MOSTYPE, OP_MOSJOB, OP_OP_NUM
+FROM         dbo.OP
+WHERE     (OP_MOSJOB = @PM_MOS_JOB) AND (OP_WC_STATUS = 'O') AND (OP_OP_NUM = 400) AND (OP_MOSTYPE = 'S')</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@PM_MOS_JOB">
+            <Value>=Parameters!PM_MOS_JOB.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>PKI</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="OP_WC_STATUS">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>OP_WC_STATUS</DataField>
+        </Field>
+        <Field Name="OP_WCKEY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>OP_WCKEY</DataField>
+        </Field>
+        <Field Name="OP_MOSTYPE">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>OP_MOSTYPE</DataField>
+        </Field>
+        <Field Name="OP_MOSJOB">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>OP_MOSJOB</DataField>
+        </Field>
+        <Field Name="OP_OP_NUM">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>OP_OP_NUM</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Width>1in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Description>Do Not Run</Description>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+</Report>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>4.97917in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.74875in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif(isNothing(Fields!IDD.Value), Fields!IDB.Value &amp; "   "  &amp; Fields!IDC.Value &amp; Constants.vbcrlf  &amp; Fields!IDA.Value &amp; Constants.vbcrlf  &amp; Fields!IM_DESCR.Value , Fields!IDB.Value &amp; "  " &amp; Fields!IDC.Value &amp; Constants.vbcrlf  &amp; Fields!IDA.Value &amp; "  (" &amp; Fields!IDD.Value &amp; ")" &amp;  Constants.vbcrlf  &amp; Fields!IM_DESCR.Value  &amp; "  (" &amp; Fields!IDE.Value &amp; ")")</Value>
+                              <Style>
+                                <FontFamily>Arial Narrow</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="Details" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>IDdescr</DataSetName>
+        <Height>0.74875in</Height>
+        <Width>4.97917in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>0.74875in</Height>
+    <Style />
+  </Body>
+  <Width>4.97917in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="PKI">
+      <DataSourceReference>PKI</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>453437e1-a197-464a-b76c-0ba8333ea8c7</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="IDdescr">
+      <Query>
+        <DataSourceName>PKI</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@imkey">
+            <Value>=Parameters!imkey.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT DISTINCT 
+                      IM.IM_KEY, IM.IM_PLANNER, IM.IM_COMMODITY, IM.IM_DESCR, A.ID_LINE AS IDA, B.ID_LINE AS IDB, C.ID_LINE AS IDC, D.ID_LINE AS IDD, E.ID_LINE AS IDE, 
+                      F.ID_LINE AS IDF
+FROM         IM LEFT OUTER JOIN
+                      ID AS F ON IM.IM_KEY = F.ID_IMKEY AND F.ID_LINE_NO = 1 AND F.ID_CLASS = 'A/P' LEFT OUTER JOIN
+                      ID AS A ON IM.IM_KEY = A.ID_IMKEY AND A.ID_LINE_NO = 1 AND A.ID_CLASS = 'GEN' LEFT OUTER JOIN
+                      ID AS B ON A.ID_IMKEY = B.ID_IMKEY AND B.ID_LINE_NO = 2 AND B.ID_CLASS = 'GEN' LEFT OUTER JOIN
+                      ID AS C ON B.ID_IMKEY = C.ID_IMKEY AND C.ID_LINE_NO = 3 AND C.ID_CLASS = 'GEN' LEFT OUTER JOIN
+                      ID AS D ON C.ID_IMKEY = D.ID_IMKEY AND D.ID_LINE_NO = 4 AND D.ID_CLASS = 'GEN' LEFT OUTER JOIN
+                      ID AS E ON D.ID_IMKEY = E.ID_IMKEY AND E.ID_LINE_NO = 5 AND E.ID_CLASS = 'GEN'
+WHERE     (IM.IM_KEY = @imkey)</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="IM_KEY">
+          <DataField>IM_KEY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_PLANNER">
+          <DataField>IM_PLANNER</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IM_COMMODITY">
+          <DataField>IM_COMMODITY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_DESCR">
+          <DataField>IM_DESCR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDA">
+          <DataField>IDA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDB">
+          <DataField>IDB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDC">
+          <DataField>IDC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDD">
+          <DataField>IDD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDE">
+          <DataField>IDE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDF">
+          <DataField>IDF</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="imkey">
+      <DataType>String</DataType>
+      <Prompt>imkey</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>5b1d8119-f104-46be-b4f6-72dfc0bda53c</rd:ReportID>
+</Report>

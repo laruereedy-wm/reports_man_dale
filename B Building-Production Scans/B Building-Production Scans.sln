@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "B Building-Production Scans", "B Building-Production Scans.rptproj", "{A3FDC541-799D-450A-AC5C-2FA3FA5E9F8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3FDC541-799D-450A-AC5C-2FA3FA5E9F8C}.Debug|Default.ActiveCfg = Debug
+		{A3FDC541-799D-450A-AC5C-2FA3FA5E9F8C}.Debug|Default.Build.0 = DebugLocal
+		{A3FDC541-799D-450A-AC5C-2FA3FA5E9F8C}.Debug|Default.Deploy.0 = DebugLocal
+		{A3FDC541-799D-450A-AC5C-2FA3FA5E9F8C}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{A3FDC541-799D-450A-AC5C-2FA3FA5E9F8C}.DebugLocal|Default.Build.0 = DebugLocal
+		{A3FDC541-799D-450A-AC5C-2FA3FA5E9F8C}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{A3FDC541-799D-450A-AC5C-2FA3FA5E9F8C}.Release|Default.ActiveCfg = Release
+		{A3FDC541-799D-450A-AC5C-2FA3FA5E9F8C}.Release|Default.Build.0 = Release
+		{A3FDC541-799D-450A-AC5C-2FA3FA5E9F8C}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

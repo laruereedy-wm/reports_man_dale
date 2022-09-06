@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="MarketForecast1">
+      <DataSourceReference>MarketForecast1</DataSourceReference>
+      <rd:DataSourceID>8047f86c-a65a-4fd9-b141-469750bbc582</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>1in</BottomMargin>
+  <RightMargin>1in</RightMargin>
+  <ReportParameters>
+    <ReportParameter Name="Territory">
+      <DataType>String</DataType>
+      <Prompt>Territory</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Textbox Name="TERRITORY_NAME">
+        <rd:DefaultName>TERRITORY_NAME</rd:DefaultName>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontWeight>700</FontWeight>
+          <FontSize>8pt</FontSize>
+          <BackgroundColor>Gainsboro</BackgroundColor>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Value>="Territory #" &amp; Parameters!Territory.Value &amp; " - " &amp; Code.ProperCase(Fields!TERRITORY_NAME.Value)</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.125in</Height>
+  </Body>
+  <rd:ReportID>e799135b-bf16-477e-a895-d0c6f1fd20bc</rd:ReportID>
+  <LeftMargin>1in</LeftMargin>
+  <DataSets>
+    <DataSet Name="MainData">
+      <Query>
+        <CommandText>SELECT     SALESHISTORYREPORT.TERRITORY, TERRITORY.[TERRITORY ID], TERRITORY.[TERRITORY NAME], TERRITORY.SEL
+FROM         SALESHISTORYREPORT LEFT OUTER JOIN
+                      TERRITORY ON SALESHISTORYREPORT.TERRITORY = TERRITORY.[TERRITORY ID]
+WHERE     (SALESHISTORYREPORT.TERRITORY = @Territory)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Territory">
+            <Value>=Parameters!Territory.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>MarketForecast1</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="TERRITORY">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TERRITORY</DataField>
+        </Field>
+        <Field Name="TERRITORY_ID">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TERRITORY ID</DataField>
+        </Field>
+        <Field Name="TERRITORY_NAME">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>TERRITORY NAME</DataField>
+        </Field>
+        <Field Name="SEL">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>SEL</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Code>Public Function ProperCase(ByVal strValue As String) As String
+	ProperCase = StrConv(strValue, VbStrConv.ProperCase)
+End Function
+</Code>
+  <Width>3.25in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+</Report>

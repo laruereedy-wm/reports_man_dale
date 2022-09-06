@@ -1,0 +1,1388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="2328Stain">
+      <rd:DataSourceID>0a753cca-e89e-482a-96f2-b694155f7848</rd:DataSourceID>
+      <DataSourceReference>2328Stain</DataSourceReference>
+    </DataSource>
+    <DataSource Name="2438PREA">
+      <rd:DataSourceID>4bccb82f-3477-496e-b6f4-c81f51246371</rd:DataSourceID>
+      <DataSourceReference>2438PREA</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>8.5in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="ENDDATE">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>EndDate</DataSetName>
+          <ValueField>ENDDATE</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ENDDATE</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>11in</InteractiveWidth>
+  <rd:SnapToGrid>false</rd:SnapToGrid>
+  <RightMargin>0.1in</RightMargin>
+  <LeftMargin>0.1in</LeftMargin>
+  <BottomMargin>0.1in</BottomMargin>
+  <rd:ReportID>88638643-f75b-49ce-b44a-512a84c85a4f</rd:ReportID>
+  <PageWidth>11in</PageWidth>
+  <DataSets>
+    <DataSet Name="EndDate">
+      <Fields>
+        <Field Name="ENDDATE">
+          <DataField>ENDDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2328Stain</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>procGetStainingEndDate</CommandText>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2438StandardCabinets">
+      <Fields>
+        <Field Name="DATE">
+          <DataField>DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SIDEFINISH">
+          <DataField>SIDEFINISH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CABINET">
+          <DataField>CABINET</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING2">
+          <DataField>TRACKING2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DUEWH">
+          <DataField>DUEWH</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPDATE">
+          <DataField>SHIPDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TYPE">
+          <DataField>TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPGROUP">
+          <DataField>SHIPGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="JOBCOM">
+          <DataField>JOBCOM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RELDATEORD">
+          <DataField>RELDATEORD</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="UPSTAIRSFINISH">
+          <DataField>UPSTAIRSFINISH</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SPECIAL">
+          <DataField>SPECIAL</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HIGHDIFFICULTY">
+          <DataField>HIGHDIFFICULTY</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING">
+          <DataField>TRACKING</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EXCLUSION">
+          <DataField>EXCLUSION</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="STANDARD_CABINET_QTY">
+          <Value>=Fields!QTY.Value</Value>
+        </Field>
+        <Field Name="STANDARD_CABINET_HOURS">
+          <Value>=Fields!HOURS.Value</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2438PREA</DataSourceName>
+        <CommandText>SELECT        DATE, ORDRNO, ITEMNO, QTY, SIDEFINISH, CABINET, TRACKING2, WIDTH, DUEWH, FINISHDATE, BASEWALLTALL, SHIPDATE, TYPE, DESIGNGRP, SHIPGROUP, 
+                         RATE, HOURS, B2FLAG, JOBCOM, RELDATEORD, UPSTAIRSFINISH, SPECIAL, HIGHDIFFICULTY, TRACKING, EXCLUSION
+FROM            REPORTDATA
+WHERE        (FINISHDATE &lt; @ENDDATE) AND (SPECIAL &lt;&gt; 1)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ENDDATE">
+            <Value>=Parameters!ENDDATE.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2438SpecialCabinets">
+      <Fields>
+        <Field Name="DATE">
+          <DataField>DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SIDEFINISH">
+          <DataField>SIDEFINISH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CABINET">
+          <DataField>CABINET</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING2">
+          <DataField>TRACKING2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DUEWH">
+          <DataField>DUEWH</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPDATE">
+          <DataField>SHIPDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TYPE">
+          <DataField>TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPGROUP">
+          <DataField>SHIPGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="JOBCOM">
+          <DataField>JOBCOM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RELDATEORD">
+          <DataField>RELDATEORD</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="UPSTAIRSFINISH">
+          <DataField>UPSTAIRSFINISH</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SPECIAL">
+          <DataField>SPECIAL</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HIGHDIFFICULTY">
+          <DataField>HIGHDIFFICULTY</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING">
+          <DataField>TRACKING</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EXCLUSION">
+          <DataField>EXCLUSION</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SPECIAL_CABINET_QTY">
+          <Value>=Fields!QTY.Value</Value>
+        </Field>
+        <Field Name="SPECIAL_CABINET_HOURS">
+          <Value>=Fields!HOURS.Value</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2438PREA</DataSourceName>
+        <CommandText>SELECT        DATE, ORDRNO, ITEMNO, QTY, SIDEFINISH, CABINET, TRACKING2, WIDTH, DUEWH, FINISHDATE, BASEWALLTALL, SHIPDATE, TYPE, DESIGNGRP, SHIPGROUP, 
+                         RATE, HOURS, B2FLAG, JOBCOM, RELDATEORD, UPSTAIRSFINISH, SPECIAL, HIGHDIFFICULTY, TRACKING, EXCLUSION
+FROM            REPORTDATA
+WHERE        (SPECIAL = 1) AND (FINISHDATE &lt; @ENDDATE)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ENDDATE">
+            <Value>=Parameters!ENDDATE.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2438ActualEarned">
+      <Fields>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EARNEDGROUP">
+          <DataField>EARNEDGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EARNEDTIME">
+          <DataField>EARNEDTIME</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EXCLUSION">
+          <DataField>EXCLUSION</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SPECIAL">
+          <DataField>SPECIAL</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="UPSTAIRSFINISH">
+          <DataField>UPSTAIRSFINISH</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HIGHDIFFICULTY">
+          <DataField>HIGHDIFFICULTY</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="NONSTOCKEDGEBANDING">
+          <DataField>NONSTOCKEDGEBANDING</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="STANDARD_CABINET_QTY">
+          <Value>=IIF(Not Fields!SPECIAL.Value = True, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="STANDARD_CABINET_HOURS">
+          <Value>=IIF(Not Fields!SPECIAL.Value = True, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="SPECIAL_CABINET_QTY">
+          <Value>=IIF(Fields!SPECIAL.Value = True, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="SPECIAL_CABINET_HOURS">
+          <Value>=IIF(Fields!SPECIAL.Value = True, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+        <Field Name="NSEB_CABINET_QTY">
+          <Value>=IIF(Fields!NONSTOCKEDGEBANDING.Value = True, Fields!QTY.Value, Nothing)</Value>
+        </Field>
+        <Field Name="NSEB_CABINET_HOURS">
+          <Value>=IIF(Fields!NONSTOCKEDGEBANDING.Value = True, Fields!HOURS.Value, Nothing)</Value>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2438PREA</DataSourceName>
+        <CommandText>SELECT        ORDRNO, ITEMNO, QTY, FINISHDATE, DESIGNGRP, BASEWALLTALL, WIDTH, EARNEDGROUP, EARNEDTIME, RATE, HOURS, B2FLAG, EXCLUSION, SPECIAL, 
+                         UPSTAIRSFINISH, HIGHDIFFICULTY, NONSTOCKEDGEBANDING
+FROM            vActualEarned</CommandText>
+      </Query>
+    </DataSet>
+    <DataSet Name="Dept2438NonStockEdgeBanding">
+      <Fields>
+        <Field Name="DATE">
+          <DataField>DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ORDRNO">
+          <DataField>ORDRNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ITEMNO">
+          <DataField>ITEMNO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QTY">
+          <DataField>QTY</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SIDEFINISH">
+          <DataField>SIDEFINISH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CABINET">
+          <DataField>CABINET</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING2">
+          <DataField>TRACKING2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WIDTH">
+          <DataField>WIDTH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DUEWH">
+          <DataField>DUEWH</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FINISHDATE">
+          <DataField>FINISHDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BASEWALLTALL">
+          <DataField>BASEWALLTALL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPDATE">
+          <DataField>SHIPDATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TYPE">
+          <DataField>TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESIGNGRP">
+          <DataField>DESIGNGRP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHIPGROUP">
+          <DataField>SHIPGROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RATE">
+          <DataField>RATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HOURS">
+          <DataField>HOURS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="B2FLAG">
+          <DataField>B2FLAG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="JOBCOM">
+          <DataField>JOBCOM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RELDATEORD">
+          <DataField>RELDATEORD</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="UPSTAIRSFINISH">
+          <DataField>UPSTAIRSFINISH</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SPECIAL">
+          <DataField>SPECIAL</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="HIGHDIFFICULTY">
+          <DataField>HIGHDIFFICULTY</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="TRACKING">
+          <DataField>TRACKING</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EXCLUSION">
+          <DataField>EXCLUSION</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>2438PREA</DataSourceName>
+        <CommandText>SELECT        DATE, ORDRNO, ITEMNO, QTY, SIDEFINISH, CABINET, TRACKING2, WIDTH, DUEWH, FINISHDATE, BASEWALLTALL, SHIPDATE, TYPE, DESIGNGRP, SHIPGROUP, 
+                         RATE, HOURS, B2FLAG, JOBCOM, RELDATEORD, UPSTAIRSFINISH, SPECIAL, HIGHDIFFICULTY, TRACKING, EXCLUSION
+FROM            REPORTDATA
+WHERE        (NONSTOCKEDGEBANDING = 1) AND (FINISHDATE &lt; @ENDDATE)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ENDDATE">
+            <Value>=Parameters!ENDDATE.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>BJ Kaledas</Author>
+  <Code>'Handle divide by zero gracefully and improved readability of an IIf
+Public Function DivZero(ByVal Numerator As Object, ByVal Denominator As Object, ByVal DivZeroDefault As Object) As Object 
+	If Denominator &lt;&gt; 0 Then 
+	    Return Numerator/Denominator 
+	Else 
+	    Return DivZeroDefault 
+	End If 
+End Function </Code>
+  <Width>10.8125in</Width>
+  <Body>
+    <ReportItems>
+      <Table Name="table15">
+        <ZIndex>2</ZIndex>
+        <DataSetName>Dept2438NonStockEdgeBanding</DataSetName>
+        <Top>0.90546in</Top>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.07292in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.28125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.53125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.11458in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.27083in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.26042in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox132">
+                      <rd:DefaultName>textbox132</rd:DefaultName>
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox133">
+                      <rd:DefaultName>textbox133</rd:DefaultName>
+                      <Style>
+                        <BorderWidth>
+                          <Left>2pt</Left>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Cabinets Planned</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox134">
+                      <rd:DefaultName>textbox134</rd:DefaultName>
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Cabinets Hours Planned</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox135">
+                      <rd:DefaultName>textbox135</rd:DefaultName>
+                      <Style>
+                        <BorderWidth>
+                          <Left>2pt</Left>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Cabinets Actual</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox136">
+                      <rd:DefaultName>textbox136</rd:DefaultName>
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Cabinet Hours Actual</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox137">
+                      <rd:DefaultName>textbox137</rd:DefaultName>
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox138">
+                      <rd:DefaultName>textbox138</rd:DefaultName>
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox139">
+                      <rd:DefaultName>textbox139</rd:DefaultName>
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox140">
+                      <rd:DefaultName>textbox140</rd:DefaultName>
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox123">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>17</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Non-Stock Edge Banding</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox124">
+                      <Style>
+                        <BorderWidth>
+                          <Left>2pt</Left>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>16</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!QTY.Value)/5</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox125">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>15</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!HOURS.Value)/5</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox131">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>14</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!NSEB_CABINET_QTY.Value, "Dept2438ActualEarned")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox142">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>13</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!NSEB_CABINET_HOURS.Value, "Dept2438ActualEarned")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox141">
+                      <rd:DefaultName>textbox141</rd:DefaultName>
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>12</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox128">
+                      <rd:DefaultName>textbox128</rd:DefaultName>
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>11</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox129">
+                      <rd:DefaultName>textbox129</rd:DefaultName>
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>10</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox130">
+                      <rd:DefaultName>textbox130</rd:DefaultName>
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>9</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+      </Table>
+      <Table Name="table13">
+        <ZIndex>1</ZIndex>
+        <DataSetName>Dept2438StandardCabinets</DataSetName>
+        <Top>0.65468in</Top>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.07292in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.28125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.53125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.11458in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.27083in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.26042in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.25in</Height>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox100">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Special/Standard</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox101">
+                      <Style>
+                        <BorderWidth>
+                          <Left>2pt</Left>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!STANDARD_CABINET_QTY.Value)/5</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox102">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!STANDARD_CABINET_HOURS.Value)/5</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox103">
+                      <Style>
+                        <BorderWidth>
+                          <Left>2pt</Left>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!SPECIAL_CABINET_QTY.Value, "Dept2438SpecialCabinets")/5</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox108">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!SPECIAL_CABINET_HOURS.Value, "Dept2438SpecialCabinets")/5</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox109">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!STANDARD_CABINET_QTY.Value, "Dept2438ActualEarned")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox110">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!STANDARD_CABINET_HOURS.Value, "Dept2438ActualEarned")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox111">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!SPECIAL_CABINET_QTY.Value, "Dept2438ActualEarned")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox112">
+                      <Style>
+                        <BorderWidth>
+                          <Right>2pt</Right>
+                        </BorderWidth>
+                        <FontWeight>700</FontWeight>
+                        <Format>#,##0.0</Format>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!SPECIAL_CABINET_HOURS.Value, "Dept2438ActualEarned")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+      </Table>
+      <Table Name="table14">
+        <DataSetName>Dept2438StandardCabinets</DataSetName>
+        <Top>0.00571in</Top>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ColSpan>9</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="textbox113">
+                      <Style>
+                        <FontSize>24pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>9</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>2438</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.40625in</Height>
+            </TableRow>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox114">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox115">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Standard Cabinets Planned</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox116">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Standard Cabinets Hrs Planned</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox117">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Special Cabinets Planned</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox118">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Special Cabinets Hours Planned</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox119">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Standard Cabinets  Actual</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox120">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Standard Cabinets Hrs Act</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox121">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Special Cabinets Actual</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox122">
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Special Cabinets  Hrs Act</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.07292in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.28125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.53125in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.11458in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.27083in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.26042in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.09375in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>0.65625in</Height>
+      </Table>
+    </ReportItems>
+    <Height>1.40546in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <PageHeight>8.5in</PageHeight>
+</Report>

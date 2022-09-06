@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="WOOD03_SMART">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=WOOD03;Initial Catalog=SMART</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>19b01ffb-427a-4823-bd47-6065d02d4871</DataSourceID>
+</RptDataSource>
